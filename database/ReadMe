@@ -1,0 +1,4 @@
+The database folder contains unminified JSON representing ECO codes, and a single PGN file
+containing every game by Mikhail Tal. The contents in this folder do not need to be loaded
+on to the website. A build task will minify the JSON and separate each PGN and name them,
+placing the results in the build folder.

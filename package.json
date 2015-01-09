@@ -1,0 +1,16 @@
+{
+  "name": "PlayLikeTal",
+  "version": "0.0.0",
+  "description": "A web application to learn to play like chess grandmaster Mikhail Tal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tristin forbus",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "~3.8.10",
+    "cheerio": "~0.18.0",
+    "request": "~2.51.0"
+  }
+}
