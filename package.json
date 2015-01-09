@@ -11,6 +11,11 @@
   "devDependencies": {
     "gulp": "~3.8.10",
     "cheerio": "~0.18.0",
-    "request": "~2.51.0"
+    "request": "~2.51.0",
+    "mocha": "~2.1.0",
+    "should": "~4.4.4"
+  },
+  "dependencies": {
+    "q": "~1.1.2"
   }
 }
