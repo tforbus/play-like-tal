@@ -59,12 +59,9 @@ module.exports = {
      */
     saveWinningGames: function saveWinningGames(path, pgns) {
         var games = this._getWinningGames(pgns),
-            batches = this._batchGames(games),
-            promises = [],
-            deferred = Q.defer(),
-            counter = 1;
+            chain;
 
-        var chain = games.reduce(function (promise, current, index) {
+        chain = games.reduce(function (promise, current, index) {
             var filename = path + '/' + this._createGameFileName(index + 1);
             return promise.then(function () {
                 return this._savePgnObject(filename, current);
