@@ -1,4 +1,5 @@
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    path = require('path');
 
 var databaseSplitter = require('./helpers/databaseSplitter.js'),
     pgnConverter = require('./helpers/rawPgnConverter.js'),
@@ -7,13 +8,13 @@ var databaseSplitter = require('./helpers/databaseSplitter.js'),
 
 // Construct all games from the Tal database.
 gulp.task('games-database', function () {
-    var databasePath = __dirname + '/database/Tal.pgn';
+    var databasePath = path.normalize(path.join(__dirname, 'database', 'Tal.pgn'));
     databaseSplitter.readDatabase(databasePath)
     .then(function (data) {
         return databaseSplitter.splitDatabase(data);
     })
     .then(function (rawPgns) {
-        var writePath = __dirname + '/database/games',
+        var writePath = path.normalize(path.join(__dirname, 'database', 'games'));
             pgns = [];
 
         rawPgns.forEach(function (pgn) {
