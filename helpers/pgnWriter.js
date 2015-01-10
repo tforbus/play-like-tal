@@ -31,7 +31,7 @@ module.exports = {
      * @return {promise}
      */
     savePgnObject: function savePgnObject(pgnJson, index) {
-        var deferred = Q.deferred(),
+        var deferred = Q.defer(),
             fileName = this.createGameFileName(index),
             file = JSON.stringify(pgnJson);
 
@@ -43,7 +43,7 @@ module.exports = {
             }
         });
 
-        return deferred.promise();
+        return deferred.promise;
     },
 
     /**

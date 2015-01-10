@@ -14,14 +14,9 @@ module.exports = {
      * @return {promise}
      */
     readDatabase: function readDatabase(databasePath) {
-        var deferred = Q.defer(),
-            path;
+        var deferred = Q.defer();
 
-        if (databasePath.charAt(0) !== '/') {
-            databasePath = '/' + databasePath;
-        }
-
-        path = __dirname + databasePath;
+        console.log('Reading database: ' + databasePath);
 
         fs.readFile(databasePath, 'utf-8', function (error, data) {
             if (error) {
@@ -44,7 +39,7 @@ module.exports = {
         var deferred = Q.defer(),
             pgns;
 
-        pgns = data.split(re.pgnFirstLine);
+        pgns = data.split(this.re.pgnFirstLine);
         deferred.resolve(pgns);
 
         return deferred.promise;

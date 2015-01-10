@@ -2,7 +2,7 @@
     var should = require('should');
     var splitter = require('../helpers/databaseSplitter.js');
 
-    var MOCK_DATABASE_PATH = 'mocks/database.pgn';
+    var MOCK_DATABASE_PATH = __dirname + '/mocks/database.pgn';
 
     describe('Database Splitter', function () {
         
