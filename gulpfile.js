@@ -13,19 +13,23 @@ gulp.task('games-database', function () {
         return databaseSplitter.splitDatabase(data);
     })
     .then(function (rawPgns) {
-        var pgns = [];
+        var writePath = __dirname + '/database/games',
+            pgns = [];
+
         rawPgns.forEach(function (pgn) {
             pgns.push(pgnConverter.constructPgnObject(pgn));
         });
 
-        return pgnWriter.saveWinningGames(pgns);
+        return pgnWriter.saveWinningGames(writePath, pgns);
     })
     .catch(function (err) {
         console.error(err);
     });
 });
 
+/*
 // Get JSON of ECO codes.
 gulp.task('eco-database', function () {
     eco.scrape();
 });
+*/
