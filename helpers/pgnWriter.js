@@ -50,28 +50,6 @@ module.exports = {
     },
 
     /**
-     * OS X has an issue where more than 245 files can't be opened in parallel.
-     * Batch the games into arrays of 244 to be written at once to get around.
-     * 
-     * @param {array} games - list of games
-     * @return {array} array of arrays
-     */
-    _batchGames: function _batchGames(games, batchSize) {
-        var batches = [];
-        batchSize = batchSize || 244;
-
-        if (games.length < batchSize) {
-            batchSize = games.length;
-        }
-
-        for (var i = 0, len = games.length; i < len; i+=batchSize) {
-            var temp = games.slice(i, i + batchSize);
-            batches.push(temp);
-        }
-        return batches;
-    },
-
-    /**
      * Save all winning games to the games database.
      *
      * OS X has an issue with writing many files at once, so sequentially
