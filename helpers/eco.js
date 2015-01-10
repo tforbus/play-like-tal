@@ -53,4 +53,6 @@ function makeOutput(map) {
     });
 }
 
-initializeScrape();
+module.exports = {
+    scrape: initializeScrape
+};

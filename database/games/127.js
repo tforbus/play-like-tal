@@ -1,0 +1,1 @@
+{"event":"URS-ch25","site":"Riga","date":1958,"round":null,"white":"Borisenko, Georgy K","black":"Tal, Mikhail","result":{"white":"0","black":"1"},"eco":"A00","moves":[{"white":"d4"}]}
