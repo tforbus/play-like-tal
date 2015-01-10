@@ -1,11 +1,7 @@
 var fs = require('fs'),
     Q = require('q');
 
-var SAVE_PATH = '../database/games/';
-
 module.exports = {
-    gameId: 1,
-
     /**
      * Create a filename for a supplied PGN.
      * @param {object} pgn
@@ -30,12 +26,12 @@ module.exports = {
      * @param {object} pgnJson - a json representation of a PGN file.
      * @return {promise}
      */
-    savePgnObject: function savePgnObject(pgnJson, index) {
+    savePgnObject: function savePgnObject(filename, pgnJson, index) {
         var deferred = Q.defer(),
             fileName = this.createGameFileName(index),
             file = JSON.stringify(pgnJson);
 
-        fs.writeFile(__dirname + '/' + SAVE_PATH + fileName, file, function (error) {
+        fs.writeFile(filename, file, function (error) {
             if (error) {
                 deferred.reject(new Error(error));
             } else {

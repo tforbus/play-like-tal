@@ -5,30 +5,11 @@
 
     var splitter = require('../helpers/databaseSplitter.js'),
         pgnConverter = require('../helpers/rawPgnConverter.js'),
-        pgnWriter = require('../helpers/pgnWriter.js');
+        pgnWriter = require('../helpers/pgnWriter.js'),
+        fileUtils = require('./testUtils/file.js');
 
     var MOCK_DATABASE_PATH = __dirname + '/mocks/database.pgn',
         pgns = [];
-
-    // Check if a file exists.
-    function checkFileExists(path) {
-        var deferred = Q.defer();
-        fs.exists(path, function (exists) {
-            deferred.resolve(exists);
-        });
-
-        return deferred.promise;
-    }
-
-    function removeFile(path) {
-        var deferred = Q.defer();
-        fs.unlink(path, function (err) {
-            if (err) { deferred.reject(new Error(err)); }
-            deferred.resolve(true);
-        });
-
-        return deferred.promise;
-    }
 
     describe('PGN Writer', function () {
         before(function (done) {
@@ -47,7 +28,8 @@
                 done();
             })
             .catch(function (err) {
-                console.log(err);
+                console.error(err);
+                err.should.equal(null);
                 done();
             });
         });
@@ -69,15 +51,15 @@
         describe('#savePgnObject', function () {
             it('should save', function (done) {
                 var pgn = pgns[0],
-                    path = __dirname + '/../database/games/___test.js';
-                pgnWriter.savePgnObject(pgn, '___test')
+                    path = __dirname + '/mocks/___test.js';
+
+                pgnWriter.savePgnObject(path, pgn, '___test')
                 .then(function (data) {
-                    console.log(path);
-                    return checkFileExists(path);
+                    return fileUtils.doesFileExist(path);
                 })
                 .then(function (exists) {
                     exists.should.equal(true);
-                    return removeFile(path);
+                    return fileUtils.removeFile(path);
                 })
                 .then(function (didRemove) {
                     didRemove.should.equal(true);
@@ -85,7 +67,7 @@
                 })
                 .catch(function (error) {
                     console.error(error);
-                    error.should.not.be(null);
+                    error.should.be(null);
                     done();
                 });
             });
