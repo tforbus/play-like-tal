@@ -1,3 +1,14 @@
+/***********************************************************************************
+ * This module reads all JSON-formatted games (expected format is [number].js)
+ * and creates a game list, which is an array containing information about each
+ * game.
+ *
+ * The information retrieved from each game is:
+ * ECO, result, player names, game ID (the number of the game)
+ *
+ * The public method which should be called is #writeGamesList()
+ ***********************************************************************************/
+
 var fs = require('fs'),
     Q = require('q');
 
@@ -118,8 +129,23 @@ module.exports = {
         return items;
     },
 
+    /**
+     * Write the games list JSON to file.
+     * @param {object} options - hash in format {readFrom, writeTo}
+     * @return {promise}
+     */
     writeGamesList: function writeGamesList(options) {
-        var deferred = Q.defer();
+        function writeFile(data) {
+            var deferred = Q.defer();
+            fs.writeFile(options.writeTo, data, function (err) {
+                if (err) {
+                    deferred.reject(new Error(err));
+                } else {
+                    deferred.resolve(data);
+                }
+            });
+            return deferred.promise;
+        }
 
         return this._openAllGames(options.readFrom)
         .then(function (allGames) {
@@ -127,15 +153,7 @@ module.exports = {
         }.bind(this))
         .then(function (gamesList) {
             var data = JSON.stringify(gamesList);
-            fs.writeFile(options.writeTo, data, function (err) {
-                if (err) {
-                    deferred.reject(new Error(er));
-                } else {
-                    deferred.resolve(data);
-                }
-            });
-
-            return deferred.promise;
+            return writeFile(data);
         })
         .catch(function (err) {
             console.error(err);

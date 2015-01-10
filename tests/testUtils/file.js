@@ -22,5 +22,18 @@ module.exports = {
         });
 
         return deferred.promise;
+    },
+
+    writeFile: function writeFile(path, data) {
+        var deferred = Q.defer();
+        fs.writeFile(path, data, function (err) {
+            if (err) {
+                deferred.reject(new Error(err));
+            } else {
+                deferred.resolve(data);
+            }
+        });
+
+        return deferred.promise;
     }
 };

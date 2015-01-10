@@ -36,24 +36,24 @@
 
         describe('#getWinningGames()', function () {
             it('should show only winning games', function () {
-                var winning = pgnWriter.getWinningGames(pgns);
+                var winning = pgnWriter._getWinningGames(pgns);
                 winning.length.should.equal(2);
             });
         });
 
-        describe('#createGameFileName', function () {
+        describe('#createGameFileName()', function () {
             it('should add .js to a number', function () {
-                var fileName = pgnWriter.createGameFileName(1);
+                var fileName = pgnWriter._createGameFileName(1);
                 fileName.should.equal('1.js');
             });
         });
 
-        describe('#savePgnObject', function () {
+        describe('#savePgnObject()', function () {
             it('should save', function (done) {
                 var pgn = pgns[0],
-                    path = __dirname + '/mocks/___test.js';
+                    path = __dirname + '/tmp/___test.js';
 
-                pgnWriter.savePgnObject(path, pgn, '___test')
+                pgnWriter._savePgnObject(path, pgn)
                 .then(function (data) {
                     return fileUtils.doesFileExist(path);
                 })
@@ -73,5 +73,34 @@
             });
         });
 
+        describe('#saveWinningGames()', function () {
+            it('should save the files', function (done) {
+                var path = __dirname + '/tmp';
+
+                pgnWriter.saveWinningGames(path, pgns)
+                .then(function () {
+                    return fileUtils.doesFileExist(path + '/1.js');
+                })
+                .then(function (exists) {
+                    exists.should.equal(true);
+                    return fileUtils.doesFileExist(path + '/2.js');
+                })
+                .then(function (exists) {
+                    exists.should.equal(true);
+                })
+                .then(function () {
+                    return fileUtils.removeFile(path + '/1.js');
+                })
+                .then(function () {
+                    return fileUtils.removeFile(path + '/2.js');
+                })
+                .then(function () { done(); })
+                .catch(function (err) {
+                    console.error(err);
+                    err.should.equal(null);
+                    done();
+                });
+            });
+        });
     });
 }());

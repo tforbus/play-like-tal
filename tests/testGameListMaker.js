@@ -104,8 +104,8 @@
         });
 
         describe('#writeGamesList()', function () {
-            it('should write the file', function () {
-                var filePath = MOCK_GAMES_PATH + '/' + 'list.js';
+            it('should write the file', function (done) {
+                var filePath = __dirname + '/tmp/list.js';
                 gameListMaker.writeGamesList({
                     readFrom: MOCK_GAMES_PATH,
                     writeTo: filePath
@@ -128,10 +128,12 @@
                 })
                 .then(function (doesExist) {
                     doesExist.should.equal(false);
+                    done();
                 })
                 .catch(function (err) {
                     console.error(err);
                     err.should.equal(null);
+                    done();
                 });
             });
         });

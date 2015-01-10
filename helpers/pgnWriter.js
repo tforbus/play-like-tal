@@ -1,3 +1,9 @@
+/***********************************************************************************
+ * This module takes in an array of PGN JSON object games and saves them.
+ * Only winning games are saved.
+ * 
+ * The public method which should be called is #saveWinningGames()
+ ***********************************************************************************/
 var fs = require('fs'),
     Q = require('q');
 
@@ -6,7 +12,7 @@ module.exports = {
      * Create a filename for a supplied PGN.
      * @param {object} pgn
      */
-    createGameFileName: function createGameFileName(index) {
+    _createGameFileName: function _createGameFileName(index) {
         return index + '.js';
     },
 
@@ -15,7 +21,7 @@ module.exports = {
      * @param {array} pgns
      * @return {array}
      */
-    getWinningGames: function getWinningGames(pgns) {
+    _getWinningGames: function _getWinningGames(pgns) {
         return pgns.filter(function (game) {
             return game.didTalWin();
         });
@@ -23,12 +29,12 @@ module.exports = {
 
     /**
      * Save a PGN object to a JavaScript file, and assign a game ID to the object.
+     * @param {string} filename - the complete filepath to save.
      * @param {object} pgnJson - a json representation of a PGN file.
      * @return {promise}
      */
-    savePgnObject: function savePgnObject(filename, pgnJson, index) {
+    _savePgnObject: function _savePgnObject(filename, pgnJson) {
         var deferred = Q.defer(),
-            fileName = this.createGameFileName(index),
             file = JSON.stringify(pgnJson);
 
         fs.writeFile(filename, file, function (error) {
@@ -44,14 +50,16 @@ module.exports = {
 
     /**
      * Save all winning games to the games database.
+     * @param {string} path to a folder to save the pgns in
      * @param {array} pgns
      */
-    saveWinningGames: function saveWinningGames(pgns) {
-        var games = this.getWinningGames(pgns),
+    saveWinningGames: function saveWinningGames(path, pgns) {
+        var games = this._getWinningGames(pgns),
             promises = [];
 
         games.forEach(function (game, index) {
-            promises.push(this.savePgnObject(game, index + 1));
+            var filename = path + '/' + this._createGameFileName(index + 1);
+            promises.push(this._savePgnObject(filename, game));
         }.bind(this));
 
         return Q.all(promises);
