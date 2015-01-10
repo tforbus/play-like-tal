@@ -10,6 +10,7 @@
  ***********************************************************************************/
 
 var fs = require('fs'),
+    path = require('path'),
     Q = require('q');
 
 module.exports = {
@@ -37,14 +38,14 @@ module.exports = {
 
     /**
      * Get all game files from the games database.
-     * @param {string} path
+     * @param {string} dir
      * @return {promise}
      */
-    _getAllFilenames: function _getAllFilenames(path) {
+    _getAllFilenames: function _getAllFilenames(dir) {
         var deferred = Q.defer(),
             games;
 
-        fs.readdir(path, function (err, files) {
+        fs.readdir(dir, function (err, files) {
             if (err) {
                 deferred.reject(new Error(err));
             } else {
@@ -58,14 +59,15 @@ module.exports = {
 
     /**
      * Open a game name and get the contents as an object.
-     * @param {string} path - the path to the game
+     * @param {string} dir - the path to the game
      * @param {string} gameName - the filename of the game
      * @return {promise}
      */
-    _openGame: function _openGame(path, gameName) {
-        var deferred = Q.defer();
+    _openGame: function _openGame(dir, gameName) {
+        var deferred = Q.defer(),
+            filePath = path.normalize(path.join(dir, gameName));
 
-        fs.readFile(path + '/' + gameName, 'utf-8', function (err, data) {
+        fs.readFile(filePath, 'utf-8', function (err, data) {
             if (err) {
                 deferred.reject(new Error(err));
             } else {
@@ -80,13 +82,13 @@ module.exports = {
      * Open all games from a directory.
      * @param {string} path
      */
-    _openAllGames: function _openAllGames(path) {
+    _openAllGames: function _openAllGames(dir) {
         var promises = [];
 
-        return this._getAllFilenames(path)
+        return this._getAllFilenames(dir)
         .then(function (files) {
             files.forEach(function (file) {
-                var promise = this._openGame(path, file);
+                var promise = this._openGame(dir, file);
                 promises.push(promise);
             }.bind(this));
         }.bind(this))

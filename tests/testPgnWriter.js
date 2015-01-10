@@ -1,14 +1,17 @@
 (function () {
     var should = require('should'),
         Q = require('q'),
-        fs = require('fs');
+        fs = require('fs'),
+        os = require('os'),
+        path = require('path');
 
     var splitter = require('../helpers/databaseSplitter.js'),
         pgnConverter = require('../helpers/rawPgnConverter.js'),
         pgnWriter = require('../helpers/pgnWriter.js'),
         fileUtils = require('./testUtils/file.js');
 
-    var MOCK_DATABASE_PATH = __dirname + '/mocks/database.pgn',
+    var MOCK_DATABASE_PATH = path.join(__dirname, 'mocks', 'database.pgn'),
+        WRITE_DIRECTORY = os.tmpdir(),
         pgns = [];
 
     describe('PGN Writer', function () {
@@ -51,15 +54,15 @@
         describe('#savePgnObject()', function () {
             it('should save', function (done) {
                 var pgn = pgns[0],
-                    path = __dirname + '/tmp/___test.js';
+                    filepath = path.normalize(path.join(WRITE_DIRECTORY, '___test.js'));
 
-                pgnWriter._savePgnObject(path, pgn)
+                pgnWriter._savePgnObject(filepath, pgn)
                 .then(function (data) {
-                    return fileUtils.doesFileExist(path);
+                    return fileUtils.doesFileExist(filepath);
                 })
                 .then(function (exists) {
                     exists.should.equal(true);
-                    return fileUtils.removeFile(path);
+                    return fileUtils.removeFile(filepath);
                 })
                 .then(function (didRemove) {
                     didRemove.should.equal(true);
@@ -75,26 +78,21 @@
 
         describe('#saveWinningGames()', function () {
             it('should save the files', function (done) {
-                var path = __dirname + '/tmp';
+                var file1 = path.join(WRITE_DIRECTORY, '1.js'),
+                    file2 = path.join(WRITE_DIRECTORY, '2.js');
 
-                pgnWriter.saveWinningGames(path, pgns)
+                pgnWriter.saveWinningGames(WRITE_DIRECTORY, pgns)
                 .then(function () {
-                    return fileUtils.doesFileExist(path + '/1.js');
+                    return fileUtils.doesFileExist(file1);
                 })
                 .then(function (exists) {
                     exists.should.equal(true);
-                    return fileUtils.doesFileExist(path + '/2.js');
+                    return fileUtils.doesFileExist(file2);
                 })
                 .then(function (exists) {
                     exists.should.equal(true);
+                    done();
                 })
-                .then(function () {
-                    return fileUtils.removeFile(path + '/1.js');
-                })
-                .then(function () {
-                    return fileUtils.removeFile(path + '/2.js');
-                })
-                .then(function () { done(); })
                 .catch(function (err) {
                     console.error(err);
                     err.should.equal(null);

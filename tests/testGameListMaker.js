@@ -1,10 +1,13 @@
 (function () {
-    var should = require('should');
+    var should = require('should'),
+        os = require('os'),
+        path = require('path');
 
     var gameListMaker = require('../helpers/gameListMaker.js'),
         fileUtils = require('./testUtils/file.js');
 
-    var MOCK_GAMES_PATH = __dirname + '/mocks';
+    var MOCK_GAMES_PATH = path.join(__dirname, 'mocks'),
+        WRITE_DIRECTORY = os.tmpdir();
 
     describe('Game List Maker', function () {
 
@@ -105,7 +108,7 @@
 
         describe('#writeGamesList()', function () {
             it('should write the file', function (done) {
-                var filePath = __dirname + '/tmp/list.js';
+                var filePath = path.normalize(path.join(WRITE_DIRECTORY, 'list.js'));
                 gameListMaker.writeGamesList({
                     readFrom: MOCK_GAMES_PATH,
                     writeTo: filePath

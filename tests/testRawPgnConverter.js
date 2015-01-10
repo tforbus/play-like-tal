@@ -1,9 +1,10 @@
 (function () {
     var should = require('should'),
+        path = require('path'),
         fs = require('fs');
     var pgnConverter = require('../helpers/rawPgnConverter.js');
 
-    var MOCK_PGN_PATH = 'mocks/pgn.pgn';
+    var MOCK_PGN_PATH = path.join(__dirname, 'mocks', 'pgn.pgn');
 
     describe('Raw PGN Converter', function () {
 
@@ -136,7 +137,7 @@
 
         describe('#splitRawPgnIntoLines()', function () {
             it('should split the pgn into the correct number of lines', function (done) {
-                fs.readFile(__dirname + '/' + MOCK_PGN_PATH, 'utf-8', function (err, data) {
+                fs.readFile(MOCK_PGN_PATH, 'utf-8', function (err, data) {
                     if (err) {
                         err.should.not.equal(null);
                         done();
@@ -171,7 +172,7 @@
 
         describe('#getMoves()', function () {
             it('should parse the moves of the pgn', function (done) {
-                fs.readFile(__dirname + '/' + MOCK_PGN_PATH, 'utf-8', function (err, data) {
+                fs.readFile(MOCK_PGN_PATH, 'utf-8', function (err, data) {
                     if (err) {
                         err.should.not.equal(null);
                         done();
@@ -188,7 +189,7 @@
 
         describe('#constructPgnObject()', function () {
             it('should construct a proper pgn object', function (done) {
-                fs.readFile(__dirname + '/' + MOCK_PGN_PATH, 'utf-8', function (err, data) {
+                fs.readFile(MOCK_PGN_PATH, 'utf-8', function (err, data) {
                     if (err) {
                         err.should.not.equal(null);
                         done();

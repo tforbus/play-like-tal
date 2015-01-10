@@ -5,8 +5,8 @@
  * The public method which should be called is #saveWinningGames()
  ***********************************************************************************/
 var fs = require('fs'),
-    Q = require('q'),
-    Bagpipe = require('bagpipe');
+    path = require('path'),
+    Q = require('q');
 
 module.exports = {
     /**
@@ -54,20 +54,20 @@ module.exports = {
      *
      * OS X has an issue with writing many files at once, so sequentially
      * do the promises.
-     * @param {string} path to a folder to save the pgns in
+     * @param {string} dir - to a folder to save the pgns in
      * @param {array} pgns
      */
-    saveWinningGames: function saveWinningGames(path, pgns) {
+    saveWinningGames: function saveWinningGames(dir, pgns) {
         var games = this._getWinningGames(pgns),
-            chain;
+            filepath,
+            filename;
 
-        chain = games.reduce(function (promise, current, index) {
-            var filename = path + '/' + this._createGameFileName(index + 1);
+        return games.reduce(function (promise, current, index) {
             return promise.then(function () {
-                return this._savePgnObject(filename, current);
+                filename = this._createGameFileName(index + 1);
+                filepath = path.normalize(path.join(dir, filename));
+                return this._savePgnObject(filepath, current);
             }.bind(this));
         }.bind(this), Q.when(true));
-
-        return chain;
     }
 };
