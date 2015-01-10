@@ -55,7 +55,7 @@ module.exports = {
             promises = [];
 
         games.forEach(function (game, index) {
-            promises.push(this.savePgnObject(game, index));
+            promises.push(this.savePgnObject(game, index + 1));
         }.bind(this));
 
         return Q.all(promises);
