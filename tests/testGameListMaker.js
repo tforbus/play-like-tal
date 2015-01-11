@@ -34,6 +34,7 @@
             it('should get game files from the directory', function () {
                 gameListMaker._getAllFilenames(MOCK_GAMES_PATH)
                 .then(function (gameFiles) {
+                    should(gameFiles).not.equal(undefined);
                     gameFiles.length.should.equal(2);
                 })
                 .catch(function (err) {
@@ -61,6 +62,8 @@
             it('should open games 1 and 2', function () {
                 gameListMaker._openAllGames(MOCK_GAMES_PATH)
                 .then(function (allGames) {
+                    should(allGames).not.equal(undefined);
+                    should(allGames).not.equal(null);
                     allGames.length.should.equal(2);
                     allGames[0].site.should.equal('LAT');
                     allGames[1].site.should.equal('Riga');
@@ -114,6 +117,8 @@
                     writeTo: filePath
                 })
                 .then(function (data) {
+                    should(data).not.equal(undefined);
+
                     var obj = JSON.parse(data);
                     obj[0].id.should.equal(1);
                 })
@@ -122,15 +127,6 @@
                 })
                 .then(function (doesExist) {
                     doesExist.should.equal(true);
-                })
-                .then(function () {
-                    return fileUtils.removeFile(filePath);
-                })
-                .then(function () {
-                    return fileUtils.doesFileExist(filePath);
-                })
-                .then(function (doesExist) {
-                    doesExist.should.equal(false);
                     done();
                 })
                 .catch(function (err) {

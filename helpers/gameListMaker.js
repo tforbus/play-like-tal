@@ -67,13 +67,11 @@ module.exports = {
         var deferred = Q.defer(),
             filePath = path.normalize(path.join(dir, gameName));
 
-        fs.readFile(filePath, 'utf-8', function (err, data) {
-            if (err) {
-                deferred.reject(new Error(err));
-            } else {
-                deferred.resolve(JSON.parse(data));
-            }
-        });
+        // OS X has an issue w/ many files open at once.
+        // This is a quick fix for that.
+        // TODO: make this nicer and async.
+        var data = fs.readFileSync(filePath, 'utf-8');
+        deferred.resolve(data);
 
         return deferred.promise;
     },
@@ -81,6 +79,7 @@ module.exports = {
     /**
      * Open all games from a directory.
      * @param {string} path
+     * @return {promise}
      */
     _openAllGames: function _openAllGames(dir) {
         var promises = [];
@@ -104,6 +103,7 @@ module.exports = {
      * @return {object}
      */
     _constructListItemFromPgn: function _constructListItemFromPgn(pgn, gameId) {
+        pgn = JSON.parse(pgn);
         var info = {};
 
         info.id = gameId;

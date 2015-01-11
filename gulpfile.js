@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 var databaseSplitter = require('./helpers/databaseSplitter.js'),
     pgnConverter = require('./helpers/rawPgnConverter.js'),
     pgnWriter = require('./helpers/pgnWriter.js'),
+    gameListMaker = require('./helpers/gameListMaker.js'),
     eco = require('./helpers/eco.js');
 
 // Construct all games from the Tal database.
@@ -28,9 +29,16 @@ gulp.task('games-database', function () {
     });
 });
 
-/*
 // Get JSON of ECO codes.
 gulp.task('eco-database', function () {
     eco.scrape();
 });
-*/
+
+gulp.task('games-list', function () {
+    var readDir = path.normalize(path.join(__dirname, 'database', 'games')),
+        writePath = path.normalize(path.join(__dirname, 'database', 'meta.js'));
+    gameListMaker.writeGamesList({
+        readFrom: readDir,
+        writeTo: writePath
+    });
+});
