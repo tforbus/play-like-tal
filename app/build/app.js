@@ -163,6 +163,11 @@ angular.module('PlayLikeTal.Directives')
 
 angular.module('PlayLikeTal.Services')
 
+// to give a hint, we know that the move is Nf6, e.g.
+// look through each square of the board and find the square that has f6 listed
+// as a legal move.
+// logic.moves({square: ''})
+// logic.get(square) returns piece on the square.
 .service('gameTrackerService', function () {
 
     // Save the current game.
@@ -187,6 +192,12 @@ angular.module('PlayLikeTal.Services')
      */
     this.getCurrentGame = function getCurrentGame() {
         return currentGame;
+    };
+
+    this.setCurrentGame = function setCurrentGame(game) {
+        currentGame = game;
+        turns = [].concat(game.moves);
+        nextTurn = this.getNextTurn();
     };
 
     this.getNextTurn = function getNextTurn() {
@@ -259,22 +270,8 @@ angular.module('PlayLikeTal.Services')
         if (isBlack && blackHasNotMoved && !whiteHasNotMoved) {
             return true;
         }
-    };
 
-    /**
-     * Detect if player made correct move.
-     * @param {string} san - algebraic notation for move made.
-     * @param {object} turn - the current turn
-     */
-    this.playerMadeCorrectMove = function playerMadeCorrectMove(san, turn) {
-        var turnColor = 'black';
-        if (this.isTalWhite()) {
-            turnColor = 'white';
-        }
-
-        if (turn) {
-            return san === turn[turnColor];
-        }
+        return false;
     };
 
 });
