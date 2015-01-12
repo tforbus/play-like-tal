@@ -58,18 +58,6 @@
            });
        });
 
-       describe('#isPlayerMove()', function () {
-           it('should say yes on first move when tal is white', function () {
-               gameTracker.setCurrentGame(gameTalWhite);
-               expect(gameTracker.isPlayerMove()).toBe(true);
-           });
-
-           it('should say no on first move when tal is black', function () {
-               gameTracker.setCurrentGame(gameTalBlack);
-               expect(gameTracker.isPlayerMove()).toBe(false);
-           });
-       });
-
        describe('#peekNextMove()', function () {
            it('should not pop the first move on call', function () {
                var next;
@@ -104,6 +92,30 @@
 
                next = gameTracker.getNextMove();
                expect(next).toEqual('g4');
+           });
+       });
+
+       describe('#isPlayerMove()', function () {
+           it('should say yes on first move when tal is white', function () {
+               gameTracker.setCurrentGame(gameTalWhite);
+               expect(gameTracker.isPlayerMove()).toBe(true);
+           });
+
+           it('should say no on first move when tal is black', function () {
+               gameTracker.setCurrentGame(gameTalBlack);
+               expect(gameTracker.isPlayerMove()).toBe(false);
+           });
+
+           it('should say no after first move when tal is white', function () {
+               gameTracker.setCurrentGame(gameTalWhite);
+               gameTracker.getNextMove();
+               expect(gameTracker.isPlayerMove()).toBe(false);
+           });
+
+           it('should say yes after first move when tal is black', function () {
+               gameTracker.setCurrentGame(gameTalBlack);
+               gameTracker.getNextMove();
+               expect(gameTracker.isPlayerMove()).toBe(true);
            });
        });
 
