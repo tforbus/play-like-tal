@@ -2,7 +2,8 @@ var gulp = require('gulp'),
     path = require('path'),
     watch = require('gulp-watch'),
     concat = require('gulp-concat'),
-    rimraf = require('gulp-rimraf');
+    rimraf = require('gulp-rimraf'),
+    templateCache = require('gulp-angular-templatecache');
 
 var databaseSplitter = require('./helpers/databaseSplitter.js'),
     pgnConverter = require('./helpers/rawPgnConverter.js'),
@@ -47,7 +48,10 @@ gulp.task('games-list', function () {
 });
 
 var paths = {
-    scripts: ['./app/js/**/*.js']
+    scripts: ['./app/js/**/*.js'],
+    lib: ['./app/lib/js/**/*.js'],
+    libCss: ['./app/lib/css/**/*.css'],
+    templates: ['./app/js/**/*.html']
 };
 
 gulp.task('clean', function (cb) {
@@ -65,7 +69,38 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('./app/build/'));
 });
 
+gulp.task('lib', function () {
+    // order is important
+    var bowerLibs = [
+        './bower_components/jquery/dist/jquery.min.js',
+        './bower_components/angular/angular.js',
+        './bower_components/angular-route/angular-route.min.js',
+        './bower_components/angular-aria/angular-aria.js',
+        './bower_components/angular-animate/angular-animate.js',
+        './bower_components/hammerjs/hammer.js',
+        './bower_components/angular-material/angular-material.js'
+    ];
+
+    var libs = bowerLibs.concat(paths.lib);
+    gulp
+        .src(libs)
+        .pipe(concat('lib.js'))
+        .pipe(gulp.dest('./app/build/'));
+
+    gulp
+        .src(['./bower_components/angular-material/angular-material.css'].concat(paths.libCss))
+        .pipe(concat('lib.css'))
+        .pipe(gulp.dest('./app/build/'));
+});
+
+gulp.task('templates', function () {
+    return gulp.src(paths.templates)
+        .pipe(templateCache())
+        .pipe(gulp.dest('./app/build/'));
+});
+
 gulp.task('watch', function () {
-    gulp.watch(paths.scripts, ['clean', 'scripts']);
+    gulp.watch(paths.templates, ['clean', 'scripts', 'templates']);
+    gulp.watch(paths.scripts, ['clean', 'scripts', 'templates']);
 });
 

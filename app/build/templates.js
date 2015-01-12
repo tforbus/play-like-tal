@@ -1,0 +1,1 @@
+angular.module("templates").run(["$templateCache", function($templateCache) {$templateCache.put("directives/chessboard/chessboard.html","<div id=\'board-container\'></div>\n");}]);
