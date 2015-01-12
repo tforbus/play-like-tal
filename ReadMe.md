@@ -6,7 +6,7 @@ I want this to be a web application for learning to play chess like the wizard f
 * ~~write tests for constructing individual pgns from master pgn database.~~ done
 
 ## Website Features Todo
-* find chessboard javascript application that will work with games database.
+* ~~find chessboard javascript application that will work with games database.~~ done.
 * allow filter by:
     - year
     - opening
