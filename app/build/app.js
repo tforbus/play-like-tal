@@ -211,7 +211,7 @@ angular.module('PlayLikeTal.Services')
 
         // If a move has never been set, get it.
         if (!nextTurn && turns.length) {
-            nextTurn = turns.shift();
+            nextTurn = this.getNextTurn();
         }
 
         if (nextTurn.white) {
@@ -222,7 +222,7 @@ angular.module('PlayLikeTal.Services')
             delete nextTurn.black;
 
             // White and black have moved, increment the turn.
-            nextTurn = turns.shift();
+            nextTurn = this.getNextTurn();
         }
 
         return san;
