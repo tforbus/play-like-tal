@@ -1,5 +1,8 @@
 var gulp = require('gulp'),
-    path = require('path');
+    path = require('path'),
+    watch = require('gulp-watch'),
+    concat = require('gulp-concat'),
+    rimraf = require('gulp-rimraf');
 
 var databaseSplitter = require('./helpers/databaseSplitter.js'),
     pgnConverter = require('./helpers/rawPgnConverter.js'),
@@ -42,3 +45,27 @@ gulp.task('games-list', function () {
         writeTo: writePath
     });
 });
+
+var paths = {
+    scripts: ['./app/js/**/*.js']
+};
+
+gulp.task('clean', function (cb) {
+    return gulp
+        .src('./app/build/**/*.js', {read: false})
+        .pipe(rimraf());
+});
+
+gulp.task('scripts', function () {
+    // Gulp kept appending to app-build.js instead of creating new.
+    // What am I missing? I didn't have this problem before.
+    return gulp
+        .src(paths.scripts)
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('./app/build/'));
+});
+
+gulp.task('watch', function () {
+    gulp.watch(paths.scripts, ['clean', 'scripts']);
+});
+
