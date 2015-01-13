@@ -1,11 +1,13 @@
 angular.module('PlayLikeTal.Controllers', []);
 angular.module('PlayLikeTal.Directives', []);
 angular.module('PlayLikeTal.Services', []);
+angular.module('PlayLikeTal.Filters', []);
 angular.module('templates', []);
 
 angular.module('PlayLikeTal', [
     'ngMaterial',
     'templates',
+    'PlayLikeTal.Filters',
     'PlayLikeTal.Controllers',
     'PlayLikeTal.Directives',
     'PlayLikeTal.Services',
@@ -30,8 +32,65 @@ angular.module('PlayLikeTal.Controllers')
             white: 'NN',
             black: 'Tal, Mikhail',
             result: '0-1'
+        },
+        {
+            id: 1,
+            year: 1952,
+            white: 'Tal, Mikhail',
+            black: 'NN',
+            result: '1-0'
+        },
+        {
+            id: 2,
+            year: 1953,
+            white: 'NN',
+            black: 'Tal, Mikhail',
+            result: '0-1'
+        },
+        {
+            id: 1,
+            year: 1952,
+            white: 'Tal, Mikhail',
+            black: 'NN',
+            result: '1-0'
+        },
+        {
+            id: 2,
+            year: 1953,
+            white: 'NN',
+            black: 'Tal, Mikhail',
+            result: '0-1'
+        },
+        {
+            id: 1,
+            year: 1952,
+            white: 'Tal, Mikhail',
+            black: 'NN',
+            result: '1-0'
+        },
+        {
+            id: 2,
+            year: 1953,
+            white: 'NN',
+            black: 'Tal, Mikhail',
+            result: '0-1'
         }
     ];
+});
+
+angular.module('PlayLikeTal.Filters').filter('nameSplit', function () {
+    return function (input) {
+        if (!input || !angular.isString(input)) {
+            return '';
+        }
+
+        if (input.indexOf(',') < 0) {
+            return input;
+        }
+
+        var lastName = input.split(/,\s+/)[0];
+        return lastName;
+    };
 });
 
 /**

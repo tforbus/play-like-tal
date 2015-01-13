@@ -3,7 +3,7 @@
     <head>
         <title>Play Like Tal</title>
         <link rel='stylesheet' type='text/css' href='./build/lib.css'/>
-        <link rel='stylesheet' type='text/css' href='../bower_components/angular-material/themes/blue-grey-theme.css'/>
+        <link rel='stylesheet' type='text/css' href='./css/RobotoDraft.css'/>
     </head>
     <body ng-app='PlayLikeTal' md-theme='blue-grey'>
 
@@ -37,13 +37,20 @@
                         </h2>
                     </md-toolbar>
                     <md-content>
+                        <md-subheader class='md-primary'>
+                            <div layout='row'>
+                                <div flex='20'>Year</div>
+                                <div flex='40'>White</div>
+                                <div flex='40'>Black</div>
+                            </div>
+                        </md-subheader>
                         <md-list>
                             <md-item ng-repeat='game in games'>
                                 <md-item-content>
                                     <div class='md-tile-content' layout='row'>
-                                        <div flex>{{game.year}}</div>
-                                        <div flex>{{game.white}}</div>
-                                        <div flex>{{game.black}}</div>
+                                        <div flex='20'>{{game.year}}</div>
+                                        <div flex='40'>{{game.white | nameSplit}}</div>
+                                        <div flex='40'>{{game.black | nameSplit}}</div>
                                     </div>
                                 </md-item-content>
                                 <md-divider ng-if='!$last'></md-divider>
