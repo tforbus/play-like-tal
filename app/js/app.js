@@ -10,9 +10,3 @@ angular.module('PlayLikeTal', [
     'PlayLikeTal.Directives',
     'PlayLikeTal.Services',
 ]);
-
-angular.module('PlayLikeTal').config(function ($mdThemingProvider) {
-    $mdThemingProvider.theme('default')
-        .primaryColor('blue-grey')
-        .accentColor('deep-orange');
-});

@@ -11,12 +11,6 @@ angular.module('PlayLikeTal', [
     'PlayLikeTal.Services',
 ]);
 
-angular.module('PlayLikeTal').config(function ($mdThemingProvider) {
-    $mdThemingProvider.theme('default')
-        .primaryColor('blue-grey')
-        .accentColor('deep-orange');
-});
-
 angular.module('PlayLikeTal.Controllers')
 .controller('GameDatabaseCtrl', function ($scope) {
 

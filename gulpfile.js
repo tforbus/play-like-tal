@@ -90,7 +90,7 @@ gulp.task('lib', function () {
     gulp
         .src([
             './bower_components/angular-material/angular-material.css',
-            './bower_components/angular-material/default-theme.css',
+            './bower_components/angular-material/themes/blue-grey-theme.css',
             ].concat(paths.libCss))
         .pipe(concat('lib.css'))
         .pipe(gulp.dest('./app/build/'));
