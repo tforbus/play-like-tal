@@ -141,7 +141,7 @@ angular.module('PlayLikeTal.Directives')
         link: function (scope, elem, attrs, ctrl) {
             // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
             var div = elem.find('#board-container');
-            elem.html('<div id="' + scope.boardId + '" style="width:400px;"></div>');
+            div.html('<div id="' + scope.boardId + '" style="width:400px;"></div>');
             scope.initGame();
         },
         template: $templateCache.get('directives/chessboard/chessboard.html')

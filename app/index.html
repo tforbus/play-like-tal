@@ -5,12 +5,68 @@
         <link rel='stylesheet' type='text/css' href='./build/lib.css'/>
     </head>
     <body ng-app='PlayLikeTal'>
+
+        <section layout='row' flex style='height:100%;'>
+            <md-sidenav
+                class='md-sidenav-left md-whiteframe-z2'
+                md-component-id='left'
+                md-is-locked-open='true'>
+
+                <md-toolbar>
+                    <h2 class='md-toolbar-tools'>
+                        <span>
+                            Tal Plays
+                        </span>
+                    </h2>
+                </md-toolbar>
+
+                <md-content ng-controller='GameDatabaseCtrl'>
+
+                    <md-content>
+                        <md-radio-group ng-model='colorFilter.value'>
+                            <md-radio-button value='white'>White</md-radio-button>
+                            <md-radio-button value='black'>Black</md-radio-button>
+                            <md-radio-button value='either'>Either</md-radio-button>
+                        </md-radio-group>
+                    </md-content>
+
+                    <md-toolbar>
+                        <h2 class='md-toolbar-tools'>
+                            <span>Games Database</span>
+                        </h2>
+                    </md-toolbar>
+                    <md-content>
+                        <md-list>
+                            <md-item ng-repeat='game in games'>
+                                <md-item-content>
+                                    <div class='md-tile-content' layout='row'>
+                                        <div flex>{{game.year}}</div>
+                                        <div flex>{{game.white}}</div>
+                                        <div flex>{{game.black}}</div>
+                                    </div>
+                                </md-item-content>
+                                <md-divider ng-if='!$last'></md-divider>
+                            </md-item>
+                        </md-list>
+                    </md-content>
+                </md-content>
+
+            </md-sidenav>
+
+            <md-content flex class='md-padding'>
+                <div layout='column' layout-fill layout-align='center center'>
+                    chessboard will go here.
+                </div>
+            </md-content>
+        </section>
+        <!--
         <chessboard
             board-id='board'
         ></chessboard>
+        -->
 
         <script src='./build/lib.js'></script>
-        <script src='./build/templates.js'></script>
         <script src='./build/app.js'></script>
+        <script src='./build/templates.js'></script>
     </body>
 </html>

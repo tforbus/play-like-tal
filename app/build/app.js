@@ -11,6 +11,35 @@ angular.module('PlayLikeTal', [
     'PlayLikeTal.Services',
 ]);
 
+angular.module('PlayLikeTal').config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+        .primaryColor('blue-grey')
+        .accentColor('deep-orange');
+});
+
+angular.module('PlayLikeTal.Controllers')
+.controller('GameDatabaseCtrl', function ($scope) {
+
+    $scope.colorFilter = { value: 'either' };
+
+    $scope.games = [
+        {
+            id: 1,
+            year: 1952,
+            white: 'Tal, Mikhail',
+            black: 'NN',
+            result: '1-0'
+        },
+        {
+            id: 2,
+            year: 1953,
+            white: 'NN',
+            black: 'Tal, Mikhail',
+            result: '0-1'
+        }
+    ];
+});
+
 /**
  * Wrapper for chessboardjs
  */
@@ -285,7 +314,7 @@ angular.module('PlayLikeTal.Directives')
         link: function (scope, elem, attrs, ctrl) {
             // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
             var div = elem.find('#board-container');
-            elem.html('<div id="' + scope.boardId + '" style="width:400px;"></div>');
+            div.html('<div id="' + scope.boardId + '" style="width:400px;"></div>');
             scope.initGame();
         },
         template: $templateCache.get('directives/chessboard/chessboard.html')

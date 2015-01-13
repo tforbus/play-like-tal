@@ -88,7 +88,10 @@ gulp.task('lib', function () {
         .pipe(gulp.dest('./app/build/'));
 
     gulp
-        .src(['./bower_components/angular-material/angular-material.css'].concat(paths.libCss))
+        .src([
+            './bower_components/angular-material/angular-material.css',
+            './bower_components/angular-material/default-theme.css',
+            ].concat(paths.libCss))
         .pipe(concat('lib.css'))
         .pipe(gulp.dest('./app/build/'));
 });
@@ -100,7 +103,11 @@ gulp.task('templates', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(paths.templates, ['clean', 'scripts', 'templates']);
-    gulp.watch(paths.scripts, ['clean', 'scripts', 'templates']);
+    gulp.watch([paths.templates, paths.scripts], [
+        'clean',
+        'lib',
+        'scripts',
+        'templates'
+    ]);
 });
 
