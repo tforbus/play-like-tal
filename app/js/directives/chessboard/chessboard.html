@@ -5,7 +5,14 @@
     </section>
 
     <section layout='row' layout-align='center center'>
-        <md-button class='md-raised md-primary'>Show Move</md-button>
-        <md-button class='md-raised md-primary'>Show Hint</md-button>
+        <md-button
+            class='md-raised md-primary'
+            ng-click='doNextMove()'
+        >Show Move</md-button>
+
+        <md-button
+            class='md-raised md-primary'
+            ng-click='showHint()'
+        >Show Hint</md-button>
     </section>
 </md-content>

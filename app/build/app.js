@@ -347,12 +347,18 @@ angular.module('PlayLikeTal.Directives')
             };
 
             /**
-             * Execute the computer's move
+             * Execute the next move.
              */
-            $scope.doComputerMove = function doComputerMove() {
-                var compMove = gameTrackerService.getNextMove();
-                $scope.logic.move(compMove);
+            $scope.doNextMove = function doNextMove() {
+                var move = gameTrackerService.getNextMove(),
+                    computerMovesNext = !gameTrackerService.isPlayerMove();
+
+                $scope.logic.move(move);
                 $scope.updatePosition();
+
+                if (computerMovesNext) {
+                    $timeout($scope.doNextMove, 500);
+                }
             };
 
             /**
@@ -438,7 +444,7 @@ angular.module('PlayLikeTal.Directives')
 
                     // Increment the next move.
                     gameTrackerService.getNextMove();
-                    $timeout($scope.doComputerMove, 500);
+                    $timeout($scope.doNextMove, 500);
                 }
 
             }
@@ -524,7 +530,7 @@ angular.module('PlayLikeTal.Directives')
 
                 // Computer will make first move.
                 if ($scope.playerColor === 'black') {
-                    $scope.doComputerMove();
+                    $scope.doNextMove();
                 }
             };
         },
