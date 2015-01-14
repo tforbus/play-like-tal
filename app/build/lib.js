@@ -39116,34 +39116,2604 @@ if (typeof exports !== 'undefined') exports.Chess = Chess;
 /* export Chess object for any RequireJS compatible environment */
 if (typeof define !== 'undefined') define( function () { return Chess;  });
 
-/*! chessboard.js v0.3.0 | (c) 2013 Chris Oakman | MIT License chessboardjs.com/license */
-(function(){function l(f){return"string"!==typeof f?!1:-1!==f.search(/^[a-h][1-8]$/)}function Q(f){if("string"!==typeof f)return!1;f=f.replace(/ .+$/,"");f=f.split("/");if(8!==f.length)return!1;for(var b=0;8>b;b++)if(""===f[b]||8<f[b].length||-1!==f[b].search(/[^kqrbnpKQRNBP1-8]/))return!1;return!0}function F(f){if("object"!==typeof f)return!1;for(var b in f)if(!0===f.hasOwnProperty(b)){var n;(n=!0!==l(b))||(n=f[b],n="string"!==typeof n?!1:-1!==n.search(/^[bw][KQRNBP]$/),n=!0!==n);if(n)return!1}return!0}
-function K(f){if(!0!==Q(f))return!1;f=f.replace(/ .+$/,"");f=f.split("/");for(var b={},n=8,m=0;8>m;m++){for(var l=f[m].split(""),r=0,w=0;w<l.length;w++)if(-1!==l[w].search(/[1-8]/))var I=parseInt(l[w],10),r=r+I;else{var I=b,F=B[r]+n,A;A=l[w];A=A.toLowerCase()===A?"b"+A.toUpperCase():"w"+A.toUpperCase();I[F]=A;r++}n--}return b}function L(f){if(!0!==F(f))return!1;for(var b="",n=8,m=0;8>m;m++){for(var l=0;8>l;l++){var r=B[l]+n;!0===f.hasOwnProperty(r)?(r=f[r].split(""),r="w"===r[0]?r[1].toUpperCase():
-r[1].toLowerCase(),b+=r):b+="1"}7!==m&&(b+="/");n--}b=b.replace(/11111111/g,"8");b=b.replace(/1111111/g,"7");b=b.replace(/111111/g,"6");b=b.replace(/11111/g,"5");b=b.replace(/1111/g,"4");b=b.replace(/111/g,"3");return b=b.replace(/11/g,"2")}var B="abcdefgh".split("");window.ChessBoard=window.ChessBoard||function(f,b){function n(){return"xxxx-xxxx-xxxx-xxxx-xxxx-xxxx-xxxx-xxxx".replace(/x/g,function(a){return(16*Math.random()|0).toString(16)})}function m(a){return JSON.parse(JSON.stringify(a))}function X(a){a=
-a.split(".");return{major:parseInt(a[0],10),minor:parseInt(a[1],10),patch:parseInt(a[2],10)}}function r(a,e,c){if(!0===b.hasOwnProperty("showErrors")&&!1!==b.showErrors){var d="ChessBoard Error "+a+": "+e;"console"===b.showErrors&&"object"===typeof console&&"function"===typeof console.log?(console.log(d),2<=arguments.length&&console.log(c)):"alert"===b.showErrors?(c&&(d+="\n\n"+JSON.stringify(c)),window.alert(d)):"function"===typeof b.showErrors&&b.showErrors(a,e,c)}}function w(a){return"fast"===
-a||"slow"===a?!0:parseInt(a,10)+""!==a+""?!1:0<=a}function I(){for(var a=0;a<B.length;a++)for(var b=1;8>=b;b++){var c=B[a]+b;s[c]=c+"-"+n()}b="KQRBNP".split("");for(a=0;a<b.length;a++){var c="w"+b[a],d="b"+b[a];M[c]=c+"-"+n();M[d]=d+"-"+n()}}function ga(){var a='<div class="'+h.chessboard+'">';!0===b.sparePieces&&(a+='<div class="'+h.sparePieces+" "+h.sparePiecesTop+'"></div>');a+='<div class="'+h.board+'"></div>';!0===b.sparePieces&&(a+='<div class="'+h.sparePieces+" "+h.sparePiecesBottom+'"></div>');
-return a+"</div>"}function A(a){"black"!==a&&(a="white");var e="",c=m(B),d=8;"black"===a&&(c.reverse(),d=1);for(var C="white",f=0;8>f;f++){for(var e=e+('<div class="'+h.row+'">'),k=0;8>k;k++){var g=c[k]+d,e=e+('<div class="'+h.square+" "+h[C]+" square-"+g+'" style="width: '+p+"px; height: "+p+'px" id="'+s[g]+'" data-square="'+g+'">');if(!0===b.showNotation){if("white"===a&&1===d||"black"===a&&8===d)e+='<div class="'+h.notation+" "+h.alpha+'">'+c[k]+"</div>";0===k&&(e+='<div class="'+h.notation+" "+
-h.numeric+'">'+d+"</div>")}e+="</div>";C="white"===C?"black":"white"}e+='<div class="'+h.clearfix+'"></div></div>';C="white"===C?"black":"white";"white"===a?d--:d++}return e}function Y(a){if("function"===typeof b.pieceTheme)return b.pieceTheme(a);if("string"===typeof b.pieceTheme)return b.pieceTheme.replace(/{piece}/g,a);r(8272,"Unable to build image source for cfg.pieceTheme.");return""}function D(a,b,c){var d='<img src="'+Y(a)+'" ';c&&"string"===typeof c&&(d+='id="'+c+'" ');d+='alt="" class="'+
-h.piece+'" data-piece="'+a+'" style="width: '+p+"px;height: "+p+"px;";!0===b&&(d+="display:none;");return d+'" />'}function N(a){var b="wK wQ wR wB wN wP".split(" ");"black"===a&&(b="bK bQ bR bB bN bP".split(" "));a="";for(var c=0;c<b.length;c++)a+=D(b[c],!1,M[b[c]]);return a}function ha(a,e,c,d){a=$("#"+s[a]);var C=a.offset(),f=$("#"+s[e]);e=f.offset();var k=n();$("body").append(D(c,!0,k));var g=$("#"+k);g.css({display:"",position:"absolute",top:C.top,left:C.left});a.find("."+h.piece).remove();g.animate(e,
-{duration:b.moveSpeed,complete:function(){f.append(D(c));g.remove();"function"===typeof d&&d()}})}function ia(a,e,c){var d=$("#"+M[a]).offset(),f=$("#"+s[e]);e=f.offset();var g=n();$("body").append(D(a,!0,g));var k=$("#"+g);k.css({display:"",position:"absolute",left:d.left,top:d.top});k.animate(e,{duration:b.moveSpeed,complete:function(){f.find("."+h.piece).remove();f.append(D(a));k.remove();"function"===typeof c&&c()}})}function ja(a,e,c){function d(){f++;if(f===a.length&&(G(),!0===b.hasOwnProperty("onMoveEnd")&&
-"function"===typeof b.onMoveEnd))b.onMoveEnd(m(e),m(c))}for(var f=0,g=0;g<a.length;g++)"clear"===a[g].type&&$("#"+s[a[g].square]+" ."+h.piece).fadeOut(b.trashSpeed,d),"add"===a[g].type&&!0!==b.sparePieces&&$("#"+s[a[g].square]).append(D(a[g].piece,!0)).find("."+h.piece).fadeIn(b.appearSpeed,d),"add"===a[g].type&&!0===b.sparePieces&&ia(a[g].piece,a[g].square,d),"move"===a[g].type&&ha(a[g].source,a[g].destination,a[g].piece,d)}function ka(a,b){a=a.split("");var c=B.indexOf(a[0])+1,d=parseInt(a[1],10);
-b=b.split("");var g=B.indexOf(b[0])+1,f=parseInt(b[1],10),c=Math.abs(c-g),d=Math.abs(d-f);return c>=d?c:d}function la(a){for(var b=[],c=0;8>c;c++)for(var d=0;8>d;d++){var g=B[c]+(d+1);a!==g&&b.push({square:g,distance:ka(a,g)})}b.sort(function(a,b){return a.distance-b.distance});a=[];for(c=0;c<b.length;c++)a.push(b[c].square);return a}function G(){x.find("."+h.piece).remove();for(var a in g)!0===g.hasOwnProperty(a)&&$("#"+s[a]).append(D(g[a]))}function R(){x.html(A(u));G();!0===b.sparePieces&&("white"===
-u?(S.html(N("black")),T.html(N("white"))):(S.html(N("white")),T.html(N("black"))))}function O(a){var e=m(g),c=m(a),d=L(e),f=L(c);if(d!==f){if(!0===b.hasOwnProperty("onChange")&&"function"===typeof b.onChange)b.onChange(e,c);g=a}}function U(a,b){for(var c in J)if(!0===J.hasOwnProperty(c)){var d=J[c];if(a>=d.left&&a<d.left+p&&b>=d.top&&b<d.top+p)return c}return"offboard"}function V(){x.find("."+h.square).removeClass(h.highlight1+" "+h.highlight2)}function ma(){function a(){G();y.css("display","none");
-if(!0===b.hasOwnProperty("onSnapbackEnd")&&"function"===typeof b.onSnapbackEnd)b.onSnapbackEnd(E,t,m(g),u)}if("spare"===t)Z();else{V();var e=$("#"+s[t]).offset();y.animate(e,{duration:b.snapbackSpeed,complete:a});z=!1}}function Z(){V();var a=m(g);delete a[t];O(a);G();y.fadeOut(b.trashSpeed);z=!1}function na(a){V();var e=m(g);delete e[t];e[a]=E;O(e);e=$("#"+s[a]).offset();y.animate(e,{duration:b.snapSpeed,complete:function(){G();y.css("display","none");if(!0===b.hasOwnProperty("onSnapEnd")&&"function"===
-typeof b.onSnapEnd)b.onSnapEnd(t,a,E)}});z=!1}function P(a,e,c,d){if("function"!==typeof b.onDragStart||!1!==b.onDragStart(a,e,m(g),u)){z=!0;E=e;t=a;H="spare"===a?"offboard":a;J={};for(var f in s)!0===s.hasOwnProperty(f)&&(J[f]=$("#"+s[f]).offset());y.attr("src",Y(e)).css({display:"",position:"absolute",left:c-p/2,top:d-p/2});"spare"!==a&&$("#"+s[a]).addClass(h.highlight1).find("."+h.piece).css("display","none")}}function aa(a,e){y.css({left:a-p/2,top:e-p/2});var c=U(a,e);if(c!==H){!0===l(H)&&$("#"+
-s[H]).removeClass(h.highlight2);!0===l(c)&&$("#"+s[c]).addClass(h.highlight2);if("function"===typeof b.onDragMove)b.onDragMove(c,H,t,E,m(g),u);H=c}}function ba(a){var e="drop";"offboard"===a&&"snapback"===b.dropOffBoard&&(e="snapback");"offboard"===a&&"trash"===b.dropOffBoard&&(e="trash");if(!0===b.hasOwnProperty("onDrop")&&"function"===typeof b.onDrop){var c=m(g);"spare"===t&&!0===l(a)&&(c[a]=E);!0===l(t)&&"offboard"===a&&delete c[t];!0===l(t)&&!0===l(a)&&(delete c[t],c[a]=E);var d=m(g),c=b.onDrop(t,
-a,E,c,d,u);if("snapback"===c||"trash"===c)e=c}"snapback"===e?ma():"trash"===e?Z():"drop"===e&&na(a)}function oa(a){a.preventDefault()}function pa(a){if(!0===b.draggable){var e=$(this).attr("data-square");!0===l(e)&&!0===g.hasOwnProperty(e)&&P(e,g[e],a.pageX,a.pageY)}}function qa(a){if(!0===b.draggable){var e=$(this).attr("data-square");!0===l(e)&&!0===g.hasOwnProperty(e)&&(a=a.originalEvent,P(e,g[e],a.changedTouches[0].pageX,a.changedTouches[0].pageY))}}function ra(a){if(!0===b.sparePieces){var e=
-$(this).attr("data-piece");P("spare",e,a.pageX,a.pageY)}}function sa(a){if(!0===b.sparePieces){var e=$(this).attr("data-piece");a=a.originalEvent;P("spare",e,a.changedTouches[0].pageX,a.changedTouches[0].pageY)}}function ca(a){!0===z&&aa(a.pageX,a.pageY)}function ta(a){!0===z&&(a.preventDefault(),aa(a.originalEvent.changedTouches[0].pageX,a.originalEvent.changedTouches[0].pageY))}function da(a){!0===z&&(a=U(a.pageX,a.pageY),ba(a))}function ua(a){!0===z&&(a=U(a.originalEvent.changedTouches[0].pageX,
-a.originalEvent.changedTouches[0].pageY),ba(a))}function va(a){if(!1===z&&(!0===b.hasOwnProperty("onMouseoverSquare")&&"function"===typeof b.onMouseoverSquare)&&(a=$(a.currentTarget).attr("data-square"),!0===l(a))){var e=!1;!0===g.hasOwnProperty(a)&&(e=g[a]);b.onMouseoverSquare(a,e,m(g),u)}}function wa(a){if(!1===z&&(!0===b.hasOwnProperty("onMouseoutSquare")&&"function"===typeof b.onMouseoutSquare)&&(a=$(a.currentTarget).attr("data-square"),!0===l(a))){var e=!1;!0===g.hasOwnProperty(a)&&(e=g[a]);
-b.onMouseoutSquare(a,e,m(g),u)}}function xa(){$("body").on("mousedown mousemove","."+h.piece,oa);x.on("mousedown","."+h.square,pa);v.on("mousedown","."+h.sparePieces+" ."+h.piece,ra);x.on("mouseenter","."+h.square,va);x.on("mouseleave","."+h.square,wa);!0===(navigator&&navigator.userAgent&&-1!==navigator.userAgent.search(/MSIE/))?(document.ondragstart=function(){return!1},$("body").on("mousemove",ca),$("body").on("mouseup",da)):($(window).on("mousemove",ca),$(window).on("mouseup",da));!0==="ontouchstart"in
-document.documentElement&&(x.on("touchstart","."+h.square,qa),v.on("touchstart","."+h.sparePieces+" ."+h.piece,sa),$(window).on("touchmove",ta),$(window).on("touchend",ua))}function ya(){v.html(ga());x=v.find("."+h.board);!0===b.sparePieces&&(S=v.find("."+h.sparePiecesTop),T=v.find("."+h.sparePiecesBottom));var a=n();$("body").append(D("wP",!0,a));y=$("#"+a);ea=parseInt(x.css("borderLeftWidth"),10);q.resize()}b=b||{};var fa=K("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"),h={alpha:"alpha-d2270",black:"black-3c85d",
-board:"board-b72b1",chessboard:"chessboard-63f37",clearfix:"clearfix-7da63",highlight1:"highlight1-32417",highlight2:"highlight2-9c5d2",notation:"notation-322f9",numeric:"numeric-fc462",piece:"piece-417db",row:"row-5277c",sparePieces:"spare-pieces-7492f",sparePiecesBottom:"spare-pieces-bottom-ae20f",sparePiecesTop:"spare-pieces-top-4028b",square:"square-55d63",white:"white-1e1d7"},v,x,y,S,T,q={},ea=2,u="white",g={},p,E,H,t,z=!1,M={},s={},J;q.clear=function(a){q.position({},a)};q.destroy=function(){v.html("");
-y.remove();v.unbind()};q.fen=function(){return q.position("fen")};q.flip=function(){q.orientation("flip")};q.move=function(){if(0!==arguments.length){for(var a=!0,b={},c=0;c<arguments.length;c++)if(!1===arguments[c])a=!1;else{var d;d=arguments[c];"string"!==typeof d?d=!1:(d=d.split("-"),d=2!==d.length?!1:!0===l(d[0])&&!0===l(d[1]));!0!==d?r(2826,"Invalid move passed to the move method.",arguments[c]):(d=arguments[c].split("-"),b[d[0]]=d[1])}var c=g,c=m(c),f;for(f in b)!0===b.hasOwnProperty(f)&&!0===
-c.hasOwnProperty(f)&&(d=c[f],delete c[f],c[b[f]]=d);b=c;q.position(b,a);return b}};q.orientation=function(a){if(0===arguments.length)return u;"white"===a||"black"===a?(u=a,R()):"flip"===a?(u="white"===u?"black":"white",R()):r(5482,"Invalid value passed to the orientation method.",a)};q.position=function(a,b){if(0===arguments.length)return m(g);if("string"===typeof a&&"fen"===a.toLowerCase())return L(g);!1!==b&&(b=!0);"string"===typeof a&&"start"===a.toLowerCase()&&(a=m(fa));!0===Q(a)&&(a=K(a));if(!0!==
-F(a))r(6482,"Invalid value passed to the position method.",a);else if(!0===b){var c=g,d=a,c=m(c),d=m(d),f=[],h={},k;for(k in d)!0===d.hasOwnProperty(k)&&(!0===c.hasOwnProperty(k)&&c[k]===d[k])&&(delete c[k],delete d[k]);for(k in d)if(!0===d.hasOwnProperty(k)){var l;a:{l=c;for(var n=d[k],s=la(k),p=0;p<s.length;p++){var q=s[p];if(!0===l.hasOwnProperty(q)&&l[q]===n){l=q;break a}}l=!1}!1!==l&&(f.push({type:"move",source:l,destination:k,piece:d[k]}),delete c[l],delete d[k],h[k]=!0)}for(k in d)!0===d.hasOwnProperty(k)&&
-(f.push({type:"add",square:k,piece:d[k]}),delete d[k]);for(k in c)!0===c.hasOwnProperty(k)&&!0!==h.hasOwnProperty(k)&&(f.push({type:"clear",square:k,piece:c[k]}),delete c[k]);ja(f,g,a);O(a)}else O(a),G()};q.resize=function(){var a=parseInt(v.css("width"),10);if(!a||0>=a)p=0;else{for(a-=1;0!==a%8&&0<a;)a--;p=a/8}x.css("width",8*p+"px");y.css({height:p,width:p});!0===b.sparePieces&&v.find("."+h.sparePieces).css("paddingLeft",p+ea+"px");R()};q.start=function(a){q.position("start",a)};var W;if(W=!0===
-function(){if("string"===typeof f){if(""===f)return window.alert("ChessBoard Error 1001: The first argument to ChessBoard() cannot be an empty string.\n\nExiting..."),!1;var a=document.getElementById(f);if(!a)return window.alert('ChessBoard Error 1002: Element with id "'+f+'" does not exist in the DOM.\n\nExiting...'),!1;v=$(a)}else if(v=$(f),1!==v.length)return window.alert("ChessBoard Error 1003: The first argument to ChessBoard() must be an ID or a single DOM node.\n\nExiting..."),!1;if(!window.JSON||
-"function"!==typeof JSON.stringify||"function"!==typeof JSON.parse)return window.alert("ChessBoard Error 1004: JSON does not exist. Please include a JSON polyfill.\n\nExiting..."),!1;if(a=typeof window.$)if(a=$.fn)if(a=$.fn.jquery)var a=$.fn.jquery,b="1.7.0",a=X(a),b=X(b),a=!0===1E8*a.major+1E4*a.minor+a.patch>=1E8*b.major+1E4*b.minor+b.patch;return a?!0:(window.alert("ChessBoard Error 1005: Unable to find a valid version of jQuery. Please include jQuery 1.7.0 or higher on the page.\n\nExiting..."),
-!1)}()){if("string"===typeof b||!0===F(b))b={position:b};"black"!==b.orientation&&(b.orientation="white");u=b.orientation;!1!==b.showNotation&&(b.showNotation=!0);!0!==b.draggable&&(b.draggable=!1);"trash"!==b.dropOffBoard&&(b.dropOffBoard="snapback");!0!==b.sparePieces&&(b.sparePieces=!1);!0===b.sparePieces&&(b.draggable=!0);if(!0!==b.hasOwnProperty("pieceTheme")||"string"!==typeof b.pieceTheme&&"function"!==typeof b.pieceTheme)b.pieceTheme="img/chesspieces/wikipedia/{piece}.png";if(!0!==b.hasOwnProperty("appearSpeed")||
-!0!==w(b.appearSpeed))b.appearSpeed=200;if(!0!==b.hasOwnProperty("moveSpeed")||!0!==w(b.moveSpeed))b.moveSpeed=200;if(!0!==b.hasOwnProperty("snapbackSpeed")||!0!==w(b.snapbackSpeed))b.snapbackSpeed=50;if(!0!==b.hasOwnProperty("snapSpeed")||!0!==w(b.snapSpeed))b.snapSpeed=25;if(!0!==b.hasOwnProperty("trashSpeed")||!0!==w(b.trashSpeed))b.trashSpeed=100;!0===b.hasOwnProperty("position")&&("start"===b.position?g=m(fa):!0===Q(b.position)?g=K(b.position):!0===F(b.position)?g=m(b.position):r(7263,"Invalid value passed to config.position.",
-b.position));W=!0}W&&(I(),ya(),xa());return q};window.ChessBoard.fenToObj=K;window.ChessBoard.objToFen=L})();
+/*!
+ * chessboard.js v0.3.0
+ *
+ * Copyright 2013 Chris Oakman
+ * Released under the MIT license
+ * http://chessboardjs.com/license
+ *
+ * Date: 10 Aug 2013
+ */
+
+// start anonymous scope
+;(function() {
+'use strict';
+
+//------------------------------------------------------------------------------
+// Chess Util Functions
+//------------------------------------------------------------------------------
+var COLUMNS = 'abcdefgh'.split('');
+
+function validMove(move) {
+  // move should be a string
+  if (typeof move !== 'string') return false;
+
+  // move should be in the form of "e2-e4", "f6-d5"
+  var tmp = move.split('-');
+  if (tmp.length !== 2) return false;
+
+  return (validSquare(tmp[0]) === true && validSquare(tmp[1]) === true);
+}
+
+function validSquare(square) {
+  if (typeof square !== 'string') return false;
+  return (square.search(/^[a-h][1-8]$/) !== -1);
+}
+
+function validPieceCode(code) {
+  if (typeof code !== 'string') return false;
+  return (code.search(/^[bw][KQRNBP]$/) !== -1);
+}
+
+// TODO: this whole function could probably be replaced with a single regex
+function validFen(fen) {
+  if (typeof fen !== 'string') return false;
+
+  // cut off any move, castling, etc info from the end
+  // we're only interested in position information
+  fen = fen.replace(/ .+$/, '');
+
+  // FEN should be 8 sections separated by slashes
+  var chunks = fen.split('/');
+  if (chunks.length !== 8) return false;
+
+  // check the piece sections
+  for (var i = 0; i < 8; i++) {
+    if (chunks[i] === '' ||
+        chunks[i].length > 8 ||
+        chunks[i].search(/[^kqrbnpKQRNBP1-8]/) !== -1) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function validPositionObject(pos) {
+  if (typeof pos !== 'object') return false;
+
+  for (var i in pos) {
+    if (pos.hasOwnProperty(i) !== true) continue;
+
+    if (validSquare(i) !== true || validPieceCode(pos[i]) !== true) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// convert FEN piece code to bP, wK, etc
+function fenToPieceCode(piece) {
+  // black piece
+  if (piece.toLowerCase() === piece) {
+    return 'b' + piece.toUpperCase();
+  }
+
+  // white piece
+  return 'w' + piece.toUpperCase();
+}
+
+// convert bP, wK, etc code to FEN structure
+function pieceCodeToFen(piece) {
+  var tmp = piece.split('');
+
+  // white piece
+  if (tmp[0] === 'w') {
+    return tmp[1].toUpperCase();
+  }
+
+  // black piece
+  return tmp[1].toLowerCase();
+}
+
+// convert FEN string to position object
+// returns false if the FEN string is invalid
+function fenToObj(fen) {
+  if (validFen(fen) !== true) {
+    return false;
+  }
+
+  // cut off any move, castling, etc info from the end
+  // we're only interested in position information
+  fen = fen.replace(/ .+$/, '');
+
+  var rows = fen.split('/');
+  var position = {};
+
+  var currentRow = 8;
+  for (var i = 0; i < 8; i++) {
+    var row = rows[i].split('');
+    var colIndex = 0;
+
+    // loop through each character in the FEN section
+    for (var j = 0; j < row.length; j++) {
+      // number / empty squares
+      if (row[j].search(/[1-8]/) !== -1) {
+        var emptySquares = parseInt(row[j], 10);
+        colIndex += emptySquares;
+      }
+      // piece
+      else {
+        var square = COLUMNS[colIndex] + currentRow;
+        position[square] = fenToPieceCode(row[j]);
+        colIndex++;
+      }
+    }
+
+    currentRow--;
+  }
+
+  return position;
+}
+
+// position object to FEN string
+// returns false if the obj is not a valid position object
+function objToFen(obj) {
+  if (validPositionObject(obj) !== true) {
+    return false;
+  }
+
+  var fen = '';
+
+  var currentRow = 8;
+  for (var i = 0; i < 8; i++) {
+    for (var j = 0; j < 8; j++) {
+      var square = COLUMNS[j] + currentRow;
+
+      // piece exists
+      if (obj.hasOwnProperty(square) === true) {
+        fen += pieceCodeToFen(obj[square]);
+      }
+
+      // empty space
+      else {
+        fen += '1';
+      }
+    }
+
+    if (i !== 7) {
+      fen += '/';
+    }
+
+    currentRow--;
+  }
+
+  // squeeze the numbers together
+  // haha, I love this solution...
+  fen = fen.replace(/11111111/g, '8');
+  fen = fen.replace(/1111111/g, '7');
+  fen = fen.replace(/111111/g, '6');
+  fen = fen.replace(/11111/g, '5');
+  fen = fen.replace(/1111/g, '4');
+  fen = fen.replace(/111/g, '3');
+  fen = fen.replace(/11/g, '2');
+
+  return fen;
+}
+
+window['ChessBoard'] = window['ChessBoard'] || function(containerElOrId, cfg) {
+'use strict';
+
+cfg = cfg || {};
+
+//------------------------------------------------------------------------------
+// Constants
+//------------------------------------------------------------------------------
+
+var MINIMUM_JQUERY_VERSION = '1.7.0',
+  START_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
+  START_POSITION = fenToObj(START_FEN);
+
+// use unique class names to prevent clashing with anything else on the page
+// and simplify selectors
+var CSS = {
+  alpha: 'alpha-d2270',
+  black: 'black-3c85d',
+  board: 'board-b72b1',
+  chessboard: 'chessboard-63f37',
+  clearfix: 'clearfix-7da63',
+  highlight1: 'highlight1-32417',
+  highlight2: 'highlight2-9c5d2',
+  notation: 'notation-322f9',
+  numeric: 'numeric-fc462',
+  piece: 'piece-417db',
+  row: 'row-5277c',
+  sparePieces: 'spare-pieces-7492f',
+  sparePiecesBottom: 'spare-pieces-bottom-ae20f',
+  sparePiecesTop: 'spare-pieces-top-4028b',
+  square: 'square-55d63',
+  white: 'white-1e1d7'
+};
+
+//------------------------------------------------------------------------------
+// Module Scope Variables
+//------------------------------------------------------------------------------
+
+// DOM elements
+var containerEl,
+  boardEl,
+  draggedPieceEl,
+  sparePiecesTopEl,
+  sparePiecesBottomEl;
+
+// constructor return object
+var widget = {};
+
+//------------------------------------------------------------------------------
+// Stateful
+//------------------------------------------------------------------------------
+
+var ANIMATION_HAPPENING = false,
+  BOARD_BORDER_SIZE = 2,
+  CURRENT_ORIENTATION = 'white',
+  CURRENT_POSITION = {},
+  SQUARE_SIZE,
+  DRAGGED_PIECE,
+  DRAGGED_PIECE_LOCATION,
+  DRAGGED_PIECE_SOURCE,
+  DRAGGING_A_PIECE = false,
+  SPARE_PIECE_ELS_IDS = {},
+  SQUARE_ELS_IDS = {},
+  SQUARE_ELS_OFFSETS;
+
+//------------------------------------------------------------------------------
+// JS Util Functions
+//------------------------------------------------------------------------------
+
+// http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
+function createId() {
+  return 'xxxx-xxxx-xxxx-xxxx-xxxx-xxxx-xxxx-xxxx'.replace(/x/g, function(c) {
+    var r = Math.random() * 16 | 0;
+    return r.toString(16);
+  });
+}
+
+function deepCopy(thing) {
+  return JSON.parse(JSON.stringify(thing));
+}
+
+function parseSemVer(version) {
+  var tmp = version.split('.');
+  return {
+    major: parseInt(tmp[0], 10),
+    minor: parseInt(tmp[1], 10),
+    patch: parseInt(tmp[2], 10)
+  };
+}
+
+// returns true if version is >= minimum
+function compareSemVer(version, minimum) {
+  version = parseSemVer(version);
+  minimum = parseSemVer(minimum);
+
+  var versionNum = (version.major * 10000 * 10000) +
+    (version.minor * 10000) + version.patch;
+  var minimumNum = (minimum.major * 10000 * 10000) +
+    (minimum.minor * 10000) + minimum.patch;
+
+  return (versionNum >= minimumNum);
+}
+
+//------------------------------------------------------------------------------
+// Validation / Errors
+//------------------------------------------------------------------------------
+
+function error(code, msg, obj) {
+  // do nothing if showErrors is not set
+  if (cfg.hasOwnProperty('showErrors') !== true ||
+      cfg.showErrors === false) {
+    return;
+  }
+
+  var errorText = 'ChessBoard Error ' + code + ': ' + msg;
+
+  // print to console
+  if (cfg.showErrors === 'console' &&
+      typeof console === 'object' &&
+      typeof console.log === 'function') {
+    console.log(errorText);
+    if (arguments.length >= 2) {
+      console.log(obj);
+    }
+    return;
+  }
+
+  // alert errors
+  if (cfg.showErrors === 'alert') {
+    if (obj) {
+      errorText += '\n\n' + JSON.stringify(obj);
+    }
+    window.alert(errorText);
+    return;
+  }
+
+  // custom function
+  if (typeof cfg.showErrors === 'function') {
+    cfg.showErrors(code, msg, obj);
+  }
+}
+
+// check dependencies
+function checkDeps() {
+  // if containerId is a string, it must be the ID of a DOM node
+  if (typeof containerElOrId === 'string') {
+    // cannot be empty
+    if (containerElOrId === '') {
+      window.alert('ChessBoard Error 1001: ' +
+        'The first argument to ChessBoard() cannot be an empty string.' +
+        '\n\nExiting...');
+      return false;
+    }
+
+    // make sure the container element exists in the DOM
+    var el = document.getElementById(containerElOrId);
+    if (! el) {
+      window.alert('ChessBoard Error 1002: Element with id "' +
+        containerElOrId + '" does not exist in the DOM.' +
+        '\n\nExiting...');
+      return false;
+    }
+
+    // set the containerEl
+    containerEl = $(el);
+  }
+
+  // else it must be something that becomes a jQuery collection
+  // with size 1
+  // ie: a single DOM node or jQuery object
+  else {
+    containerEl = $(containerElOrId);
+
+    if (containerEl.length !== 1) {
+      window.alert('ChessBoard Error 1003: The first argument to ' +
+        'ChessBoard() must be an ID or a single DOM node.' +
+        '\n\nExiting...');
+      return false;
+    }
+  }
+
+  // JSON must exist
+  if (! window.JSON ||
+      typeof JSON.stringify !== 'function' ||
+      typeof JSON.parse !== 'function') {
+    window.alert('ChessBoard Error 1004: JSON does not exist. ' +
+      'Please include a JSON polyfill.\n\nExiting...');
+    return false;
+  }
+
+  // check for a compatible version of jQuery
+  if (! (typeof window.$ && $.fn && $.fn.jquery &&
+      compareSemVer($.fn.jquery, MINIMUM_JQUERY_VERSION) === true)) {
+    window.alert('ChessBoard Error 1005: Unable to find a valid version ' +
+      'of jQuery. Please include jQuery ' + MINIMUM_JQUERY_VERSION + ' or ' +
+      'higher on the page.\n\nExiting...');
+    return false;
+  }
+
+  return true;
+}
+
+function validAnimationSpeed(speed) {
+  if (speed === 'fast' || speed === 'slow') {
+    return true;
+  }
+
+  if ((parseInt(speed, 10) + '') !== (speed + '')) {
+    return false;
+  }
+
+  return (speed >= 0);
+}
+
+// validate config / set default options
+function expandConfig() {
+  if (typeof cfg === 'string' || validPositionObject(cfg) === true) {
+    cfg = {
+      position: cfg
+    };
+  }
+
+  // default for orientation is white
+  if (cfg.orientation !== 'black') {
+    cfg.orientation = 'white';
+  }
+  CURRENT_ORIENTATION = cfg.orientation;
+
+  // default for showNotation is true
+  if (cfg.showNotation !== false) {
+    cfg.showNotation = true;
+  }
+
+  // default for draggable is false
+  if (cfg.draggable !== true) {
+    cfg.draggable = false;
+  }
+
+  // default for dropOffBoard is 'snapback'
+  if (cfg.dropOffBoard !== 'trash') {
+    cfg.dropOffBoard = 'snapback';
+  }
+
+  // default for sparePieces is false
+  if (cfg.sparePieces !== true) {
+    cfg.sparePieces = false;
+  }
+
+  // draggable must be true if sparePieces is enabled
+  if (cfg.sparePieces === true) {
+    cfg.draggable = true;
+  }
+
+  // default piece theme is wikipedia
+  if (cfg.hasOwnProperty('pieceTheme') !== true ||
+      (typeof cfg.pieceTheme !== 'string' &&
+       typeof cfg.pieceTheme !== 'function')) {
+    cfg.pieceTheme = 'img/chesspieces/wikipedia/{piece}.png';
+  }
+
+  // animation speeds
+  if (cfg.hasOwnProperty('appearSpeed') !== true ||
+      validAnimationSpeed(cfg.appearSpeed) !== true) {
+    cfg.appearSpeed = 200;
+  }
+  if (cfg.hasOwnProperty('moveSpeed') !== true ||
+      validAnimationSpeed(cfg.moveSpeed) !== true) {
+    cfg.moveSpeed = 200;
+  }
+  if (cfg.hasOwnProperty('snapbackSpeed') !== true ||
+      validAnimationSpeed(cfg.snapbackSpeed) !== true) {
+    cfg.snapbackSpeed = 50;
+  }
+  if (cfg.hasOwnProperty('snapSpeed') !== true ||
+      validAnimationSpeed(cfg.snapSpeed) !== true) {
+    cfg.snapSpeed = 25;
+  }
+  if (cfg.hasOwnProperty('trashSpeed') !== true ||
+      validAnimationSpeed(cfg.trashSpeed) !== true) {
+    cfg.trashSpeed = 100;
+  }
+
+  // make sure position is valid
+  if (cfg.hasOwnProperty('position') === true) {
+    if (cfg.position === 'start') {
+      CURRENT_POSITION = deepCopy(START_POSITION);
+    }
+
+    else if (validFen(cfg.position) === true) {
+      CURRENT_POSITION = fenToObj(cfg.position);
+    }
+
+    else if (validPositionObject(cfg.position) === true) {
+      CURRENT_POSITION = deepCopy(cfg.position);
+    }
+
+    else {
+      error(7263, 'Invalid value passed to config.position.', cfg.position);
+    }
+  }
+
+  return true;
+}
+
+//------------------------------------------------------------------------------
+// DOM Misc
+//------------------------------------------------------------------------------
+
+// calculates square size based on the width of the container
+// got a little CSS black magic here, so let me explain:
+// get the width of the container element (could be anything), reduce by 1 for
+// fudge factor, and then keep reducing until we find an exact mod 8 for
+// our square size
+function calculateSquareSize() {
+  var containerWidth = parseInt(containerEl.css('width'), 10);
+
+  // defensive, prevent infinite loop
+  if (! containerWidth || containerWidth <= 0) {
+    return 0;
+  }
+
+  // pad one pixel
+  var boardWidth = containerWidth - 1;
+
+  while (boardWidth % 8 !== 0 && boardWidth > 0) {
+    boardWidth--;
+  }
+
+  return (boardWidth / 8);
+}
+
+// create random IDs for elements
+function createElIds() {
+  // squares on the board
+  for (var i = 0; i < COLUMNS.length; i++) {
+    for (var j = 1; j <= 8; j++) {
+      var square = COLUMNS[i] + j;
+      SQUARE_ELS_IDS[square] = square + '-' + createId();
+    }
+  }
+
+  // spare pieces
+  var pieces = 'KQRBNP'.split('');
+  for (var i = 0; i < pieces.length; i++) {
+    var whitePiece = 'w' + pieces[i];
+    var blackPiece = 'b' + pieces[i];
+    SPARE_PIECE_ELS_IDS[whitePiece] = whitePiece + '-' + createId();
+    SPARE_PIECE_ELS_IDS[blackPiece] = blackPiece + '-' + createId();
+  }
+}
+
+//------------------------------------------------------------------------------
+// Markup Building
+//------------------------------------------------------------------------------
+
+function buildBoardContainer() {
+  var html = '<div class="' + CSS.chessboard + '">';
+
+  if (cfg.sparePieces === true) {
+    html += '<div class="' + CSS.sparePieces + ' ' +
+      CSS.sparePiecesTop + '"></div>';
+  }
+
+  html += '<div class="' + CSS.board + '"></div>';
+
+  if (cfg.sparePieces === true) {
+    html += '<div class="' + CSS.sparePieces + ' ' +
+      CSS.sparePiecesBottom + '"></div>';
+  }
+
+  html += '</div>';
+
+  return html;
+}
+
+/*
+var buildSquare = function(color, size, id) {
+  var html = '<div class="' + CSS.square + ' ' + CSS[color] + '" ' +
+  'style="width: ' + size + 'px; height: ' + size + 'px" ' +
+  'id="' + id + '">';
+
+  if (cfg.showNotation === true) {
+
+  }
+
+  html += '</div>';
+
+  return html;
+};
+*/
+
+function buildBoard(orientation) {
+  if (orientation !== 'black') {
+    orientation = 'white';
+  }
+
+  var html = '';
+
+  // algebraic notation / orientation
+  var alpha = deepCopy(COLUMNS);
+  var row = 8;
+  if (orientation === 'black') {
+    alpha.reverse();
+    row = 1;
+  }
+
+  var squareColor = 'white';
+  for (var i = 0; i < 8; i++) {
+    html += '<div class="' + CSS.row + '">';
+    for (var j = 0; j < 8; j++) {
+      var square = alpha[j] + row;
+
+      html += '<div class="' + CSS.square + ' ' + CSS[squareColor] + ' ' +
+        'square-' + square + '" ' +
+        'style="width: ' + SQUARE_SIZE + 'px; height: ' + SQUARE_SIZE + 'px" ' +
+        'id="' + SQUARE_ELS_IDS[square] + '" ' +
+        'data-square="' + square + '">';
+
+      if (cfg.showNotation === true) {
+        // alpha notation
+        if ((orientation === 'white' && row === 1) ||
+            (orientation === 'black' && row === 8)) {
+          html += '<div class="' + CSS.notation + ' ' + CSS.alpha + '">' +
+            alpha[j] + '</div>';
+        }
+
+        // numeric notation
+        if (j === 0) {
+          html += '<div class="' + CSS.notation + ' ' + CSS.numeric + '">' +
+            row + '</div>';
+        }
+      }
+
+      html += '</div>'; // end .square
+
+      squareColor = (squareColor === 'white' ? 'black' : 'white');
+    }
+    html += '<div class="' + CSS.clearfix + '"></div></div>';
+
+    squareColor = (squareColor === 'white' ? 'black' : 'white');
+
+    if (orientation === 'white') {
+      row--;
+    }
+    else {
+      row++;
+    }
+  }
+
+  return html;
+}
+
+function buildPieceImgSrc(piece) {
+  if (typeof cfg.pieceTheme === 'function') {
+    return cfg.pieceTheme(piece);
+  }
+
+  if (typeof cfg.pieceTheme === 'string') {
+    return cfg.pieceTheme.replace(/{piece}/g, piece);
+  }
+
+  // NOTE: this should never happen
+  error(8272, 'Unable to build image source for cfg.pieceTheme.');
+  return '';
+}
+
+function buildPiece(piece, hidden, id) {
+  var html = '<img src="' + buildPieceImgSrc(piece) + '" ';
+  if (id && typeof id === 'string') {
+    html += 'id="' + id + '" ';
+  }
+  html += 'alt="" ' +
+  'class="' + CSS.piece + '" ' +
+  'data-piece="' + piece + '" ' +
+  'style="width: ' + SQUARE_SIZE + 'px;' +
+  'height: ' + SQUARE_SIZE + 'px;';
+  if (hidden === true) {
+    html += 'display:none;';
+  }
+  html += '" />';
+
+  return html;
+}
+
+function buildSparePieces(color) {
+  var pieces = ['wK', 'wQ', 'wR', 'wB', 'wN', 'wP'];
+  if (color === 'black') {
+    pieces = ['bK', 'bQ', 'bR', 'bB', 'bN', 'bP'];
+  }
+
+  var html = '';
+  for (var i = 0; i < pieces.length; i++) {
+    html += buildPiece(pieces[i], false, SPARE_PIECE_ELS_IDS[pieces[i]]);
+  }
+
+  return html;
+}
+
+//------------------------------------------------------------------------------
+// Animations
+//------------------------------------------------------------------------------
+
+function animateSquareToSquare(src, dest, piece, completeFn) {
+  // get information about the source and destination squares
+  var srcSquareEl = $('#' + SQUARE_ELS_IDS[src]);
+  var srcSquarePosition = srcSquareEl.offset();
+  var destSquareEl = $('#' + SQUARE_ELS_IDS[dest]);
+  var destSquarePosition = destSquareEl.offset();
+
+  // create the animated piece and absolutely position it
+  // over the source square
+  var animatedPieceId = createId();
+  $('body').append(buildPiece(piece, true, animatedPieceId));
+  var animatedPieceEl = $('#' + animatedPieceId);
+  animatedPieceEl.css({
+    display: '',
+    position: 'absolute',
+    top: srcSquarePosition.top,
+    left: srcSquarePosition.left
+  });
+
+  // remove original piece from source square
+  srcSquareEl.find('.' + CSS.piece).remove();
+
+  // on complete
+  var complete = function() {
+    // add the "real" piece to the destination square
+    destSquareEl.append(buildPiece(piece));
+
+    // remove the animated piece
+    animatedPieceEl.remove();
+
+    // run complete function
+    if (typeof completeFn === 'function') {
+      completeFn();
+    }
+  };
+
+  // animate the piece to the destination square
+  var opts = {
+    duration: cfg.moveSpeed,
+    complete: complete
+  };
+  animatedPieceEl.animate(destSquarePosition, opts);
+}
+
+function animateSparePieceToSquare(piece, dest, completeFn) {
+  var srcOffset = $('#' + SPARE_PIECE_ELS_IDS[piece]).offset();
+  var destSquareEl = $('#' + SQUARE_ELS_IDS[dest]);
+  var destOffset = destSquareEl.offset();
+
+  // create the animate piece
+  var pieceId = createId();
+  $('body').append(buildPiece(piece, true, pieceId));
+  var animatedPieceEl = $('#' + pieceId);
+  animatedPieceEl.css({
+    display: '',
+    position: 'absolute',
+    left: srcOffset.left,
+    top: srcOffset.top
+  });
+
+  // on complete
+  var complete = function() {
+    // add the "real" piece to the destination square
+    destSquareEl.find('.' + CSS.piece).remove();
+    destSquareEl.append(buildPiece(piece));
+
+    // remove the animated piece
+    animatedPieceEl.remove();
+
+    // run complete function
+    if (typeof completeFn === 'function') {
+      completeFn();
+    }
+  };
+
+  // animate the piece to the destination square
+  var opts = {
+    duration: cfg.moveSpeed,
+    complete: complete
+  };
+  animatedPieceEl.animate(destOffset, opts);
+}
+
+// execute an array of animations
+function doAnimations(a, oldPos, newPos) {
+  ANIMATION_HAPPENING = true;
+
+  var numFinished = 0;
+  function onFinish() {
+    numFinished++;
+
+    // exit if all the animations aren't finished
+    if (numFinished !== a.length) return;
+
+    drawPositionInstant();
+    ANIMATION_HAPPENING = false;
+
+    // run their onMoveEnd function
+    if (cfg.hasOwnProperty('onMoveEnd') === true &&
+      typeof cfg.onMoveEnd === 'function') {
+      cfg.onMoveEnd(deepCopy(oldPos), deepCopy(newPos));
+    }
+  }
+
+  for (var i = 0; i < a.length; i++) {
+    // clear a piece
+    if (a[i].type === 'clear') {
+      $('#' + SQUARE_ELS_IDS[a[i].square] + ' .' + CSS.piece)
+        .fadeOut(cfg.trashSpeed, onFinish);
+    }
+
+    // add a piece (no spare pieces)
+    if (a[i].type === 'add' && cfg.sparePieces !== true) {
+      $('#' + SQUARE_ELS_IDS[a[i].square])
+        .append(buildPiece(a[i].piece, true))
+        .find('.' + CSS.piece)
+        .fadeIn(cfg.appearSpeed, onFinish);
+    }
+
+    // add a piece from a spare piece
+    if (a[i].type === 'add' && cfg.sparePieces === true) {
+      animateSparePieceToSquare(a[i].piece, a[i].square, onFinish);
+    }
+
+    // move a piece
+    if (a[i].type === 'move') {
+      animateSquareToSquare(a[i].source, a[i].destination, a[i].piece,
+        onFinish);
+    }
+  }
+}
+
+// returns the distance between two squares
+function squareDistance(s1, s2) {
+  s1 = s1.split('');
+  var s1x = COLUMNS.indexOf(s1[0]) + 1;
+  var s1y = parseInt(s1[1], 10);
+
+  s2 = s2.split('');
+  var s2x = COLUMNS.indexOf(s2[0]) + 1;
+  var s2y = parseInt(s2[1], 10);
+
+  var xDelta = Math.abs(s1x - s2x);
+  var yDelta = Math.abs(s1y - s2y);
+
+  if (xDelta >= yDelta) return xDelta;
+  return yDelta;
+}
+
+// returns an array of closest squares from square
+function createRadius(square) {
+  var squares = [];
+
+  // calculate distance of all squares
+  for (var i = 0; i < 8; i++) {
+    for (var j = 0; j < 8; j++) {
+      var s = COLUMNS[i] + (j + 1);
+
+      // skip the square we're starting from
+      if (square === s) continue;
+
+      squares.push({
+        square: s,
+        distance: squareDistance(square, s)
+      });
+    }
+  }
+
+  // sort by distance
+  squares.sort(function(a, b) {
+    return a.distance - b.distance;
+  });
+
+  // just return the square code
+  var squares2 = [];
+  for (var i = 0; i < squares.length; i++) {
+    squares2.push(squares[i].square);
+  }
+
+  return squares2;
+}
+
+// returns the square of the closest instance of piece
+// returns false if no instance of piece is found in position
+function findClosestPiece(position, piece, square) {
+  // create array of closest squares from square
+  var closestSquares = createRadius(square);
+
+  // search through the position in order of distance for the piece
+  for (var i = 0; i < closestSquares.length; i++) {
+    var s = closestSquares[i];
+
+    if (position.hasOwnProperty(s) === true && position[s] === piece) {
+      return s;
+    }
+  }
+
+  return false;
+}
+
+// calculate an array of animations that need to happen in order to get
+// from pos1 to pos2
+function calculateAnimations(pos1, pos2) {
+  // make copies of both
+  pos1 = deepCopy(pos1);
+  pos2 = deepCopy(pos2);
+
+  var animations = [];
+  var squaresMovedTo = {};
+
+  // remove pieces that are the same in both positions
+  for (var i in pos2) {
+    if (pos2.hasOwnProperty(i) !== true) continue;
+
+    if (pos1.hasOwnProperty(i) === true && pos1[i] === pos2[i]) {
+      delete pos1[i];
+      delete pos2[i];
+    }
+  }
+
+  // find all the "move" animations
+  for (var i in pos2) {
+    if (pos2.hasOwnProperty(i) !== true) continue;
+
+    var closestPiece = findClosestPiece(pos1, pos2[i], i);
+    if (closestPiece !== false) {
+      animations.push({
+        type: 'move',
+        source: closestPiece,
+        destination: i,
+        piece: pos2[i]
+      });
+
+      delete pos1[closestPiece];
+      delete pos2[i];
+      squaresMovedTo[i] = true;
+    }
+  }
+
+  // add pieces to pos2
+  for (var i in pos2) {
+    if (pos2.hasOwnProperty(i) !== true) continue;
+
+    animations.push({
+      type: 'add',
+      square: i,
+      piece: pos2[i]
+    })
+
+    delete pos2[i];
+  }
+
+  // clear pieces from pos1
+  for (var i in pos1) {
+    if (pos1.hasOwnProperty(i) !== true) continue;
+
+    // do not clear a piece if it is on a square that is the result
+    // of a "move", ie: a piece capture
+    if (squaresMovedTo.hasOwnProperty(i) === true) continue;
+
+    animations.push({
+      type: 'clear',
+      square: i,
+      piece: pos1[i]
+    });
+
+    delete pos1[i];
+  }
+
+  return animations;
+}
+
+//------------------------------------------------------------------------------
+// Control Flow
+//------------------------------------------------------------------------------
+
+function drawPositionInstant() {
+  // clear the board
+  boardEl.find('.' + CSS.piece).remove();
+
+  // add the pieces
+  for (var i in CURRENT_POSITION) {
+    if (CURRENT_POSITION.hasOwnProperty(i) !== true) continue;
+
+    $('#' + SQUARE_ELS_IDS[i]).append(buildPiece(CURRENT_POSITION[i]));
+  }
+}
+
+function drawBoard() {
+  boardEl.html(buildBoard(CURRENT_ORIENTATION));
+  drawPositionInstant();
+
+  if (cfg.sparePieces === true) {
+    if (CURRENT_ORIENTATION === 'white') {
+      sparePiecesTopEl.html(buildSparePieces('black'));
+      sparePiecesBottomEl.html(buildSparePieces('white'));
+    }
+    else {
+      sparePiecesTopEl.html(buildSparePieces('white'));
+      sparePiecesBottomEl.html(buildSparePieces('black'));
+    }
+  }
+}
+
+// given a position and a set of moves, return a new position
+// with the moves executed
+function calculatePositionFromMoves(position, moves) {
+  position = deepCopy(position);
+
+  for (var i in moves) {
+    if (moves.hasOwnProperty(i) !== true) continue;
+
+    // skip the move if the position doesn't have a piece on the source square
+    if (position.hasOwnProperty(i) !== true) continue;
+
+    var piece = position[i];
+    delete position[i];
+    position[moves[i]] = piece;
+  }
+
+  return position;
+}
+
+function setCurrentPosition(position) {
+  var oldPos = deepCopy(CURRENT_POSITION);
+  var newPos = deepCopy(position);
+  var oldFen = objToFen(oldPos);
+  var newFen = objToFen(newPos);
+
+  // do nothing if no change in position
+  if (oldFen === newFen) return;
+
+  // run their onChange function
+  if (cfg.hasOwnProperty('onChange') === true &&
+    typeof cfg.onChange === 'function') {
+    cfg.onChange(oldPos, newPos);
+  }
+
+  // update state
+  CURRENT_POSITION = position;
+}
+
+function isXYOnSquare(x, y) {
+  for (var i in SQUARE_ELS_OFFSETS) {
+    if (SQUARE_ELS_OFFSETS.hasOwnProperty(i) !== true) continue;
+
+    var s = SQUARE_ELS_OFFSETS[i];
+    if (x >= s.left && x < s.left + SQUARE_SIZE &&
+        y >= s.top && y < s.top + SQUARE_SIZE) {
+      return i;
+    }
+  }
+
+  return 'offboard';
+}
+
+// records the XY coords of every square into memory
+function captureSquareOffsets() {
+  SQUARE_ELS_OFFSETS = {};
+
+  for (var i in SQUARE_ELS_IDS) {
+    if (SQUARE_ELS_IDS.hasOwnProperty(i) !== true) continue;
+
+    SQUARE_ELS_OFFSETS[i] = $('#' + SQUARE_ELS_IDS[i]).offset();
+  }
+}
+
+function removeSquareHighlights() {
+  boardEl.find('.' + CSS.square)
+    .removeClass(CSS.highlight1 + ' ' + CSS.highlight2);
+}
+
+function snapbackDraggedPiece() {
+  // there is no "snapback" for spare pieces
+  if (DRAGGED_PIECE_SOURCE === 'spare') {
+    trashDraggedPiece();
+    return;
+  }
+
+  removeSquareHighlights();
+
+  // animation complete
+  function complete() {
+    drawPositionInstant();
+    draggedPieceEl.css('display', 'none');
+
+    // run their onSnapbackEnd function
+    if (cfg.hasOwnProperty('onSnapbackEnd') === true &&
+      typeof cfg.onSnapbackEnd === 'function') {
+      cfg.onSnapbackEnd(DRAGGED_PIECE, DRAGGED_PIECE_SOURCE,
+        deepCopy(CURRENT_POSITION), CURRENT_ORIENTATION);
+    }
+  }
+
+  // get source square position
+  var sourceSquarePosition =
+    $('#' + SQUARE_ELS_IDS[DRAGGED_PIECE_SOURCE]).offset();
+
+  // animate the piece to the target square
+  var opts = {
+    duration: cfg.snapbackSpeed,
+    complete: complete
+  };
+  draggedPieceEl.animate(sourceSquarePosition, opts);
+
+  // set state
+  DRAGGING_A_PIECE = false;
+}
+
+function trashDraggedPiece() {
+  removeSquareHighlights();
+
+  // remove the source piece
+  var newPosition = deepCopy(CURRENT_POSITION);
+  delete newPosition[DRAGGED_PIECE_SOURCE];
+  setCurrentPosition(newPosition);
+
+  // redraw the position
+  drawPositionInstant();
+
+  // hide the dragged piece
+  draggedPieceEl.fadeOut(cfg.trashSpeed);
+
+  // set state
+  DRAGGING_A_PIECE = false;
+}
+
+function dropDraggedPieceOnSquare(square) {
+  removeSquareHighlights();
+
+  // update position
+  var newPosition = deepCopy(CURRENT_POSITION);
+  delete newPosition[DRAGGED_PIECE_SOURCE];
+  newPosition[square] = DRAGGED_PIECE;
+  setCurrentPosition(newPosition);
+
+  // get target square information
+  var targetSquarePosition = $('#' + SQUARE_ELS_IDS[square]).offset();
+
+  // animation complete
+  var complete = function() {
+    drawPositionInstant();
+    draggedPieceEl.css('display', 'none');
+
+    // execute their onSnapEnd function
+    if (cfg.hasOwnProperty('onSnapEnd') === true &&
+      typeof cfg.onSnapEnd === 'function') {
+      cfg.onSnapEnd(DRAGGED_PIECE_SOURCE, square, DRAGGED_PIECE);
+    }
+  };
+
+  // snap the piece to the target square
+  var opts = {
+    duration: cfg.snapSpeed,
+    complete: complete
+  };
+  draggedPieceEl.animate(targetSquarePosition, opts);
+
+  // set state
+  DRAGGING_A_PIECE = false;
+}
+
+function beginDraggingPiece(source, piece, x, y) {
+  // run their custom onDragStart function
+  // their custom onDragStart function can cancel drag start
+  if (typeof cfg.onDragStart === 'function' &&
+      cfg.onDragStart(source, piece,
+        deepCopy(CURRENT_POSITION), CURRENT_ORIENTATION) === false) {
+    return;
+  }
+
+  // set state
+  DRAGGING_A_PIECE = true;
+  DRAGGED_PIECE = piece;
+  DRAGGED_PIECE_SOURCE = source;
+
+  // if the piece came from spare pieces, location is offboard
+  if (source === 'spare') {
+    DRAGGED_PIECE_LOCATION = 'offboard';
+  }
+  else {
+    DRAGGED_PIECE_LOCATION = source;
+  }
+
+  // capture the x, y coords of all squares in memory
+  captureSquareOffsets();
+
+  // create the dragged piece
+  draggedPieceEl.attr('src', buildPieceImgSrc(piece))
+    .css({
+      display: '',
+      position: 'absolute',
+      left: x - (SQUARE_SIZE / 2),
+      top: y - (SQUARE_SIZE / 2)
+    });
+
+  if (source !== 'spare') {
+    // highlight the source square and hide the piece
+    $('#' + SQUARE_ELS_IDS[source]).addClass(CSS.highlight1)
+      .find('.' + CSS.piece).css('display', 'none');
+  }
+}
+
+function updateDraggedPiece(x, y) {
+  // put the dragged piece over the mouse cursor
+  draggedPieceEl.css({
+    left: x - (SQUARE_SIZE / 2),
+    top: y - (SQUARE_SIZE / 2)
+  });
+
+  // get location
+  var location = isXYOnSquare(x, y);
+
+  // do nothing if the location has not changed
+  if (location === DRAGGED_PIECE_LOCATION) return;
+
+  // remove highlight from previous square
+  if (validSquare(DRAGGED_PIECE_LOCATION) === true) {
+    $('#' + SQUARE_ELS_IDS[DRAGGED_PIECE_LOCATION])
+      .removeClass(CSS.highlight2);
+  }
+
+  // add highlight to new square
+  if (validSquare(location) === true) {
+    $('#' + SQUARE_ELS_IDS[location]).addClass(CSS.highlight2);
+  }
+
+  // run onDragMove
+  if (typeof cfg.onDragMove === 'function') {
+    cfg.onDragMove(location, DRAGGED_PIECE_LOCATION,
+      DRAGGED_PIECE_SOURCE, DRAGGED_PIECE,
+      deepCopy(CURRENT_POSITION), CURRENT_ORIENTATION);
+  }
+
+  // update state
+  DRAGGED_PIECE_LOCATION = location;
+}
+
+function stopDraggedPiece(location) {
+  // determine what the action should be
+  var action = 'drop';
+  if (location === 'offboard' && cfg.dropOffBoard === 'snapback') {
+    action = 'snapback';
+  }
+  if (location === 'offboard' && cfg.dropOffBoard === 'trash') {
+    action = 'trash';
+  }
+
+  // run their onDrop function, which can potentially change the drop action
+  if (cfg.hasOwnProperty('onDrop') === true &&
+    typeof cfg.onDrop === 'function') {
+    var newPosition = deepCopy(CURRENT_POSITION);
+
+    // source piece is a spare piece and position is off the board
+    //if (DRAGGED_PIECE_SOURCE === 'spare' && location === 'offboard') {...}
+    // position has not changed; do nothing
+
+    // source piece is a spare piece and position is on the board
+    if (DRAGGED_PIECE_SOURCE === 'spare' && validSquare(location) === true) {
+      // add the piece to the board
+      newPosition[location] = DRAGGED_PIECE;
+    }
+
+    // source piece was on the board and position is off the board
+    if (validSquare(DRAGGED_PIECE_SOURCE) === true && location === 'offboard') {
+      // remove the piece from the board
+      delete newPosition[DRAGGED_PIECE_SOURCE];
+    }
+
+    // source piece was on the board and position is on the board
+    if (validSquare(DRAGGED_PIECE_SOURCE) === true &&
+      validSquare(location) === true) {
+      // move the piece
+      delete newPosition[DRAGGED_PIECE_SOURCE];
+      newPosition[location] = DRAGGED_PIECE;
+    }
+
+    var oldPosition = deepCopy(CURRENT_POSITION);
+
+    var result = cfg.onDrop(DRAGGED_PIECE_SOURCE, location, DRAGGED_PIECE,
+      newPosition, oldPosition, CURRENT_ORIENTATION);
+    if (result === 'snapback' || result === 'trash') {
+      action = result;
+    }
+  }
+
+  // do it!
+  if (action === 'snapback') {
+    snapbackDraggedPiece();
+  }
+  else if (action === 'trash') {
+    trashDraggedPiece();
+  }
+  else if (action === 'drop') {
+    dropDraggedPieceOnSquare(location);
+  }
+}
+
+//------------------------------------------------------------------------------
+// Public Methods
+//------------------------------------------------------------------------------
+
+// clear the board
+widget.clear = function(useAnimation) {
+  widget.position({}, useAnimation);
+};
+
+/*
+// get or set config properties
+// TODO: write this, GitHub Issue #1
+widget.config = function(arg1, arg2) {
+  // get the current config
+  if (arguments.length === 0) {
+    return deepCopy(cfg);
+  }
+};
+*/
+
+// remove the widget from the page
+widget.destroy = function() {
+  // remove markup
+  containerEl.html('');
+  draggedPieceEl.remove();
+
+  // remove event handlers
+  containerEl.unbind();
+};
+
+// shorthand method to get the current FEN
+widget.fen = function() {
+  return widget.position('fen');
+};
+
+// flip orientation
+widget.flip = function() {
+  widget.orientation('flip');
+};
+
+/*
+// TODO: write this, GitHub Issue #5
+widget.highlight = function() {
+
+};
+*/
+
+// move pieces
+widget.move = function() {
+  // no need to throw an error here; just do nothing
+  if (arguments.length === 0) return;
+
+  var useAnimation = true;
+
+  // collect the moves into an object
+  var moves = {};
+  for (var i = 0; i < arguments.length; i++) {
+    // any "false" to this function means no animations
+    if (arguments[i] === false) {
+      useAnimation = false;
+      continue;
+    }
+
+    // skip invalid arguments
+    if (validMove(arguments[i]) !== true) {
+      error(2826, 'Invalid move passed to the move method.', arguments[i]);
+      continue;
+    }
+
+    var tmp = arguments[i].split('-');
+    moves[tmp[0]] = tmp[1];
+  }
+
+  // calculate position from moves
+  var newPos = calculatePositionFromMoves(CURRENT_POSITION, moves);
+
+  // update the board
+  widget.position(newPos, useAnimation);
+
+  // return the new position object
+  return newPos;
+};
+
+widget.orientation = function(arg) {
+  // no arguments, return the current orientation
+  if (arguments.length === 0) {
+    return CURRENT_ORIENTATION;
+  }
+
+  // set to white or black
+  if (arg === 'white' || arg === 'black') {
+    CURRENT_ORIENTATION = arg;
+    drawBoard();
+    return;
+  }
+
+  // flip orientation
+  if (arg === 'flip') {
+    CURRENT_ORIENTATION = (CURRENT_ORIENTATION === 'white') ? 'black' : 'white';
+    drawBoard();
+    return;
+  }
+
+  error(5482, 'Invalid value passed to the orientation method.', arg);
+};
+
+widget.position = function(position, useAnimation) {
+  // no arguments, return the current position
+  if (arguments.length === 0) {
+    return deepCopy(CURRENT_POSITION);
+  }
+
+  // get position as FEN
+  if (typeof position === 'string' && position.toLowerCase() === 'fen') {
+    return objToFen(CURRENT_POSITION);
+  }
+
+  // default for useAnimations is true
+  if (useAnimation !== false) {
+    useAnimation = true;
+  }
+
+  // start position
+  if (typeof position === 'string' && position.toLowerCase() === 'start') {
+    position = deepCopy(START_POSITION);
+  }
+
+  // convert FEN to position object
+  if (validFen(position) === true) {
+    position = fenToObj(position);
+  }
+
+  // validate position object
+  if (validPositionObject(position) !== true) {
+    error(6482, 'Invalid value passed to the position method.', position);
+    return;
+  }
+
+  if (useAnimation === true) {
+    // start the animations
+    doAnimations(calculateAnimations(CURRENT_POSITION, position),
+      CURRENT_POSITION, position);
+
+    // set the new position
+    setCurrentPosition(position);
+  }
+  // instant update
+  else {
+    setCurrentPosition(position);
+    drawPositionInstant();
+  }
+};
+
+widget.resize = function() {
+  // calulate the new square size
+  SQUARE_SIZE = calculateSquareSize();
+
+  // set board width
+  boardEl.css('width', (SQUARE_SIZE * 8) + 'px');
+
+  // set drag piece size
+  draggedPieceEl.css({
+    height: SQUARE_SIZE,
+    width: SQUARE_SIZE
+  });
+
+  // spare pieces
+  if (cfg.sparePieces === true) {
+    containerEl.find('.' + CSS.sparePieces)
+      .css('paddingLeft', (SQUARE_SIZE + BOARD_BORDER_SIZE) + 'px');
+  }
+
+  // redraw the board
+  drawBoard();
+};
+
+// set the starting position
+widget.start = function(useAnimation) {
+  widget.position('start', useAnimation);
+};
+
+//------------------------------------------------------------------------------
+// Browser Events
+//------------------------------------------------------------------------------
+
+function isTouchDevice() {
+  return ('ontouchstart' in document.documentElement);
+}
+
+// reference: http://www.quirksmode.org/js/detect.html
+function isMSIE() {
+  return (navigator && navigator.userAgent &&
+      navigator.userAgent.search(/MSIE/) !== -1);
+}
+
+function stopDefault(e) {
+  e.preventDefault();
+}
+
+function mousedownSquare(e) {
+  // do nothing if we're not draggable
+  if (cfg.draggable !== true) return;
+
+  var square = $(this).attr('data-square');
+
+  // no piece on this square
+  if (validSquare(square) !== true ||
+      CURRENT_POSITION.hasOwnProperty(square) !== true) {
+    return;
+  }
+
+  beginDraggingPiece(square, CURRENT_POSITION[square], e.pageX, e.pageY);
+}
+
+function touchstartSquare(e) {
+  // do nothing if we're not draggable
+  if (cfg.draggable !== true) return;
+
+  var square = $(this).attr('data-square');
+
+  // no piece on this square
+  if (validSquare(square) !== true ||
+      CURRENT_POSITION.hasOwnProperty(square) !== true) {
+    return;
+  }
+
+  e = e.originalEvent;
+  beginDraggingPiece(square, CURRENT_POSITION[square],
+    e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+}
+
+function mousedownSparePiece(e) {
+  // do nothing if sparePieces is not enabled
+  if (cfg.sparePieces !== true) return;
+
+  var piece = $(this).attr('data-piece');
+
+  beginDraggingPiece('spare', piece, e.pageX, e.pageY);
+}
+
+function touchstartSparePiece(e) {
+  // do nothing if sparePieces is not enabled
+  if (cfg.sparePieces !== true) return;
+
+  var piece = $(this).attr('data-piece');
+
+  e = e.originalEvent;
+  beginDraggingPiece('spare', piece,
+    e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+}
+
+function mousemoveWindow(e) {
+  // do nothing if we are not dragging a piece
+  if (DRAGGING_A_PIECE !== true) return;
+
+  updateDraggedPiece(e.pageX, e.pageY);
+}
+
+function touchmoveWindow(e) {
+  // do nothing if we are not dragging a piece
+  if (DRAGGING_A_PIECE !== true) return;
+
+  // prevent screen from scrolling
+  e.preventDefault();
+
+  updateDraggedPiece(e.originalEvent.changedTouches[0].pageX,
+    e.originalEvent.changedTouches[0].pageY);
+}
+
+function mouseupWindow(e) {
+  // do nothing if we are not dragging a piece
+  if (DRAGGING_A_PIECE !== true) return;
+
+  // get the location
+  var location = isXYOnSquare(e.pageX, e.pageY);
+
+  stopDraggedPiece(location);
+}
+
+function touchendWindow(e) {
+  // do nothing if we are not dragging a piece
+  if (DRAGGING_A_PIECE !== true) return;
+
+  // get the location
+  var location = isXYOnSquare(e.originalEvent.changedTouches[0].pageX,
+    e.originalEvent.changedTouches[0].pageY);
+
+  stopDraggedPiece(location);
+}
+
+function tapSquare(e) {
+    if (DRAGGING_A_PIECE !== false) return;
+
+    if (cfg.hasOwnProperty('onTapSquare') !== true ||
+            typeof cfg.onTapSquare !== 'function') return;
+
+    var square = $(e.currentTarget).attr('data-square');
+    if (validSquare(square) !== true) return;
+
+    var piece = false;
+    if (CURRENT_POSITION.hasOwnProperty(square) === true) {
+        piece = CURRENT_POSITION[square]
+    }
+
+    // execute function
+    cfg.onTapSquare(square, piece, deepCopy(CURRENT_POSITION),
+            CURRENT_ORIENTATION);
+}
+
+function mouseenterSquare(e) {
+  // do not fire this event if we are dragging a piece
+  // NOTE: this should never happen, but it's a safeguard
+  if (DRAGGING_A_PIECE !== false) return;
+
+  if (cfg.hasOwnProperty('onMouseoverSquare') !== true ||
+    typeof cfg.onMouseoverSquare !== 'function') return;
+
+  // get the square
+  var square = $(e.currentTarget).attr('data-square');
+
+  // NOTE: this should never happen; defensive
+  if (validSquare(square) !== true) return;
+
+  // get the piece on this square
+  var piece = false;
+  if (CURRENT_POSITION.hasOwnProperty(square) === true) {
+    piece = CURRENT_POSITION[square];
+  }
+
+  // execute their function
+  cfg.onMouseoverSquare(square, piece, deepCopy(CURRENT_POSITION),
+    CURRENT_ORIENTATION);
+}
+
+function mouseleaveSquare(e) {
+  // do not fire this event if we are dragging a piece
+  // NOTE: this should never happen, but it's a safeguard
+  if (DRAGGING_A_PIECE !== false) return;
+
+  if (cfg.hasOwnProperty('onMouseoutSquare') !== true ||
+    typeof cfg.onMouseoutSquare !== 'function') return;
+
+  // get the square
+  var square = $(e.currentTarget).attr('data-square');
+
+  // NOTE: this should never happen; defensive
+  if (validSquare(square) !== true) return;
+
+  // get the piece on this square
+  var piece = false;
+  if (CURRENT_POSITION.hasOwnProperty(square) === true) {
+    piece = CURRENT_POSITION[square];
+  }
+
+  // execute their function
+  cfg.onMouseoutSquare(square, piece, deepCopy(CURRENT_POSITION),
+    CURRENT_ORIENTATION);
+}
+
+//------------------------------------------------------------------------------
+// Initialization
+//------------------------------------------------------------------------------
+
+function addEvents() {
+  // prevent browser "image drag"
+  $('body').on('mousedown mousemove', '.' + CSS.piece, stopDefault);
+
+  // mouse drag pieces
+  boardEl.on('mousedown', '.' + CSS.square, mousedownSquare);
+  containerEl.on('mousedown', '.' + CSS.sparePieces + ' .' + CSS.piece,
+    mousedownSparePiece);
+
+  // mouse enter / leave square
+  boardEl.on('mouseenter', '.' + CSS.square, mouseenterSquare);
+  boardEl.on('mouseleave', '.' + CSS.square, mouseleaveSquare);
+
+  // IE doesn't like the events on the window object, but other browsers
+  // perform better that way
+  if (isMSIE() === true) {
+    // IE-specific prevent browser "image drag"
+    document.ondragstart = function() { return false; };
+
+    $('body').on('mousemove', mousemoveWindow);
+    $('body').on('mouseup', mouseupWindow);
+  }
+  else {
+    $(window).on('mousemove', mousemoveWindow);
+    $(window).on('mouseup', mouseupWindow);
+  }
+
+  boardEl.on('tap', '.' + CSS.square, tapSquare);
+
+  // touch drag pieces
+  if (isTouchDevice() === true) {
+    boardEl.on('touchstart', '.' + CSS.square, touchstartSquare);
+    containerEl.on('touchstart', '.' + CSS.sparePieces + ' .' + CSS.piece,
+      touchstartSparePiece);
+    $(window).on('touchmove', touchmoveWindow);
+    $(window).on('touchend', touchendWindow);
+
+  }
+}
+
+function initDom() {
+  // build board and save it in memory
+  containerEl.html(buildBoardContainer());
+  boardEl = containerEl.find('.' + CSS.board);
+
+  if (cfg.sparePieces === true) {
+    sparePiecesTopEl = containerEl.find('.' + CSS.sparePiecesTop);
+    sparePiecesBottomEl = containerEl.find('.' + CSS.sparePiecesBottom);
+  }
+
+  // create the drag piece
+  var draggedPieceId = createId();
+  $('body').append(buildPiece('wP', true, draggedPieceId));
+  draggedPieceEl = $('#' + draggedPieceId);
+
+  // get the border size
+  BOARD_BORDER_SIZE = parseInt(boardEl.css('borderLeftWidth'), 10);
+
+  // set the size and draw the board
+  widget.resize();
+}
+
+function init() {
+  if (checkDeps() !== true ||
+      expandConfig() !== true) return;
+
+  // create unique IDs for all the elements we will create
+  createElIds();
+
+  initDom();
+  addEvents();
+}
+
+// go time
+init();
+
+// return the widget object
+return widget;
+
+}; // end window.ChessBoard
+
+// expose util functions
+window.ChessBoard.fenToObj = fenToObj;
+window.ChessBoard.objToFen = objToFen;
+
+})(); // end anonymous wrapper
+
+/*
+* jQuery Mobile v1.4.5
+* http://jquerymobile.com
+*
+* Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
+* Released under the MIT license.
+* http://jquery.org/license
+*
+*/
+
+(function ( root, doc, factory ) {
+	if ( typeof define === "function" && define.amd ) {
+		// AMD. Register as an anonymous module.
+		define( [ "jquery" ], function ( $ ) {
+			factory( $, root, doc );
+			return $.mobile;
+		});
+	} else {
+		// Browser globals
+		factory( root.jQuery, root, doc );
+	}
+}( this, document, function ( jQuery, window, document, undefined ) {// This plugin is an experiment for abstracting away the touch and mouse
+// events so that developers don't have to worry about which method of input
+// the device their document is loaded on supports.
+//
+// The idea here is to allow the developer to register listeners for the
+// basic mouse events, such as mousedown, mousemove, mouseup, and click,
+// and the plugin will take care of registering the correct listeners
+// behind the scenes to invoke the listener at the fastest possible time
+// for that device, while still retaining the order of event firing in
+// the traditional mouse environment, should multiple handlers be registered
+// on the same element for different events.
+//
+// The current version exposes the following virtual events to jQuery bind methods:
+// "vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel"
+
+(function( $, window, document, undefined ) {
+
+var dataPropertyName = "virtualMouseBindings",
+	touchTargetPropertyName = "virtualTouchID",
+	virtualEventNames = "vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel".split( " " ),
+	touchEventProps = "clientX clientY pageX pageY screenX screenY".split( " " ),
+	mouseHookProps = $.event.mouseHooks ? $.event.mouseHooks.props : [],
+	mouseEventProps = $.event.props.concat( mouseHookProps ),
+	activeDocHandlers = {},
+	resetTimerID = 0,
+	startX = 0,
+	startY = 0,
+	didScroll = false,
+	clickBlockList = [],
+	blockMouseTriggers = false,
+	blockTouchTriggers = false,
+	eventCaptureSupported = "addEventListener" in document,
+	$document = $( document ),
+	nextTouchID = 1,
+	lastTouchID = 0, threshold,
+	i;
+
+$.vmouse = {
+	moveDistanceThreshold: 10,
+	clickDistanceThreshold: 10,
+	resetTimerDuration: 1500
+};
+
+function getNativeEvent( event ) {
+
+	while ( event && typeof event.originalEvent !== "undefined" ) {
+		event = event.originalEvent;
+	}
+	return event;
+}
+
+function createVirtualEvent( event, eventType ) {
+
+	var t = event.type,
+		oe, props, ne, prop, ct, touch, i, j, len;
+
+	event = $.Event( event );
+	event.type = eventType;
+
+	oe = event.originalEvent;
+	props = $.event.props;
+
+	// addresses separation of $.event.props in to $.event.mouseHook.props and Issue 3280
+	// https://github.com/jquery/jquery-mobile/issues/3280
+	if ( t.search( /^(mouse|click)/ ) > -1 ) {
+		props = mouseEventProps;
+	}
+
+	// copy original event properties over to the new event
+	// this would happen if we could call $.event.fix instead of $.Event
+	// but we don't have a way to force an event to be fixed multiple times
+	if ( oe ) {
+		for ( i = props.length, prop; i; ) {
+			prop = props[ --i ];
+			event[ prop ] = oe[ prop ];
+		}
+	}
+
+	// make sure that if the mouse and click virtual events are generated
+	// without a .which one is defined
+	if ( t.search(/mouse(down|up)|click/) > -1 && !event.which ) {
+		event.which = 1;
+	}
+
+	if ( t.search(/^touch/) !== -1 ) {
+		ne = getNativeEvent( oe );
+		t = ne.touches;
+		ct = ne.changedTouches;
+		touch = ( t && t.length ) ? t[0] : ( ( ct && ct.length ) ? ct[ 0 ] : undefined );
+
+		if ( touch ) {
+			for ( j = 0, len = touchEventProps.length; j < len; j++) {
+				prop = touchEventProps[ j ];
+				event[ prop ] = touch[ prop ];
+			}
+		}
+	}
+
+	return event;
+}
+
+function getVirtualBindingFlags( element ) {
+
+	var flags = {},
+		b, k;
+
+	while ( element ) {
+
+		b = $.data( element, dataPropertyName );
+
+		for (  k in b ) {
+			if ( b[ k ] ) {
+				flags[ k ] = flags.hasVirtualBinding = true;
+			}
+		}
+		element = element.parentNode;
+	}
+	return flags;
+}
+
+function getClosestElementWithVirtualBinding( element, eventType ) {
+	var b;
+	while ( element ) {
+
+		b = $.data( element, dataPropertyName );
+
+		if ( b && ( !eventType || b[ eventType ] ) ) {
+			return element;
+		}
+		element = element.parentNode;
+	}
+	return null;
+}
+
+function enableTouchBindings() {
+	blockTouchTriggers = false;
+}
+
+function disableTouchBindings() {
+	blockTouchTriggers = true;
+}
+
+function enableMouseBindings() {
+	lastTouchID = 0;
+	clickBlockList.length = 0;
+	blockMouseTriggers = false;
+
+	// When mouse bindings are enabled, our
+	// touch bindings are disabled.
+	disableTouchBindings();
+}
+
+function disableMouseBindings() {
+	// When mouse bindings are disabled, our
+	// touch bindings are enabled.
+	enableTouchBindings();
+}
+
+function startResetTimer() {
+	clearResetTimer();
+	resetTimerID = setTimeout( function() {
+		resetTimerID = 0;
+		enableMouseBindings();
+	}, $.vmouse.resetTimerDuration );
+}
+
+function clearResetTimer() {
+	if ( resetTimerID ) {
+		clearTimeout( resetTimerID );
+		resetTimerID = 0;
+	}
+}
+
+function triggerVirtualEvent( eventType, event, flags ) {
+	var ve;
+
+	if ( ( flags && flags[ eventType ] ) ||
+				( !flags && getClosestElementWithVirtualBinding( event.target, eventType ) ) ) {
+
+		ve = createVirtualEvent( event, eventType );
+
+		$( event.target).trigger( ve );
+	}
+
+	return ve;
+}
+
+function mouseEventCallback( event ) {
+	var touchID = $.data( event.target, touchTargetPropertyName ),
+		ve;
+
+	if ( !blockMouseTriggers && ( !lastTouchID || lastTouchID !== touchID ) ) {
+		ve = triggerVirtualEvent( "v" + event.type, event );
+		if ( ve ) {
+			if ( ve.isDefaultPrevented() ) {
+				event.preventDefault();
+			}
+			if ( ve.isPropagationStopped() ) {
+				event.stopPropagation();
+			}
+			if ( ve.isImmediatePropagationStopped() ) {
+				event.stopImmediatePropagation();
+			}
+		}
+	}
+}
+
+function handleTouchStart( event ) {
+
+	var touches = getNativeEvent( event ).touches,
+		target, flags, t;
+
+	if ( touches && touches.length === 1 ) {
+
+		target = event.target;
+		flags = getVirtualBindingFlags( target );
+
+		if ( flags.hasVirtualBinding ) {
+
+			lastTouchID = nextTouchID++;
+			$.data( target, touchTargetPropertyName, lastTouchID );
+
+			clearResetTimer();
+
+			disableMouseBindings();
+			didScroll = false;
+
+			t = getNativeEvent( event ).touches[ 0 ];
+			startX = t.pageX;
+			startY = t.pageY;
+
+			triggerVirtualEvent( "vmouseover", event, flags );
+			triggerVirtualEvent( "vmousedown", event, flags );
+		}
+	}
+}
+
+function handleScroll( event ) {
+	if ( blockTouchTriggers ) {
+		return;
+	}
+
+	if ( !didScroll ) {
+		triggerVirtualEvent( "vmousecancel", event, getVirtualBindingFlags( event.target ) );
+	}
+
+	didScroll = true;
+	startResetTimer();
+}
+
+function handleTouchMove( event ) {
+	if ( blockTouchTriggers ) {
+		return;
+	}
+
+	var t = getNativeEvent( event ).touches[ 0 ],
+		didCancel = didScroll,
+		moveThreshold = $.vmouse.moveDistanceThreshold,
+		flags = getVirtualBindingFlags( event.target );
+
+		didScroll = didScroll ||
+			( Math.abs( t.pageX - startX ) > moveThreshold ||
+				Math.abs( t.pageY - startY ) > moveThreshold );
+
+	if ( didScroll && !didCancel ) {
+		triggerVirtualEvent( "vmousecancel", event, flags );
+	}
+
+	triggerVirtualEvent( "vmousemove", event, flags );
+	startResetTimer();
+}
+
+function handleTouchEnd( event ) {
+	if ( blockTouchTriggers ) {
+		return;
+	}
+
+	disableTouchBindings();
+
+	var flags = getVirtualBindingFlags( event.target ),
+		ve, t;
+	triggerVirtualEvent( "vmouseup", event, flags );
+
+	if ( !didScroll ) {
+		ve = triggerVirtualEvent( "vclick", event, flags );
+		if ( ve && ve.isDefaultPrevented() ) {
+			// The target of the mouse events that follow the touchend
+			// event don't necessarily match the target used during the
+			// touch. This means we need to rely on coordinates for blocking
+			// any click that is generated.
+			t = getNativeEvent( event ).changedTouches[ 0 ];
+			clickBlockList.push({
+				touchID: lastTouchID,
+				x: t.clientX,
+				y: t.clientY
+			});
+
+			// Prevent any mouse events that follow from triggering
+			// virtual event notifications.
+			blockMouseTriggers = true;
+		}
+	}
+	triggerVirtualEvent( "vmouseout", event, flags);
+	didScroll = false;
+
+	startResetTimer();
+}
+
+function hasVirtualBindings( ele ) {
+	var bindings = $.data( ele, dataPropertyName ),
+		k;
+
+	if ( bindings ) {
+		for ( k in bindings ) {
+			if ( bindings[ k ] ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+function dummyMouseHandler() {}
+
+function getSpecialEventObject( eventType ) {
+	var realType = eventType.substr( 1 );
+
+	return {
+		setup: function(/* data, namespace */) {
+			// If this is the first virtual mouse binding for this element,
+			// add a bindings object to its data.
+
+			if ( !hasVirtualBindings( this ) ) {
+				$.data( this, dataPropertyName, {} );
+			}
+
+			// If setup is called, we know it is the first binding for this
+			// eventType, so initialize the count for the eventType to zero.
+			var bindings = $.data( this, dataPropertyName );
+			bindings[ eventType ] = true;
+
+			// If this is the first virtual mouse event for this type,
+			// register a global handler on the document.
+
+			activeDocHandlers[ eventType ] = ( activeDocHandlers[ eventType ] || 0 ) + 1;
+
+			if ( activeDocHandlers[ eventType ] === 1 ) {
+				$document.bind( realType, mouseEventCallback );
+			}
+
+			// Some browsers, like Opera Mini, won't dispatch mouse/click events
+			// for elements unless they actually have handlers registered on them.
+			// To get around this, we register dummy handlers on the elements.
+
+			$( this ).bind( realType, dummyMouseHandler );
+
+			// For now, if event capture is not supported, we rely on mouse handlers.
+			if ( eventCaptureSupported ) {
+				// If this is the first virtual mouse binding for the document,
+				// register our touchstart handler on the document.
+
+				activeDocHandlers[ "touchstart" ] = ( activeDocHandlers[ "touchstart" ] || 0) + 1;
+
+				if ( activeDocHandlers[ "touchstart" ] === 1 ) {
+					$document.bind( "touchstart", handleTouchStart )
+						.bind( "touchend", handleTouchEnd )
+
+						// On touch platforms, touching the screen and then dragging your finger
+						// causes the window content to scroll after some distance threshold is
+						// exceeded. On these platforms, a scroll prevents a click event from being
+						// dispatched, and on some platforms, even the touchend is suppressed. To
+						// mimic the suppression of the click event, we need to watch for a scroll
+						// event. Unfortunately, some platforms like iOS don't dispatch scroll
+						// events until *AFTER* the user lifts their finger (touchend). This means
+						// we need to watch both scroll and touchmove events to figure out whether
+						// or not a scroll happenens before the touchend event is fired.
+
+						.bind( "touchmove", handleTouchMove )
+						.bind( "scroll", handleScroll );
+				}
+			}
+		},
+
+		teardown: function(/* data, namespace */) {
+			// If this is the last virtual binding for this eventType,
+			// remove its global handler from the document.
+
+			--activeDocHandlers[ eventType ];
+
+			if ( !activeDocHandlers[ eventType ] ) {
+				$document.unbind( realType, mouseEventCallback );
+			}
+
+			if ( eventCaptureSupported ) {
+				// If this is the last virtual mouse binding in existence,
+				// remove our document touchstart listener.
+
+				--activeDocHandlers[ "touchstart" ];
+
+				if ( !activeDocHandlers[ "touchstart" ] ) {
+					$document.unbind( "touchstart", handleTouchStart )
+						.unbind( "touchmove", handleTouchMove )
+						.unbind( "touchend", handleTouchEnd )
+						.unbind( "scroll", handleScroll );
+				}
+			}
+
+			var $this = $( this ),
+				bindings = $.data( this, dataPropertyName );
+
+			// teardown may be called when an element was
+			// removed from the DOM. If this is the case,
+			// jQuery core may have already stripped the element
+			// of any data bindings so we need to check it before
+			// using it.
+			if ( bindings ) {
+				bindings[ eventType ] = false;
+			}
+
+			// Unregister the dummy event handler.
+
+			$this.unbind( realType, dummyMouseHandler );
+
+			// If this is the last virtual mouse binding on the
+			// element, remove the binding data from the element.
+
+			if ( !hasVirtualBindings( this ) ) {
+				$this.removeData( dataPropertyName );
+			}
+		}
+	};
+}
+
+// Expose our custom events to the jQuery bind/unbind mechanism.
+
+for ( i = 0; i < virtualEventNames.length; i++ ) {
+	$.event.special[ virtualEventNames[ i ] ] = getSpecialEventObject( virtualEventNames[ i ] );
+}
+
+// Add a capture click handler to block clicks.
+// Note that we require event capture support for this so if the device
+// doesn't support it, we punt for now and rely solely on mouse events.
+if ( eventCaptureSupported ) {
+	document.addEventListener( "click", function( e ) {
+		var cnt = clickBlockList.length,
+			target = e.target,
+			x, y, ele, i, o, touchID;
+
+		if ( cnt ) {
+			x = e.clientX;
+			y = e.clientY;
+			threshold = $.vmouse.clickDistanceThreshold;
+
+			// The idea here is to run through the clickBlockList to see if
+			// the current click event is in the proximity of one of our
+			// vclick events that had preventDefault() called on it. If we find
+			// one, then we block the click.
+			//
+			// Why do we have to rely on proximity?
+			//
+			// Because the target of the touch event that triggered the vclick
+			// can be different from the target of the click event synthesized
+			// by the browser. The target of a mouse/click event that is synthesized
+			// from a touch event seems to be implementation specific. For example,
+			// some browsers will fire mouse/click events for a link that is near
+			// a touch event, even though the target of the touchstart/touchend event
+			// says the user touched outside the link. Also, it seems that with most
+			// browsers, the target of the mouse/click event is not calculated until the
+			// time it is dispatched, so if you replace an element that you touched
+			// with another element, the target of the mouse/click will be the new
+			// element underneath that point.
+			//
+			// Aside from proximity, we also check to see if the target and any
+			// of its ancestors were the ones that blocked a click. This is necessary
+			// because of the strange mouse/click target calculation done in the
+			// Android 2.1 browser, where if you click on an element, and there is a
+			// mouse/click handler on one of its ancestors, the target will be the
+			// innermost child of the touched element, even if that child is no where
+			// near the point of touch.
+
+			ele = target;
+
+			while ( ele ) {
+				for ( i = 0; i < cnt; i++ ) {
+					o = clickBlockList[ i ];
+					touchID = 0;
+
+					if ( ( ele === target && Math.abs( o.x - x ) < threshold && Math.abs( o.y - y ) < threshold ) ||
+								$.data( ele, touchTargetPropertyName ) === o.touchID ) {
+						// XXX: We may want to consider removing matches from the block list
+						//      instead of waiting for the reset timer to fire.
+						e.preventDefault();
+						e.stopPropagation();
+						return;
+					}
+				}
+				ele = ele.parentNode;
+			}
+		}
+	}, true);
+}
+})( jQuery, window, document );
+
+(function( $ ) {
+	$.mobile = {};
+}( jQuery ));
+
+	(function( $, undefined ) {
+		var support = {
+			touch: "ontouchend" in document
+		};
+
+		$.mobile.support = $.mobile.support || {};
+		$.extend( $.support, support );
+		$.extend( $.mobile.support, support );
+	}( jQuery ));
+
+
+(function( $, window, undefined ) {
+	var $document = $( document ),
+		supportTouch = $.mobile.support.touch,
+		scrollEvent = "touchmove scroll",
+		touchStartEvent = supportTouch ? "touchstart" : "mousedown",
+		touchStopEvent = supportTouch ? "touchend" : "mouseup",
+		touchMoveEvent = supportTouch ? "touchmove" : "mousemove";
+
+	// setup new event shortcuts
+	$.each( ( "touchstart touchmove touchend " +
+		"tap taphold " +
+		"swipe swipeleft swiperight " +
+		"scrollstart scrollstop" ).split( " " ), function( i, name ) {
+
+		$.fn[ name ] = function( fn ) {
+			return fn ? this.bind( name, fn ) : this.trigger( name );
+		};
+
+		// jQuery < 1.8
+		if ( $.attrFn ) {
+			$.attrFn[ name ] = true;
+		}
+	});
+
+	function triggerCustomEvent( obj, eventType, event, bubble ) {
+		var originalType = event.type;
+		event.type = eventType;
+		if ( bubble ) {
+			$.event.trigger( event, undefined, obj );
+		} else {
+			$.event.dispatch.call( obj, event );
+		}
+		event.type = originalType;
+	}
+
+	// also handles scrollstop
+	$.event.special.scrollstart = {
+
+		enabled: true,
+		setup: function() {
+
+			var thisObject = this,
+				$this = $( thisObject ),
+				scrolling,
+				timer;
+
+			function trigger( event, state ) {
+				scrolling = state;
+				triggerCustomEvent( thisObject, scrolling ? "scrollstart" : "scrollstop", event );
+			}
+
+			// iPhone triggers scroll after a small delay; use touchmove instead
+			$this.bind( scrollEvent, function( event ) {
+
+				if ( !$.event.special.scrollstart.enabled ) {
+					return;
+				}
+
+				if ( !scrolling ) {
+					trigger( event, true );
+				}
+
+				clearTimeout( timer );
+				timer = setTimeout( function() {
+					trigger( event, false );
+				}, 50 );
+			});
+		},
+		teardown: function() {
+			$( this ).unbind( scrollEvent );
+		}
+	};
+
+	// also handles taphold
+	$.event.special.tap = {
+		tapholdThreshold: 750,
+		emitTapOnTaphold: true,
+		setup: function() {
+			var thisObject = this,
+				$this = $( thisObject ),
+				isTaphold = false;
+
+			$this.bind( "vmousedown", function( event ) {
+				isTaphold = false;
+				if ( event.which && event.which !== 1 ) {
+					return false;
+				}
+
+				var origTarget = event.target,
+					timer;
+
+				function clearTapTimer() {
+					clearTimeout( timer );
+				}
+
+				function clearTapHandlers() {
+					clearTapTimer();
+
+					$this.unbind( "vclick", clickHandler )
+						.unbind( "vmouseup", clearTapTimer );
+					$document.unbind( "vmousecancel", clearTapHandlers );
+				}
+
+				function clickHandler( event ) {
+					clearTapHandlers();
+
+					// ONLY trigger a 'tap' event if the start target is
+					// the same as the stop target.
+					if ( !isTaphold && origTarget === event.target ) {
+						triggerCustomEvent( thisObject, "tap", event );
+					} else if ( isTaphold ) {
+						event.preventDefault();
+					}
+				}
+
+				$this.bind( "vmouseup", clearTapTimer )
+					.bind( "vclick", clickHandler );
+				$document.bind( "vmousecancel", clearTapHandlers );
+
+				timer = setTimeout( function() {
+					if ( !$.event.special.tap.emitTapOnTaphold ) {
+						isTaphold = true;
+					}
+					triggerCustomEvent( thisObject, "taphold", $.Event( "taphold", { target: origTarget } ) );
+				}, $.event.special.tap.tapholdThreshold );
+			});
+		},
+		teardown: function() {
+			$( this ).unbind( "vmousedown" ).unbind( "vclick" ).unbind( "vmouseup" );
+			$document.unbind( "vmousecancel" );
+		}
+	};
+
+	// Also handles swipeleft, swiperight
+	$.event.special.swipe = {
+
+		// More than this horizontal displacement, and we will suppress scrolling.
+		scrollSupressionThreshold: 30,
+
+		// More time than this, and it isn't a swipe.
+		durationThreshold: 1000,
+
+		// Swipe horizontal displacement must be more than this.
+		horizontalDistanceThreshold: 30,
+
+		// Swipe vertical displacement must be less than this.
+		verticalDistanceThreshold: 30,
+
+		getLocation: function ( event ) {
+			var winPageX = window.pageXOffset,
+				winPageY = window.pageYOffset,
+				x = event.clientX,
+				y = event.clientY;
+
+			if ( event.pageY === 0 && Math.floor( y ) > Math.floor( event.pageY ) ||
+				event.pageX === 0 && Math.floor( x ) > Math.floor( event.pageX ) ) {
+
+				// iOS4 clientX/clientY have the value that should have been
+				// in pageX/pageY. While pageX/page/ have the value 0
+				x = x - winPageX;
+				y = y - winPageY;
+			} else if ( y < ( event.pageY - winPageY) || x < ( event.pageX - winPageX ) ) {
+
+				// Some Android browsers have totally bogus values for clientX/Y
+				// when scrolling/zooming a page. Detectable since clientX/clientY
+				// should never be smaller than pageX/pageY minus page scroll
+				x = event.pageX - winPageX;
+				y = event.pageY - winPageY;
+			}
+
+			return {
+				x: x,
+				y: y
+			};
+		},
+
+		start: function( event ) {
+			var data = event.originalEvent.touches ?
+					event.originalEvent.touches[ 0 ] : event,
+				location = $.event.special.swipe.getLocation( data );
+			return {
+						time: ( new Date() ).getTime(),
+						coords: [ location.x, location.y ],
+						origin: $( event.target )
+					};
+		},
+
+		stop: function( event ) {
+			var data = event.originalEvent.touches ?
+					event.originalEvent.touches[ 0 ] : event,
+				location = $.event.special.swipe.getLocation( data );
+			return {
+						time: ( new Date() ).getTime(),
+						coords: [ location.x, location.y ]
+					};
+		},
+
+		handleSwipe: function( start, stop, thisObject, origTarget ) {
+			if ( stop.time - start.time < $.event.special.swipe.durationThreshold &&
+				Math.abs( start.coords[ 0 ] - stop.coords[ 0 ] ) > $.event.special.swipe.horizontalDistanceThreshold &&
+				Math.abs( start.coords[ 1 ] - stop.coords[ 1 ] ) < $.event.special.swipe.verticalDistanceThreshold ) {
+				var direction = start.coords[0] > stop.coords[ 0 ] ? "swipeleft" : "swiperight";
+
+				triggerCustomEvent( thisObject, "swipe", $.Event( "swipe", { target: origTarget, swipestart: start, swipestop: stop }), true );
+				triggerCustomEvent( thisObject, direction,$.Event( direction, { target: origTarget, swipestart: start, swipestop: stop } ), true );
+				return true;
+			}
+			return false;
+
+		},
+
+		// This serves as a flag to ensure that at most one swipe event event is
+		// in work at any given time
+		eventInProgress: false,
+
+		setup: function() {
+			var events,
+				thisObject = this,
+				$this = $( thisObject ),
+				context = {};
+
+			// Retrieve the events data for this element and add the swipe context
+			events = $.data( this, "mobile-events" );
+			if ( !events ) {
+				events = { length: 0 };
+				$.data( this, "mobile-events", events );
+			}
+			events.length++;
+			events.swipe = context;
+
+			context.start = function( event ) {
+
+				// Bail if we're already working on a swipe event
+				if ( $.event.special.swipe.eventInProgress ) {
+					return;
+				}
+				$.event.special.swipe.eventInProgress = true;
+
+				var stop,
+					start = $.event.special.swipe.start( event ),
+					origTarget = event.target,
+					emitted = false;
+
+				context.move = function( event ) {
+					if ( !start || event.isDefaultPrevented() ) {
+						return;
+					}
+
+					stop = $.event.special.swipe.stop( event );
+					if ( !emitted ) {
+						emitted = $.event.special.swipe.handleSwipe( start, stop, thisObject, origTarget );
+						if ( emitted ) {
+
+							// Reset the context to make way for the next swipe event
+							$.event.special.swipe.eventInProgress = false;
+						}
+					}
+					// prevent scrolling
+					if ( Math.abs( start.coords[ 0 ] - stop.coords[ 0 ] ) > $.event.special.swipe.scrollSupressionThreshold ) {
+						event.preventDefault();
+					}
+				};
+
+				context.stop = function() {
+						emitted = true;
+
+						// Reset the context to make way for the next swipe event
+						$.event.special.swipe.eventInProgress = false;
+						$document.off( touchMoveEvent, context.move );
+						context.move = null;
+				};
+
+				$document.on( touchMoveEvent, context.move )
+					.one( touchStopEvent, context.stop );
+			};
+			$this.on( touchStartEvent, context.start );
+		},
+
+		teardown: function() {
+			var events, context;
+
+			events = $.data( this, "mobile-events" );
+			if ( events ) {
+				context = events.swipe;
+				delete events.swipe;
+				events.length--;
+				if ( events.length === 0 ) {
+					$.removeData( this, "mobile-events" );
+				}
+			}
+
+			if ( context ) {
+				if ( context.start ) {
+					$( this ).off( touchStartEvent, context.start );
+				}
+				if ( context.move ) {
+					$document.off( touchMoveEvent, context.move );
+				}
+				if ( context.stop ) {
+					$document.off( touchStopEvent, context.stop );
+				}
+			}
+		}
+	};
+	$.each({
+		scrollstop: "scrollstart",
+		taphold: "tap",
+		swipeleft: "swipe.left",
+		swiperight: "swipe.right"
+	}, function( event, sourceEvent ) {
+
+		$.event.special[ event ] = {
+			setup: function() {
+				$( this ).bind( sourceEvent, $.noop );
+			},
+			teardown: function() {
+				$( this ).unbind( sourceEvent );
+			}
+		};
+	});
+
+})( jQuery, this );
+
+
+}));

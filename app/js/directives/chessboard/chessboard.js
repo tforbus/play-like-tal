@@ -128,7 +128,12 @@ angular.module('PlayLikeTal.Directives')
                     onDrop: onDrop,
                     onSnapEnd: onSnapEnd,
                     onMouseoverSquare: onMouseoverSquare,
-                    onMouseoutSquare: onMouseoutSquare
+                    onMouseoutSquare: onMouseoutSquare,
+                    onTapSquare: function onTap(square, piece) {
+                        console.log(square);
+                        console.log(piece);
+                        console.log('a tap was detected.');
+                    }
                 });
                 $scope.logic = new ChessLogic();
 
