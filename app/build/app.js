@@ -237,42 +237,172 @@ angular.module('PlayLikeTal.Directives')
             $scope.logic = null;
             $scope.playerColor = null;
 
-            // Execute the computer's next move.
-            function doComputerMove() {
-                $scope.logic.move(gameTrackerService.getNextMove());
+            // Tapping moves (mobile) is a little different.
+            $scope.tappedMove = {
+                legalMoves: [],
+                source: '',
+                target: ''
+            };
+
+            $scope.showingHint = false;
+
+            /**
+             * Return all squares on a chessboard.
+             * @return {array}
+             */
+            $scope.allSquares = function allSquares() {
+                var ranks = '12345678'.split(''),
+                    files = 'abcdefg'.split(''),
+                    squares = [];
+
+                files.forEach(function (file) {
+                    var result = ranks.map(function (n) {
+                        return file + n;
+                    });
+
+                    squares = squares.concat(result);
+                });
+
+                return squares;
+            };
+
+            /**
+             * Determine if a piece clicked is the player's piece.
+             * @param {string} piece
+             * @return {boolean}
+             */
+            $scope.isPlayerPiece = function isPlayerPiece(piece) {
+                if (!piece) {
+                    return false;
+                }
+
+                var isWhite = gameTrackerService.isTalWhite(),
+                    isBlack = !isWhite,
+                    isPieceWhite = piece.search(/^w/) !== -1,
+                    isPieceBlack = piece.search(/^b/) !== -1;
+
+                return (isWhite && isPieceWhite) || (isBlack && isPieceBlack);
+            };
+
+            /**
+             * Determine if a piece moved was moved on the correct turn.
+             * @param {string} piece
+             * @return {boolean}
+             */
+            $scope.didMovePieceOnTurn = function didMovePieceOnTurn(piece) {
+                var turn = $scope.logic.turn(),
+                    isWhiteTurn = turn === 'w',
+                    isBlackTurn = turn === 'b',
+                    isPieceWhite = piece.search(/^w/) !== -1,
+                    isPieceBlack = piece.search(/^b/) !== -1;
+
+                return (isWhiteTurn && isPieceWhite) || (isBlackTurn && isPieceBlack);
+            };
+
+            /**
+             * Indicate the legal squares a piece can move.
+             * @param {string} square
+             */
+            $scope.indicateLegalMoves = function indicateLegalMoves(square) {
+                function indicate(sq) {
+                    var $sq = $(['#', $scope.boardId, ' .square-', sq].join('')),
+                        bgColor = '#a9a9a9';
+
+                    if ($sq.hasClass('black-3c85d')) {
+                        bgColor = '#696969';
+                    }
+                    
+                    $sq.css('background', bgColor);
+                }
+
+                var legalMoves = $scope.logic.moves({
+                    square: square,
+                    verbose: true
+                });
+
+                if (!legalMoves.length) {
+                    return;
+                }
+
+                indicate(square);
+                legalMoves.forEach(function (move) {
+                    indicate(move.to);
+                });
+            };
+
+            /**
+             * Hide the highlights on legal moves already highlighted.
+             */
+            $scope.hideLegalMoves = function hideLegalMoves() {
+                var selector = ['#', $scope.boardId, ' .square-55d63'].join('');
+                $(selector).css('background', '');
+            };
+
+            /**
+             * After a tap event, or a computer move, the board will not update.
+             * Manually call the position from the new FEN.
+             */
+            $scope.updatePosition = function updatePosition() {
                 $scope.chessBoard.position($scope.logic.fen());
-            }
+            };
 
-            // Don't allow the wrong color piece to be dragged
+            /**
+             * Execute the computer's move
+             */
+            $scope.doComputerMove = function doComputerMove() {
+                var compMove = gameTrackerService.getNextMove();
+                $scope.logic.move(compMove);
+                $scope.updatePosition();
+            };
+
+            /**
+             * Show a hint for Tal's next move.
+             */
+            $scope.showHint = function showHint() {
+                var nextMove = gameTrackerService.peekNextMove(),
+                    allSquares = $scope.allSquares(),
+                    allLegalMoves = [];
+
+                allSquares.forEach(function (square) {
+                    // all legal moves possible in the game.
+                    allLegalMoves = allLegalMoves.concat($scope.logic.moves({
+                        square: square,
+                        verbose: true
+                    }));
+                });
+
+                var possibleMoves = allLegalMoves.filter(function (m) {
+                    var isColor = Boolean($scope.playerColor.match(m.color)),
+                        canBeNext = m.san === nextMove;
+
+                    return isColor && canBeNext;
+                });
+
+                possibleMoves.forEach(function (pMove) {
+                    $scope.indicateLegalMoves(pMove.from);
+                });
+
+                $scope.showingHint = true;
+            };
+
+            /**
+             * Don't allow the wrong color piece to be dragged.
+             */
             function onDragStart(source, piece, position, orientation) {
-                var turn = $scope.logic.turn();
+                var noTurns = !gameTrackerService.peekNextMove(),
+                    gameOver = $scope.logic.game_over(),
+                    wrongPieceMoved = !$scope.didMovePieceOnTurn(piece);
 
-                var badMove1 = turn === 'w' && (piece.search(/^b/) !== -1),
-                    badMove2 = turn === 'b' && (piece.search(/^w/) !== -1),
-                    gameOver = $scope.logic.game_over();
-
-                if (gameOver || badMove1 || badMove2) {
+                if (noTurns || gameOver || wrongPieceMoved) {
                     return false;
                 }
             }
 
-            function highlightLegal(square) {
-                var $square = $('#' + $scope.boardId + ' .square-' + square),
-                    background = '#a9a9a9';
-                if ($square.hasClass('black-3c85d')) {
-                    background = '#696969';
-                }
-
-                $square.css('background', background);
-            }
-
-            function unhighlightAll() {
-                $('#board .square-55d63').css('background', '');
-            }
-
-            // On dropping a piece, if it's off board, return it.
-            // If it's not the correct move, return it and show a message.
-            // If it's the correct move, allow the move and show a success.
+            /**
+             * On dropping a piece, if it's off the board, return it to its original position.
+             * If it's not this players move, return it to its original position.
+             * If it's the correct move, allow it.
+             */
             function onDrop(source, target) {
 
                 // Don't want to do the move on the actual board, 
@@ -291,6 +421,7 @@ angular.module('PlayLikeTal.Directives')
                 var isMyMove = gameTrackerService.isPlayerMove(),
                     nextMove = gameTrackerService.peekNextMove();
 
+                // If the wrong move was selected, return the piece.
                 if (isMyMove && move.san !== nextMove) {
                     move = null;
                     return 'snapback';
@@ -298,6 +429,7 @@ angular.module('PlayLikeTal.Directives')
 
                 // If successful move, the computer does the next move.
                 if (isMyMove && move.san === nextMove) {
+                    $scope.showingHint = false;
                     $scope.logic.move({
                         from: source,
                         to: target,
@@ -306,36 +438,67 @@ angular.module('PlayLikeTal.Directives')
 
                     // Increment the next move.
                     gameTrackerService.getNextMove();
-                    $timeout(doComputerMove, 500);
+                    $timeout($scope.doComputerMove, 500);
                 }
 
             }
 
             // Need this for castling.
             function onSnapEnd() {
-                $scope.chessBoard.position($scope.logic.fen());
+                $scope.updatePosition();
             }
 
             function onMouseoverSquare(square, piece) {
-                var legalMoves = $scope.logic.moves({
-                    square: square,
-                    verbose: true
-                });
-
-                if (!legalMoves.length) {
+                if ($scope.showingHint) {
                     return;
                 }
-
-                // Highlight the square hovered on.
-                highlightLegal(square);
-
-                legalMoves.forEach(function (move) {
-                    highlightLegal(move.to);
-                });
+                $scope.indicateLegalMoves(square);
             }
 
             function onMouseoutSquare() {
-                unhighlightAll();
+                // Don't do anything if on mobile.
+                if ($scope.tappedMove.legalMoves.length) {
+                    return;
+                }
+
+                // Showing a hint, so don't hide the legal squares on mouseout.
+                if ($scope.showingHint) {
+                    return;
+                }
+
+                $scope.hideLegalMoves();
+            }
+
+            function onTapSquare(square, piece) {
+                var isMovingPiece = $scope.isPlayerPiece(piece);
+
+                // The player wants to move their piece.
+                // This is the first tap.
+                if (isMovingPiece) {
+                    $scope.tappedMove.legalMoves = $scope.logic.moves({
+                        square: square,
+                        verbose: true
+                    });
+
+                    $scope.tappedMove.source = square;
+                    $scope.indicateLegalMoves(square);
+                    return;
+                }
+
+                // The second tap.
+                if ($scope.tappedMove.legalMoves.length) {
+                    $scope.tappedMove.target = square;
+
+                    // Pretend the piece was dropped on the board.
+                    onDrop($scope.tappedMove.source, $scope.tappedMove.target);
+
+                    // Reset the tap information.
+                    $scope.tappedMove.legalMoves = [];
+                    $scope.tappedMove.source = '';
+                    $scope.tappedMove.target = '';
+                    $scope.hideLegalMoves();
+                    $scope.updatePosition();
+                }
             }
 
             $scope.initGame = function initGame() {
@@ -355,17 +518,13 @@ angular.module('PlayLikeTal.Directives')
                     onSnapEnd: onSnapEnd,
                     onMouseoverSquare: onMouseoverSquare,
                     onMouseoutSquare: onMouseoutSquare,
-                    onTapSquare: function onTap(square, piece) {
-                        console.log(square);
-                        console.log(piece);
-                        console.log('a tap was detected.');
-                    }
+                    onTapSquare: onTapSquare
                 });
                 $scope.logic = new ChessLogic();
 
                 // Computer will make first move.
                 if ($scope.playerColor === 'black') {
-                    doComputerMove();
+                    $scope.doComputerMove();
                 }
             };
         },
@@ -374,6 +533,7 @@ angular.module('PlayLikeTal.Directives')
             var div = elem.find('#board-container');
             div.html('<div id="' + scope.boardId + '" style="width:400px;"></div>');
             scope.initGame();
+            window.showHint = scope.showHint;
         },
         template: $templateCache.get('directives/chessboard/chessboard.html')
     };
