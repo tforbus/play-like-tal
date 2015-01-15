@@ -1,1 +1,0 @@
-{"event":"1971.11.24","site":"Moscow URS","date":1971,"round":2,"white":"Mikhail Tal","black":"Levente Lengyel","result":{"white":"1","black":"0"},"eco":"A17","moves":[{"white":"25\"]","black":"[EventDate"},{"white":"24\"]","black":"[Round"}]}

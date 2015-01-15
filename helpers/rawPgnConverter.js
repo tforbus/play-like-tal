@@ -118,11 +118,7 @@ module.exports = {
             }
 
             else if (this.re.round.test(line)) {
-                var round = parseInt(quoted, 10);
-                if (isNaN(round)) {
-                    round = null;
-                }
-                pgnObject.round = round;
+                pgnObject.round = quoted;
             }
 
             else if (this.re.white.test(line)) {

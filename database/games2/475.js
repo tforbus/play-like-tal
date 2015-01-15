@@ -1,1 +1,0 @@
-{"event":"?","site":"06","date":1966,"round":6,"white":"Mikhail Tal","black":"Ricardo Calvo","result":{"white":"1","black":"0"},"eco":"B64","moves":[{"white":"10\"]","black":"[EventDate"}]}

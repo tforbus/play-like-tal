@@ -1,1 +1,0 @@
-{"event":"?","site":"It","date":1964,"round":11,"white":"Mikhail Tal","black":"Nona Gaprindashvili","result":{"white":"1","black":"0"},"eco":"C99","moves":[{"white":"27\"]","black":"[EventDate"}]}

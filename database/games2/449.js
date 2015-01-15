@@ -1,1 +1,0 @@
-{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":14,"white":"Mikhail Tal","black":"Leonid Alexandrovich Shamkovich","result":{"white":"1","black":"0"},"eco":"C87","moves":[{"white":"17\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}

@@ -13,23 +13,22 @@ var databaseSplitter = require('./helpers/databaseSplitter.js'),
     pgnScraper = require('./helpers/pgnScraper.js');
 
 gulp.task('pgn-scraper', function () {
-    pgnScraper.scrape(path.normalize(path.join(__dirname, 'database', 'TalWins2.pgn')));
+    pgnScraper.scrape(path.normalize(path.join(__dirname, 'database', 'TalWins.pgn')));
 });
 
 // Construct all games from the Tal database.
 gulp.task('games-database', function () {
-    var databasePath = path.normalize(path.join(__dirname, 'database', 'TalWins2.pgn'));
+    var databasePath = path.normalize(path.join(__dirname, 'database', 'TalWins.pgn'));
     databaseSplitter.readDatabase(databasePath)
     .then(function (data) {
         return databaseSplitter.splitDatabase(data);
     })
     .then(function (rawPgns) {
-        var writePath = path.normalize(path.join(__dirname, 'database', 'games2'));
+        var writePath = path.normalize(path.join(__dirname, 'database', 'games'));
             pgns = [];
 
         rawPgns.forEach(function (pgn) {
             pgns.push(pgnConverter.constructPgnObject(pgn));
-            console.log(pgn);
         });
 
         return pgnWriter.saveWinningGames(writePath, pgns);
@@ -45,8 +44,8 @@ gulp.task('eco-database', function () {
 });
 
 gulp.task('games-list', function () {
-    var readDir = path.normalize(path.join(__dirname, 'database', 'games2')),
-        writePath = path.normalize(path.join(__dirname, 'database', 'meta2.js'));
+    var readDir = path.normalize(path.join(__dirname, 'database', 'games')),
+        writePath = path.normalize(path.join(__dirname, 'database', 'meta.js'));
     gameListMaker.writeGamesList({
         readFrom: readDir,
         writeTo: writePath

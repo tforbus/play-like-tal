@@ -198,7 +198,7 @@
                         pgn.event.should.equal('LAT-ch');
                         pgn.site.should.equal('LAT');
                         pgn.date.should.equal(1952);
-                        should.not.exist(pgn.round);
+                        pgn.round.should.equal('?');
                         pgn.white.should.equal('Klasup, Karlis');
                         pgn.black.should.equal('Tal, Mikhail');
                         pgn.result.white.should.equal('0');

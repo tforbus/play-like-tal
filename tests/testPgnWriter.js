@@ -37,13 +37,6 @@
             });
         });
 
-        describe('#getWinningGames()', function () {
-            it('should show only winning games', function () {
-                var winning = pgnWriter._getWinningGames(pgns);
-                winning.length.should.equal(2);
-            });
-        });
-
         describe('#createGameFileName()', function () {
             it('should add .js to a number', function () {
                 var fileName = pgnWriter._createGameFileName(1);

@@ -18,20 +18,6 @@ module.exports = {
     },
 
     /**
-     * Get only winning games from the PGNs supplied.
-     * @param {array} pgns
-     * @return {array}
-     */
-    _getWinningGames: function _getWinningGames(pgns) {
-        return pgns;
-        /*
-        return pgns.filter(function (game) {
-            return game.didTalWin();
-        });
-        */
-    },
-
-    /**
      * Save a PGN object to a JavaScript file, and assign a game ID to the object.
      * @param {string} filename - the complete filepath to save.
      * @param {object} pgnJson - a json representation of a PGN file.
@@ -61,11 +47,10 @@ module.exports = {
      * @param {array} pgns
      */
     saveWinningGames: function saveWinningGames(dir, pgns) {
-        var games = this._getWinningGames(pgns),
-            filepath,
+        var filepath,
             filename;
 
-        return games.reduce(function (promise, current, index) {
+        return pgns.reduce(function (promise, current, index) {
             return promise.then(function () {
                 filename = this._createGameFileName(index + 1);
                 filepath = path.normalize(path.join(dir, filename));

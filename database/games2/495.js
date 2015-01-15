@@ -1,1 +1,0 @@
-{"event":"?","site":"07","date":1966,"round":7,"white":"Mikhail Tal","black":"Ingi Randver Johannsson","result":{"white":"1","black":"0"},"eco":"D46","moves":[{"white":"11\"]","black":"[EventDate"}]}

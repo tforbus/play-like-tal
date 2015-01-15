@@ -1,1 +1,0 @@
-{"event":"?","site":"3","date":1971,"round":3,"white":"Mikhail Tal","black":"Heikki Westerinen","result":{"white":"1","black":"0"},"eco":"E61","moves":[{"white":"23\"]","black":"[EventDate"}]}

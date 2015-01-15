@@ -1,1 +1,0 @@
-{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":11,"white":"Antonio Angel Medina Garcia","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B43","moves":[{"white":"27\"]","black":"[Round"}]}

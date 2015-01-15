@@ -1,1 +1,0 @@
-{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":2,"white":"Vitaly Tseshkovsky","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"C82","moves":[{"white":"30\"]","black":"[Round"}]}

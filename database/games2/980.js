@@ -1,1 +1,0 @@
-{"event":"1983.01.02","site":"Malm� SWE","date":1983,"round":1,"white":"Mikhail Tal","black":"Ulf Andersson","result":{"white":"1","black":"0"},"eco":"E39","moves":[{"white":"02\"]","black":"[EventDate"},{"white":"02\"]","black":"[Round"}]}

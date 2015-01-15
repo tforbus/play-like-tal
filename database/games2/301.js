@@ -1,1 +1,0 @@
-{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":15,"white":"Mikhail Tal","black":"Arthur Bisguier","result":{"white":"1","black":"0"},"eco":"B10","moves":[{"white":"25\"]","black":"[EventDate"},{"white":"03\"]","black":"[Round"}]}

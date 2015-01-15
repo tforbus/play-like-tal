@@ -1,1 +1,0 @@
-{"event":"1957.??.??","site":"Moscow (RUS)","date":1957,"round":4,"white":"Anatolij Bannik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E63","moves":[{"white":"25\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}

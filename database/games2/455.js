@@ -1,1 +1,0 @@
-{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":6,"white":"Mikhail Tal","black":"Nikolai V Krogius","result":{"white":"1","black":"0"},"eco":"C95","moves":[{"white":"03\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}

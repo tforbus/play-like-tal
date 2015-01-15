@@ -1,1 +1,0 @@
-{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":5,"white":"Mikhail Tal","black":"Mark Izrailovich Dvoretsky","result":{"white":"1","black":"0"},"eco":"E92","moves":[{"white":"30\"]","black":"[Round"}]}

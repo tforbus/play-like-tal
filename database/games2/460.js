@@ -1,1 +1,0 @@
-{"event":"?","site":"Havana olm 2/408","date":1966,"round":2,"white":"Mikhail Tal","black":"Robert Eugene Byrne","result":{"white":"1","black":"0"},"eco":"B69","moves":[{"white":"05\"]","black":"[EventDate"}]}
