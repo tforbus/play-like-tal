@@ -1,0 +1,1 @@
+{"event":"?","site":"EST","date":1971,"round":5,"white":"Mikhail Tal","black":"Lhamsuren Myagmarsuren","result":{"white":"1","black":"0"},"eco":"D26","moves":[{"white":"26\"]","black":"[EventDate"}]}

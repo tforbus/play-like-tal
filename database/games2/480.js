@@ -1,0 +1,1 @@
+{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":10,"white":"Mikhail Tal","black":"Helmut Pfleger","result":{"white":"1","black":"0"},"eco":"B10","moves":[{"white":"27\"]","black":"[Round"}]}

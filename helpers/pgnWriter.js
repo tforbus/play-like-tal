@@ -23,9 +23,12 @@ module.exports = {
      * @return {array}
      */
     _getWinningGames: function _getWinningGames(pgns) {
+        return pgns;
+        /*
         return pgns.filter(function (game) {
             return game.didTalWin();
         });
+        */
     },
 
     /**

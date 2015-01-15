@@ -1,0 +1,1 @@
+{"event":"?","site":"09","date":1976,"round":9,"white":"Mikhail Tal","black":"Hans Bohm","result":{"white":"1","black":"0"},"eco":"B02","moves":[{"white":"26\"]","black":"[EventDate"}]}

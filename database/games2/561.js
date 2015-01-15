@@ -1,0 +1,1 @@
+{"event":"?","site":"14","date":1970,"round":14,"white":"Nikola Spiridonov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E94","moves":[{"white":"03\"]","black":"[EventDate"}]}

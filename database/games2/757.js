@@ -1,0 +1,1 @@
+{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":7,"white":"Mikhail Tal","black":"Boris Gulko","result":{"white":"1","black":"0"},"eco":"A25","moves":[{"white":"30\"]","black":"[Round"}]}

@@ -1,1 +1,1 @@
-{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":12,"white":"Jan Hein Donner","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E69","moves":[{"white":"20\"]","black":"[EventDate"},{"white":"03\"]","black":"[Round"}]}
+{"event":"1956.??.??","site":"Leningrad (RUS)","date":1956,"round":7,"white":"Mikhail Tal","black":"Anatolij Bannik","result":{"white":"1","black":"0"},"eco":"C75","moves":[{"white":"21\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}

@@ -1,1 +1,1 @@
-{"event":"?","site":"12","date":1964,"round":12,"white":"Fridrik Olafsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A12","moves":[{"white":"28\"]","black":"[EventDate"}]}
+{"event":"1957.??.??","site":"Moscow (RUS)","date":1957,"round":2,"white":"Mark Taimanov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E56","moves":[{"white":"22\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}

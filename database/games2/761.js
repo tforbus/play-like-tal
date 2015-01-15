@@ -1,0 +1,1 @@
+{"event":"?","site":"Belgrade","date":1974,"round":null,"white":"Mikhail Tal","black":"Borislav Ivkov","result":{"white":"1","black":"0"},"eco":"C72","moves":[{"white":"03\"]","black":"[EventDate"}]}

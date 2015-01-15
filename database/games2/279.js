@@ -1,1 +1,1 @@
-{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":2,"white":"Vitaly Tseshkovsky","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"C82","moves":[{"white":"30\"]","black":"[Round"}]}
+{"event":"?","site":"9","date":1960,"round":9,"white":"Burkhard G J Malich","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A43","moves":[{"white":"05\"]","black":"[EventDate"}]}

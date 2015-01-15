@@ -1,0 +1,1 @@
+{"event":"?","site":"Wijk aan Zee","date":1976,"round":7,"white":"Mikhail Tal","black":"Gennady Sosonko","result":{"white":"1","black":"0"},"eco":"A18","moves":[{"white":"24\"]","black":"[EventDate"}]}
