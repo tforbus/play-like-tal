@@ -1,1 +1,1 @@
-{"event":"?","site":"10","date":1960,"round":"10","white":"Mikhail Tal","black":"Theodor Ghitescu","result":{"white":"1","black":"0"},"eco":"B36","moves":[{"white":"06\"]","black":"[EventDate"}]}
+{"event":"?","site":"10","date":1960,"round":"10","white":"Mikhail Tal","black":"Theodor Ghitescu","result":{"white":"1","black":"0"},"eco":"B36","moves":[["06\"]","[EventDate","\"?\"]","[Round","\"10\"]","[Result","\""]]}

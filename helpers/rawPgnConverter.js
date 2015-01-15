@@ -141,6 +141,13 @@ module.exports = {
 
         pgnObject.moves = [];
         turns.forEach(function (turn) {
+            var movesThisTurn = [],
+                eachMove;
+
+            // 'd4 Nf6' -> ['d4', 'Nf6']
+            eachMove = turn.split(/\s/);
+            pgnObject.moves.push(eachMove);
+            /*
             var movesThisTurn = { white: null, black: null },
                 eachMove;
 
@@ -153,6 +160,7 @@ module.exports = {
             movesThisTurn.black = eachMove[1];
 
             pgnObject.moves.push(movesThisTurn);
+            */
         });
 
         return pgnObject;

@@ -1,1 +1,1 @@
-{"event":"?","site":"URS","date":1971,"round":"3","white":"Mikhail Tal","black":"Felix Nikolaevich Ignatiev","result":{"white":"1","black":"0"},"eco":"B36","moves":[{"white":"03\"]","black":"[EventDate"}]}
+{"event":"?","site":"URS","date":1971,"round":"3","white":"Mikhail Tal","black":"Felix Nikolaevich Ignatiev","result":{"white":"1","black":"0"},"eco":"B36","moves":[["03\"]","[EventDate","\"?\"]","[Round","\"3\"]","[Result","\""]]}

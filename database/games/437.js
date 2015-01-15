@@ -1,1 +1,1 @@
-{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"10","white":"Mikhail Tal","black":"Yuri Nikolaevich Sakharov","result":{"white":"1","black":"0"},"eco":"B97","moves":[{"white":"10\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}
+{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"10","white":"Mikhail Tal","black":"Yuri Nikolaevich Sakharov","result":{"white":"1","black":"0"},"eco":"B97","moves":[["10\"]","[EventDate","\""],["??.??\"]","[Round","\"10\"]","[Result","\""]]}

@@ -1,1 +1,1 @@
-{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"3","white":"Mikhail Tal","black":"Heinz Lehmann","result":{"white":"1","black":"0"},"eco":"E67","moves":[{"white":"29\"]","black":"[EventDate"},{"white":"27\"]","black":"[Round"}]}
+{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"3","white":"Mikhail Tal","black":"Heinz Lehmann","result":{"white":"1","black":"0"},"eco":"E67","moves":[["29\"]","[EventDate","\""],["27\"]","[Round","\"3\"]","[Result","\""]]}

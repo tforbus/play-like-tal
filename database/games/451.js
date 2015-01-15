@@ -1,1 +1,1 @@
-{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"12","white":"Mikhail Tal","black":"Vladimir Liavdansky","result":{"white":"1","black":"0"},"eco":"B83","moves":[{"white":"13\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}
+{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"12","white":"Mikhail Tal","black":"Vladimir Liavdansky","result":{"white":"1","black":"0"},"eco":"B83","moves":[["13\"]","[EventDate","\""],["??.??\"]","[Round","\"12\"]","[Result","\""]]}

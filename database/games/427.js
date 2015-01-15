@@ -1,1 +1,1 @@
-{"event":"1963.12.30","site":"Hastings ENG","date":1964,"round":"7","white":"Norman Littlewood","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"C91","moves":[{"white":"05\"]","black":"[EventDate"},{"white":"30\"]","black":"[Round"}]}
+{"event":"1963.12.30","site":"Hastings ENG","date":1964,"round":"7","white":"Norman Littlewood","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"C91","moves":[["05\"]","[EventDate","\""],["30\"]","[Round","\"7\"]","[Result","\""]]}

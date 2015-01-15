@@ -1,1 +1,1 @@
-{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"11","white":"Nikolay Bakulin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B40","moves":[{"white":"12\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}
+{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"11","white":"Nikolay Bakulin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B40","moves":[["12\"]","[EventDate","\""],["??.??\"]","[Round","\"11\"]","[Result","\""]]}

@@ -1,1 +1,1 @@
-{"event":"?","site":"Havana","date":1966,"round":"1","white":"Vlastimil Hort","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A30","moves":[{"white":"04\"]","black":"[EventDate"}]}
+{"event":"?","site":"Havana","date":1966,"round":"1","white":"Vlastimil Hort","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A30","moves":[["04\"]","[EventDate","\"?\"]","[Round","\"1\"]","[Result","\""]]}

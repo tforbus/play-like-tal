@@ -1,1 +1,1 @@
-{"event":"?","site":"14","date":1968,"round":"14","white":"Mikhail Tal","black":"Dirk Daniel van Geet","result":{"white":"1","black":"0"},"eco":"C64","moves":[{"white":"27\"]","black":"[EventDate"}]}
+{"event":"?","site":"14","date":1968,"round":"14","white":"Mikhail Tal","black":"Dirk Daniel van Geet","result":{"white":"1","black":"0"},"eco":"C64","moves":[["27\"]","[EventDate","\"?\"]","[Round","\"14\"]","[Result","\""]]}

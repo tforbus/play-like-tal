@@ -1,1 +1,1 @@
-{"event":"1959.??.??","site":"Tbilisi (RUS)","date":1959,"round":"4","white":"Efim Geller","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A71","moves":[{"white":"14\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}
+{"event":"1959.??.??","site":"Tbilisi (RUS)","date":1959,"round":"4","white":"Efim Geller","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A71","moves":[["14\"]","[EventDate","\""],["??.??\"]","[Round","\"4\"]","[Result","\""]]}

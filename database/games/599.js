@@ -1,1 +1,1 @@
-{"event":"1971.09.15","site":"Leningrad URS","date":1971,"round":"14","white":"Rafael Vaganian","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E10","moves":[{"white":"05\"]","black":"[EventDate"},{"white":"15\"]","black":"[Round"}]}
+{"event":"1971.09.15","site":"Leningrad URS","date":1971,"round":"14","white":"Rafael Vaganian","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E10","moves":[["05\"]","[EventDate","\""],["15\"]","[Round","\"14\"]","[Result","\""]]}

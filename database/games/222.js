@@ -1,1 +1,1 @@
-{"event":"1959.??.??","site":"Tbilisi (RUS)","date":1959,"round":"7","white":"Mikhail Tal","black":"Nikolai V Krogius","result":{"white":"1","black":"0"},"eco":"C97","moves":[{"white":"20\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}
+{"event":"1959.??.??","site":"Tbilisi (RUS)","date":1959,"round":"7","white":"Mikhail Tal","black":"Nikolai V Krogius","result":{"white":"1","black":"0"},"eco":"C97","moves":[["20\"]","[EventDate","\""],["??.??\"]","[Round","\"7\"]","[Result","\""]]}

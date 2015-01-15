@@ -1,1 +1,1 @@
-{"event":"1973.12.27","site":"Hastings ENG","date":1974,"round":"10","white":"Mikhail Tal","black":"William Hartston","result":{"white":"1","black":"0"},"eco":"B83","moves":[{"white":"06\"]","black":"[EventDate"},{"white":"27\"]","black":"[Round"}]}
+{"event":"1973.12.27","site":"Hastings ENG","date":1974,"round":"10","white":"Mikhail Tal","black":"William Hartston","result":{"white":"1","black":"0"},"eco":"B83","moves":[["06\"]","[EventDate","\""],["27\"]","[Round","\"10\"]","[Result","\""]]}

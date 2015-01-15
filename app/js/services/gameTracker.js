@@ -8,7 +8,7 @@ angular.module('PlayLikeTal.Services')
 .service('gameTrackerService', function () {
 
     // Save the current game.
-    var currentGame = {"event":"LAT-ch","site":"LAT","date":1952,"round":null,"white":"Klasup, Karlis","black":"Tal, Mikhail","result":{"white":"0","black":"1"},"eco":"D46","moves":[{"white":"d4","black":"Nf6"},{"white":"c4","black":"e6"},{"white":"Nf3","black":"d5"},{"white":"Nc3","black":"c6"},{"white":"e3","black":"Nbd7"},{"white":"Bd3","black":"Bb4"},{"white":"a3","black":"Ba5"},{"white":"O-O","black":"O-O"},{"white":"Ne5","black":"Nxe5"},{"white":"dxe5","black":"dxc4"},{"white":"Bxc4","black":"Nd7"},{"white":"f4","black":"Qe7"},{"white":"b4","black":"Bb6"},{"white":"Qb3","black":"f6"},{"white":"Bxe6+","black":"Kh8"},{"white":"Ne4","black":"fxe5"},{"white":"Kh1","black":"exf4"},{"white":"exf4","black":"Nf6"},{"white":"Ng5","black":"Ne4"},{"white":"Nf7+","black":"Rxf7"},{"white":"Bxf7","black":"Nf2+"},{"white":"Kg1","black":"Nd3+"},{"white":"Kh1","black":"Qe2"},{"white":"Bb2","black":"Bh3"},{"white":"Bxg7+","black":"Kxg7"},{"white":"Bd5","black":"cxd5"},{"white":"Qxd5","black":"Kh8"},{"white":"Qg5","black":"Bd4"},{"white":"gxh3","black":"Rg8"},{"white":"Rae1","black":"Nxe1"}]};
+    var currentGame ={"event":"?","site":"Riga","date":1949,"round":"?","white":"Mikhail Tal","black":"Leonov","result":{"white":"1","black":"0"},"eco":"B13","moves":[["e4","c6"],["d4","d5"],["exd5","cxd5"],["Bd3","Nf6"],["h3","h6"],["Bf4","e6"],["Nf3","Bd6"],["Bxd6","Qxd6"],["c3","Nc6"],["O-O","O-O"],["Qe2","Re8"],["Ne5","Qc7"],["f4","Nxe5"],["fxe5","Nh7"],["Qh5","Re7"],["Na3","a6"],["Nc2","Qd7"],["Ne3","Qe8"],["Rf6","Qf8"],["Rf4","Bd7"],["Ng4","Be8"],["Nf6+","Nxf6"],["exf6","Rc7"],["fxg7","Kxg7"],["Qe5+"]]};
 
     // All the turns made in the game.
     var turns = [].concat(currentGame.moves),
@@ -53,10 +53,10 @@ angular.module('PlayLikeTal.Services')
 
         if (nextTurn.white) {
             san = nextTurn.white;
-            delete nextTurn.white;
+            nextTurn.shift();
         } else {
             san = nextTurn.black;
-            delete nextTurn.black;
+            nextTurn.shift();
 
             // White and black have moved, increment the turn.
             nextTurn = this.getNextTurn();
@@ -73,10 +73,10 @@ angular.module('PlayLikeTal.Services')
 
         if (nextTurn) {
             if (nextTurn.white) {
-                return nextTurn.white;
+                return nextTurn[0];
             }
             if (nextTurn.black) {
-                return nextTurn.black;
+                return nextTurn[1];
             }
         }
 
@@ -95,10 +95,10 @@ angular.module('PlayLikeTal.Services')
         }
 
         var isWhite = this.isTalWhite(),
-            whiteHasNotMoved = Boolean(nextTurn.white);
+            whiteHasNotMoved = nextTurn.length === 2;
 
         var isBlack = !isWhite,
-            blackHasNotMoved = Boolean(nextTurn.black);
+            blackHasNotMoved = nextTurn.length === 1;
 
         if (isWhite && whiteHasNotMoved) {
             return true;

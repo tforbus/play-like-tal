@@ -1,1 +1,1 @@
-{"event":"?","site":"Knotty Ash, Liverpool","date":1974,"round":"?","white":"Mikhail Tal","black":"J M Ripley","result":{"white":"1","black":"0"},"eco":"B67","moves":[{"white":"18\"]","black":"[EventDate"}]}
+{"event":"?","site":"Knotty Ash, Liverpool","date":1974,"round":"?","white":"Mikhail Tal","black":"J M Ripley","result":{"white":"1","black":"0"},"eco":"B67","moves":[["18\"]","[EventDate","\"?\"]","[Round","\"?\"]","[Result","\""]]}

@@ -1,1 +1,1 @@
-{"event":"?","site":"Knotty Ash","date":1974,"round":"?","white":"Mikhail Tal","black":"W R Chandler","result":{"white":"1","black":"0"},"eco":"B01","moves":[{"white":"18\"]","black":"[EventDate"}]}
+{"event":"?","site":"Knotty Ash","date":1974,"round":"?","white":"Mikhail Tal","black":"W R Chandler","result":{"white":"1","black":"0"},"eco":"B01","moves":[["18\"]","[EventDate","\"?\"]","[Round","\"?\"]","[Result","\""]]}

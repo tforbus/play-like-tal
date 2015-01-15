@@ -1,1 +1,1 @@
-{"event":"?","site":"03","date":1968,"round":"3","white":"Mikhail Tal","black":"Kick Langeweg","result":{"white":"1","black":"0"},"eco":"C82","moves":[{"white":"12\"]","black":"[EventDate"}]}
+{"event":"?","site":"03","date":1968,"round":"3","white":"Mikhail Tal","black":"Kick Langeweg","result":{"white":"1","black":"0"},"eco":"C82","moves":[["12\"]","[EventDate","\"?\"]","[Round","\"3\"]","[Result","\""]]}

@@ -1,1 +1,1 @@
-{"event":"?","site":"Birmingham","date":1964,"round":"?","white":"Mikhail Tal","black":"Brian Dudley","result":{"white":"1","black":"0"},"eco":"C89","moves":[{"white":"11\"]","black":"[EventDate"}]}
+{"event":"?","site":"Birmingham","date":1964,"round":"?","white":"Mikhail Tal","black":"Brian Dudley","result":{"white":"1","black":"0"},"eco":"C89","moves":[["11\"]","[EventDate","\"?\"]","[Round","\"?\"]","[Result","\""]]}
