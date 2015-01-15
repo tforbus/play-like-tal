@@ -1,0 +1,1 @@
+{"event":"1965.11.01","site":"Tbilisi GEO","date":1965,"round":2,"white":"Boris Spassky","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B43","moves":[{"white":"03\"]","black":"[EventDate"},{"white":"01\"]","black":"[Round"}]}

@@ -1,0 +1,1 @@
+{"event":"1971.09.15","site":"Leningrad URS","date":1971,"round":4,"white":"Mikhail Tal","black":"David Bronstein","result":{"white":"1","black":"0"},"eco":"B14","moves":[{"white":"19\"]","black":"[EventDate"},{"white":"15\"]","black":"[Round"}]}

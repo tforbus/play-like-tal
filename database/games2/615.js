@@ -1,0 +1,1 @@
+{"event":"?","site":"1","date":1971,"round":1,"white":"Mikhail Tal","black":"Jan Smejkal","result":{"white":"1","black":"0"},"eco":"C94","moves":[{"white":"21\"]","black":"[EventDate"}]}

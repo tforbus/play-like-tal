@@ -1,0 +1,1 @@
+{"event":"1963.10.29","site":"Moscow RUS","date":1963,"round":12,"white":"Mikhail Tal","black":"Nikola Padevsky","result":{"white":"1","black":"0"},"eco":"C16","moves":[{"white":"13\"]","black":"[EventDate"},{"white":"29\"]","black":"[Round"}]}

@@ -1,0 +1,1 @@
+{"event":"1971.09.15","site":"Leningrad URS","date":1971,"round":15,"white":"Mikhail Tal","black":"Anatoly Lein","result":{"white":"1","black":"0"},"eco":"C15","moves":[{"white":"06\"]","black":"[EventDate"},{"white":"15\"]","black":"[Round"}]}

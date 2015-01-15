@@ -1,0 +1,1 @@
+{"event":"1963.12.30","site":"Hastings ENG","date":1964,"round":8,"white":"Mikhail Tal","black":"Michael J Franklin","result":{"white":"1","black":"0"},"eco":"B43","moves":[{"white":"07\"]","black":"[EventDate"},{"white":"30\"]","black":"[Round"}]}

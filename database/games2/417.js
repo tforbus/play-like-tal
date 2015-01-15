@@ -1,0 +1,1 @@
+{"event":"?","site":"10","date":1964,"round":10,"white":"Freysteinn Thorbergsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E77","moves":[{"white":"26\"]","black":"[EventDate"}]}

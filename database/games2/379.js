@@ -1,0 +1,1 @@
+{"event":"1963.10.29","site":"Moscow RUS","date":1963,"round":6,"white":"Mikhail Tal","black":"Svetozar Gligoric","result":{"white":"1","black":"0"},"eco":"B99","moves":[{"white":"04\"]","black":"[EventDate"},{"white":"29\"]","black":"[Round"}]}

@@ -1,0 +1,1 @@
+{"event":"1973.12.27","site":"Hastings ENG","date":1974,"round":8,"white":"Mikhail Tal","black":"Ludwig Rellstab","result":{"white":"1","black":"0"},"eco":"C75","moves":[{"white":"04\"]","black":"[EventDate"},{"white":"27\"]","black":"[Round"}]}

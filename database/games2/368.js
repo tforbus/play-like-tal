@@ -1,0 +1,1 @@
+{"event":"1963.10.29","site":"Moscow RUS","date":1963,"round":10,"white":"Mikhail Tal","black":"Boris T Vladimirov","result":{"white":"1","black":"0"},"eco":"B28","moves":[{"white":"11\"]","black":"[EventDate"},{"white":"29\"]","black":"[Round"}]}

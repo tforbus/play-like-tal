@@ -1,0 +1,1 @@
+{"event":"1956.??.??","site":"Leningrad (RUS)","date":1956,"round":2,"white":"Abram Khasin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B88","moves":[{"white":"12\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}

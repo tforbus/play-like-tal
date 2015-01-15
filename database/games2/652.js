@@ -1,0 +1,1 @@
+{"event":"1972.11.17","site":"Baku AZE","date":1972,"round":7,"white":"Lev Alburt","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A45","moves":[{"white":"26\"]","black":"[EventDate"},{"white":"17\"]","black":"[Round"}]}

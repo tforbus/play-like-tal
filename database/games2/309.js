@@ -1,0 +1,1 @@
+{"event":"?","site":"Ch World , Moscow (Russia) (17)","date":1961,"round":17,"white":"Mikhail Botvinnik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E80","moves":[{"white":"28\"]","black":"[EventDate"}]}

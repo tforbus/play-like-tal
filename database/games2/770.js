@@ -1,0 +1,1 @@
+{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":8,"white":"Mikhail Tal","black":"Yuri Balashov","result":{"white":"1","black":"0"},"eco":"B52","moves":[{"white":"30\"]","black":"[Round"}]}

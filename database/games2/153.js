@@ -1,0 +1,1 @@
+{"event":"1957.??.??","site":"Moscow (RUS)","date":1957,"round":3,"white":"Mikhail Tal","black":"David Bronstein","result":{"white":"1","black":"0"},"eco":"D15","moves":[{"white":"23\"]","black":"[EventDate"},{"white":"??.??\"]","black":"[Round"}]}

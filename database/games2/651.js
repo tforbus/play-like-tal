@@ -1,0 +1,1 @@
+{"event":"1972.11.17","site":"Baku AZE","date":1972,"round":8,"white":"Mikhail Tal","black":"Valery I Zilberstein","result":{"white":"1","black":"0"},"eco":"B06","moves":[{"white":"27\"]","black":"[EventDate"},{"white":"17\"]","black":"[Round"}]}

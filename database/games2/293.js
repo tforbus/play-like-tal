@@ -1,0 +1,1 @@
+{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":13,"white":"Mikhail Tal","black":"Bruno Parma","result":{"white":"1","black":"0"},"eco":"B36","moves":[{"white":"23\"]","black":"[EventDate"},{"white":"03\"]","black":"[Round"}]}

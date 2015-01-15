@@ -1,0 +1,1 @@
+{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":10,"white":"Mikhail Tal","black":"Mark Taimanov","result":{"white":"1","black":"0"},"eco":"B46","moves":[{"white":"30\"]","black":"[Round"}]}

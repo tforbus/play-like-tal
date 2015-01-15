@@ -1,0 +1,1 @@
+{"event":"1963.12.30","site":"Hastings ENG","date":1964,"round":6,"white":"Mikhail Tal","black":"John Eric Littlewood","result":{"white":"1","black":"0"},"eco":"C72","moves":[{"white":"04\"]","black":"[EventDate"},{"white":"30\"]","black":"[Round"}]}

@@ -1,0 +1,1 @@
+{"event":"?","site":"10","date":1966,"round":10,"white":"Erling Kristiansen","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B42","moves":[{"white":"15\"]","black":"[EventDate"}]}

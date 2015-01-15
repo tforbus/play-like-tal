@@ -1,0 +1,1 @@
+{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":1,"white":"Borislav Ivkov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E92","moves":[{"white":"03\"]","black":"[EventDate"},{"white":"03\"]","black":"[Round"}]}

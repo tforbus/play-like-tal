@@ -1,0 +1,1 @@
+{"event":"?","site":"8","date":1964,"round":8,"white":"Trausti Bjornsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E82","moves":[{"white":"23\"]","black":"[EventDate"}]}

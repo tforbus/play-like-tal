@@ -1,0 +1,1 @@
+{"event":"1972.11.17","site":"Baku AZE","date":1972,"round":14,"white":"Mikhail Tal","black":"Semyon Abramovich Furman","result":{"white":"1","black":"0"},"eco":"C94","moves":[{"white":"17\"]","black":"[Round"}]}
