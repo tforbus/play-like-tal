@@ -23,7 +23,10 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "gulp-rimraf": "~0.1.1",
     "gulp-angular-templatecache": "~1.5.0",
-    "karma-jasmine": "~0.3.4"
+    "karma-jasmine": "~0.3.4",
+    "request-promise": "~0.3.2",
+    "request-sync": "~1.0.0",
+    "sync-request": "~1.0.2"
   },
   "dependencies": {
     "q": "~1.1.2",

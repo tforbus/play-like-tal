@@ -15,7 +15,7 @@ module.exports = {
         whiteElo:       /\[whiteelo/i,
         blackElo:       /\[blackelo/i,
         eco:            /\[eco/i,
-        moves:          /1\.N?\w{1}\d{1}(?:(?![0|1](?:[-/])).)*/gmi
+        moves:          /1\.\s?N?\w{1}\d{1}(?:(?![0|1](?:[-/])).)*/gmi
     },
 
     /**
@@ -74,7 +74,11 @@ module.exports = {
         // and split each pair of moves by the number of the move.
         var singleLine = rawPgn.replace(this.re.newLine, ' '),
             gamePlay = singleLine.match(this.re.moves),
-            turns = gamePlay[0].trim().split(/\d+\./g);
+            turns;
+
+        // some pgns are not correct.
+        gamePlay = gamePlay[0].replace(/(\d+\.)\s/g, '$1'); 
+        turns = gamePlay.trim().split(/\d+\./g);
 
         // Filter out the empty turn that gets created on split,
         // and trim the turns to prevent any space issues.
