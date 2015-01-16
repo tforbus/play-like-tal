@@ -10,14 +10,13 @@
                 event: 'Fool\'s Mate',
                 site: 'Moon',
                 date: 1969,
-                round: null,
+                round: '1',
                 white: 'NN',
-                black: 'Tal, Mikhail',
+                black: 'Mikhail Tal',
                 result: {'white':'0','black':'1'},
                 eco: 'A00',
                 moves:[
-                    {white: 'f3', black: 'e5'},
-                    {white: 'g4', black: 'Q4h#'}
+                    ['f3', 'e5'], ['g4', 'Qh4#']
                 ]
             };
             gameTalWhite = {
@@ -25,15 +24,15 @@
                 site: 'Moon',
                 date: 1969,
                 round: null,
-                white: 'Tal, Mikhail',
+                white: 'Mikhail Tal',
                 black: 'NN',
                 result: {'white':'1','black':'0'},
                 eco: 'A00',
                 moves:[
-                    {white: 'e4', black: 'e5'},
-                    {white: 'Qh5', black: 'Nc6'},
-                    {white: 'Bc4', black: 'Nf6'},
-                    {white: 'Qxf7#'}
+                    ['e4', 'e5'],
+                    ['Qh5', 'Nc6'],
+                    ['Bc4', 'Nf6'],
+                    ['Qxf7#']
                 ]
             };
         }));
