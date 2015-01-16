@@ -18,7 +18,13 @@ angular.module('PlayLikeTal.Directives')
                 target: ''
             };
 
+            // Track if a hint is being shown. If a hint is shown, the mouseover
+            // behavior is different. Don't highlight other legal moves on mouseover if
+            // the hint is shown.
             $scope.showingHint = false;
+
+            // Just use this for read only information.
+            $scope.gameInformation = Object.freeze(angular.copy(gameTrackerService.getCurrentGame()));
 
             /**
              * Return all squares on a chessboard.
@@ -113,6 +119,19 @@ angular.module('PlayLikeTal.Directives')
             };
 
             /**
+             * Highlight the square the user has tapped.
+             */
+            $scope.highlightSquare = function highlightSquare(square) {
+                var selector = ['#', $scope.boardId, ' .square-', square].join('');
+                $(selector).addClass('mobile-highlight-square');
+            };
+
+            $scope.unhighlightSquare = function unhighlightSquare(square) {
+                var selector = ['#', $scope.boardId, ' .square-', square].join('');
+                $(selector).removeClass('mobile-highlight-square');
+            };
+
+            /**
              * After a tap event, or a computer move, the board will not update.
              * Manually call the position from the new FEN.
              */
@@ -133,6 +152,11 @@ angular.module('PlayLikeTal.Directives')
                 if (computerMovesNext) {
                     $timeout($scope.doNextMove, 500);
                 }
+
+                // If the user did a hint and then showed the move,
+                // must clear the legal moves highlights.
+                $scope.showingHint = false;
+                $scope.hideLegalMoves();
             };
 
             /**
@@ -183,6 +207,7 @@ angular.module('PlayLikeTal.Directives')
              * If it's not this players move, return it to its original position.
              * If it's the correct move, allow it.
              */
+            // TODO: check promotion/underpromotion and en passant
             function onDrop(source, target) {
 
                 // Don't want to do the move on the actual board, 
@@ -190,7 +215,7 @@ angular.module('PlayLikeTal.Directives')
                 var move = new ChessLogic($scope.logic.fen()).move({
                     from: source,
                     to: target,
-                    promotion: 'q' // all promotions were queens
+                    promotion: 'q'
                 });
 
                 // Invalid move, return piece.
@@ -250,7 +275,13 @@ angular.module('PlayLikeTal.Directives')
             }
 
             function onTapSquare(square, piece) {
+                $scope.hideLegalMoves();
+
                 var isMovingPiece = $scope.isPlayerPiece(piece);
+
+                if ($scope.tappedMove.source) {
+                    $scope.unhighlightSquare($scope.tappedMove.source);
+                }
 
                 // The player wants to move their piece.
                 // This is the first tap.
@@ -262,6 +293,7 @@ angular.module('PlayLikeTal.Directives')
 
                     $scope.tappedMove.source = square;
                     $scope.indicateLegalMoves(square);
+                    $scope.highlightSquare(square);
                     return;
                 }
 
@@ -278,6 +310,8 @@ angular.module('PlayLikeTal.Directives')
                     $scope.tappedMove.target = '';
                     $scope.hideLegalMoves();
                     $scope.updatePosition();
+
+                    $scope.unhighlightSquare($scope.tappedMove.source);
                 }
             }
 
@@ -309,9 +343,13 @@ angular.module('PlayLikeTal.Directives')
             };
         },
         link: function (scope, elem, attrs, ctrl) {
+            // Set initial width for mobile devices, etc.
+            var windowWidth = $(window).width(),
+                width = windowWidth < 400 ? windowWidth*0.8 : 400;
+
             // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
             var div = elem.find('#board-container');
-            div.html('<div id="' + scope.boardId + '" style="width:400px;"></div>');
+            div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');
             scope.initGame();
             window.showHint = scope.showHint;
         },

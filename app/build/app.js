@@ -1,17 +1,20 @@
 angular.module('PlayLikeTal.Controllers', []);
 angular.module('PlayLikeTal.Directives', []);
 angular.module('PlayLikeTal.Services', []);
-angular.module('PlayLikeTal.Filters', []);
 angular.module('templates', []);
 
 angular.module('PlayLikeTal', [
     'ngMaterial',
     'templates',
-    'PlayLikeTal.Filters',
     'PlayLikeTal.Controllers',
     'PlayLikeTal.Directives',
     'PlayLikeTal.Services',
-]);
+])
+
+// Inject this constant in any locations where name must be compared.
+.constant('PLAY_LIKE', {
+    name: 'Mikhail Tal'
+});
 
 angular.module('PlayLikeTal.Controllers')
 .controller('GameDatabaseCtrl', function ($scope) {
@@ -78,21 +81,6 @@ angular.module('PlayLikeTal.Controllers')
     ];
 });
 
-angular.module('PlayLikeTal.Filters').filter('nameSplit', function () {
-    return function (input) {
-        if (!input || !angular.isString(input)) {
-            return '';
-        }
-
-        if (input.indexOf(',') < 0) {
-            return input;
-        }
-
-        var lastName = input.split(/,\s+/)[0];
-        return lastName;
-    };
-});
-
 /**
  * Wrapper for chessboardjs
  */
@@ -116,7 +104,7 @@ angular.module('PlayLikeTal.Services')
 // as a legal move.
 // logic.moves({square: ''})
 // logic.get(square) returns piece on the square.
-.service('gameTrackerService', function () {
+.service('gameTrackerService', function (PLAY_LIKE) {
 
     // Save the current game.
     var currentGame ={"event":"?","site":"Riga","date":1949,"round":"?","white":"Mikhail Tal","black":"Leonov","result":{"white":"1","black":"0"},"eco":"B13","moves":[["e4","c6"],["d4","d5"],["exd5","cxd5"],["Bd3","Nf6"],["h3","h6"],["Bf4","e6"],["Nf3","Bd6"],["Bxd6","Qxd6"],["c3","Nc6"],["O-O","O-O"],["Qe2","Re8"],["Ne5","Qc7"],["f4","Nxe5"],["fxe5","Nh7"],["Qh5","Re7"],["Na3","a6"],["Nc2","Qd7"],["Ne3","Qe8"],["Rf6","Qf8"],["Rf4","Bd7"],["Ng4","Be8"],["Nf6+","Nxf6"],["exf6","Rc7"],["fxg7","Kxg7"],["Qe5+"]]};
@@ -187,7 +175,7 @@ angular.module('PlayLikeTal.Services')
 
 
     this.isTalWhite = function isTalWhite() {
-        return currentGame.white === 'Mikhail Tal';
+        return currentGame.white === PLAY_LIKE.name;
     };
 
     this.isPlayerMove = function isPlayerMove() {
@@ -237,7 +225,13 @@ angular.module('PlayLikeTal.Directives')
                 target: ''
             };
 
+            // Track if a hint is being shown. If a hint is shown, the mouseover
+            // behavior is different. Don't highlight other legal moves on mouseover if
+            // the hint is shown.
             $scope.showingHint = false;
+
+            // Just use this for read only information.
+            $scope.gameInformation = Object.freeze(angular.copy(gameTrackerService.getCurrentGame()));
 
             /**
              * Return all squares on a chessboard.
@@ -332,6 +326,19 @@ angular.module('PlayLikeTal.Directives')
             };
 
             /**
+             * Highlight the square the user has tapped.
+             */
+            $scope.highlightSquare = function highlightSquare(square) {
+                var selector = ['#', $scope.boardId, ' .square-', square].join('');
+                $(selector).addClass('mobile-highlight-square');
+            };
+
+            $scope.unhighlightSquare = function unhighlightSquare(square) {
+                var selector = ['#', $scope.boardId, ' .square-', square].join('');
+                $(selector).removeClass('mobile-highlight-square');
+            };
+
+            /**
              * After a tap event, or a computer move, the board will not update.
              * Manually call the position from the new FEN.
              */
@@ -352,6 +359,11 @@ angular.module('PlayLikeTal.Directives')
                 if (computerMovesNext) {
                     $timeout($scope.doNextMove, 500);
                 }
+
+                // If the user did a hint and then showed the move,
+                // must clear the legal moves highlights.
+                $scope.showingHint = false;
+                $scope.hideLegalMoves();
             };
 
             /**
@@ -402,6 +414,7 @@ angular.module('PlayLikeTal.Directives')
              * If it's not this players move, return it to its original position.
              * If it's the correct move, allow it.
              */
+            // TODO: check promotion/underpromotion and en passant
             function onDrop(source, target) {
 
                 // Don't want to do the move on the actual board, 
@@ -409,7 +422,7 @@ angular.module('PlayLikeTal.Directives')
                 var move = new ChessLogic($scope.logic.fen()).move({
                     from: source,
                     to: target,
-                    promotion: 'q' // all promotions were queens
+                    promotion: 'q'
                 });
 
                 // Invalid move, return piece.
@@ -469,7 +482,13 @@ angular.module('PlayLikeTal.Directives')
             }
 
             function onTapSquare(square, piece) {
+                $scope.hideLegalMoves();
+
                 var isMovingPiece = $scope.isPlayerPiece(piece);
+
+                if ($scope.tappedMove.source) {
+                    $scope.unhighlightSquare($scope.tappedMove.source);
+                }
 
                 // The player wants to move their piece.
                 // This is the first tap.
@@ -481,6 +500,7 @@ angular.module('PlayLikeTal.Directives')
 
                     $scope.tappedMove.source = square;
                     $scope.indicateLegalMoves(square);
+                    $scope.highlightSquare(square);
                     return;
                 }
 
@@ -497,6 +517,8 @@ angular.module('PlayLikeTal.Directives')
                     $scope.tappedMove.target = '';
                     $scope.hideLegalMoves();
                     $scope.updatePosition();
+
+                    $scope.unhighlightSquare($scope.tappedMove.source);
                 }
             }
 
@@ -528,9 +550,13 @@ angular.module('PlayLikeTal.Directives')
             };
         },
         link: function (scope, elem, attrs, ctrl) {
+            // Set initial width for mobile devices, etc.
+            var windowWidth = $(window).width(),
+                width = windowWidth < 400 ? windowWidth*0.8 : 400;
+
             // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
             var div = elem.find('#board-container');
-            div.html('<div id="' + scope.boardId + '" style="width:400px;"></div>');
+            div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');
             scope.initGame();
             window.showHint = scope.showHint;
         },
@@ -538,17 +564,3 @@ angular.module('PlayLikeTal.Directives')
     };
 });
 
-
-angular.module('PlayLikeTal.Directives')
-.directive('chessviewer', function ($templateCache) {
-    return {
-        restrict: 'A',
-        transclude: true,
-        scope: {
-            boardId: '@'
-        },
-        controller: function ($scope) {
-            this.boardId = $scope.boardId;
-        }
-    };
-});

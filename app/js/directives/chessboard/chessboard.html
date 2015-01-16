@@ -1,5 +1,9 @@
-<md-content>
-    <section layout='row' layout-align='center center'>
+<md-content layout-fill>
+    <section layout='column' layout-align='center center'>
+        <h2>{{gameInformation.white}} vs {{gameInformation.black}}</h2>
+    </section>
+
+    <section layout='column' layout-align='center center' layout-fill>
         <!-- board will be appended inside here -->
         <div id='board-container'></div>
     </section>
@@ -7,11 +11,13 @@
     <section layout='row' layout-align='center center'>
         <md-button
             class='md-raised md-primary'
+            style='margin: 10px 5px 0 0;'
             ng-click='doNextMove()'
         >Show Move</md-button>
 
         <md-button
             class='md-raised md-primary'
+            style='margin: 10px 0 0 5px'
             ng-click='showHint()'
         >Show Hint</md-button>
     </section>
