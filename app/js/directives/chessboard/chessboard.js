@@ -32,7 +32,7 @@ angular.module('PlayLikeTal.Directives')
              */
             $scope.allSquares = function allSquares() {
                 var ranks = '12345678'.split(''),
-                    files = 'abcdefg'.split(''),
+                    files = 'abcdefhg'.split(''),
                     squares = [];
 
                 files.forEach(function (file) {
