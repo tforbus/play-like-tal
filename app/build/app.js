@@ -364,6 +364,10 @@ angular.module('PlayLikeTal.Directives')
                 // must clear the legal moves highlights.
                 $scope.showingHint = false;
                 $scope.hideLegalMoves();
+
+                if ($scope.tappedMove.source) {
+                    $scope.unhighlightSquare($scope.tappedMove.source);
+                }
             };
 
             /**
