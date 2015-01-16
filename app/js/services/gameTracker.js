@@ -10,8 +10,7 @@ angular.module('PlayLikeTal.Services')
     // Save the current game.
     var currentGame ={"event":"?","site":"Riga","date":1949,"round":"?","white":"Mikhail Tal","black":"Leonov","result":{"white":"1","black":"0"},"eco":"B13","moves":[["e4","c6"],["d4","d5"],["exd5","cxd5"],["Bd3","Nf6"],["h3","h6"],["Bf4","e6"],["Nf3","Bd6"],["Bxd6","Qxd6"],["c3","Nc6"],["O-O","O-O"],["Qe2","Re8"],["Ne5","Qc7"],["f4","Nxe5"],["fxe5","Nh7"],["Qh5","Re7"],["Na3","a6"],["Nc2","Qd7"],["Ne3","Qe8"],["Rf6","Qf8"],["Rf4","Bd7"],["Ng4","Be8"],["Nf6+","Nxf6"],["exf6","Rc7"],["fxg7","Kxg7"],["Qe5+"]]};
 
-    // All the turns made in the game.
-    var turns = [].concat(currentGame.moves),
+    var turns,
         nextTurn,
         nextMove;
 
@@ -51,13 +50,10 @@ angular.module('PlayLikeTal.Services')
             nextTurn = this.getNextTurn();
         }
 
-        if (nextTurn.white) {
-            san = nextTurn.white;
-            nextTurn.shift();
-        } else {
-            san = nextTurn.black;
-            nextTurn.shift();
+        san = nextTurn[0];
+        nextTurn.shift();
 
+        if (!nextTurn.length) {
             // White and black have moved, increment the turn.
             nextTurn = this.getNextTurn();
         }
@@ -72,12 +68,7 @@ angular.module('PlayLikeTal.Services')
         }
 
         if (nextTurn) {
-            if (nextTurn.white) {
-                return nextTurn[0];
-            }
-            if (nextTurn.black) {
-                return nextTurn[1];
-            }
+            return nextTurn[0];
         }
 
         return null;
@@ -85,7 +76,7 @@ angular.module('PlayLikeTal.Services')
 
 
     this.isTalWhite = function isTalWhite() {
-        return currentGame.white === 'Tal, Mikhail';
+        return currentGame.white === 'Mikhail Tal';
     };
 
     this.isPlayerMove = function isPlayerMove() {
@@ -110,5 +101,7 @@ angular.module('PlayLikeTal.Services')
 
         return false;
     };
+
+    this.setCurrentGame(currentGame);
 
 });
