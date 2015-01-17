@@ -1,5 +1,5 @@
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $routeParams, PLAY_LIKE) {
+.controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE) {
 
     /**
      * Determine if Tal is white.
@@ -35,6 +35,7 @@ angular.module('PlayLikeTal.Controllers')
      * @param {number} gameId
      */
     $scope.loadGame = function loadGame(gameId) {
+        $mdSidenav('left').toggle();
         $location.path('/game/' + gameId);
     };
 

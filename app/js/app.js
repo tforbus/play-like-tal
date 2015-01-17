@@ -18,5 +18,15 @@ angular
     $routeProvider
     .when('/', {
         templateUrl: 'templates/introduction.html'
+    })
+    .when('/game/:id', {
+        templateUrl: 'templates/game.html',
+        resolve: {
+            game: function (gameTrackerService, $routeParams, $route) {
+                var id = $route.current.params.id;
+                //gameTrackerService.loadGame(id);
+                return 1;
+            }
+        }
     });
 });

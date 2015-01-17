@@ -351,6 +351,8 @@ angular.module('PlayLikeTal.Directives')
             var windowWidth = $(window).width(),
                 width = windowWidth < 400 ? windowWidth*0.8 : 400;
 
+            width = Math.floor(width);
+
             // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
             var div = elem.find('#board-container');
             div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');

@@ -18,6 +18,16 @@ angular
     $routeProvider
     .when('/', {
         templateUrl: 'templates/introduction.html'
+    })
+    .when('/game/:id', {
+        templateUrl: 'templates/game.html',
+        resolve: {
+            game: function (gameTrackerService, $routeParams, $route) {
+                var id = $route.current.params.id;
+                //gameTrackerService.loadGame(id);
+                return 1;
+            }
+        }
     });
 });
 
@@ -2032,7 +2042,7 @@ angular.module('PlayLikeTal.Constants')
 });
 
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $routeParams, PLAY_LIKE) {
+.controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE) {
 
     /**
      * Determine if Tal is white.
@@ -2068,6 +2078,7 @@ angular.module('PlayLikeTal.Controllers')
      * @param {number} gameId
      */
     $scope.loadGame = function loadGame(gameId) {
+        $mdSidenav('left').toggle();
         $location.path('/game/' + gameId);
     };
 
@@ -2160,6 +2171,7 @@ angular.module('PlayLikeTal.Controllers')
         $mdBottomSheet.hide($scope.playerColor.value);
     });
 });
+
 
 angular.module('PlayLikeTal.Controllers')
 .controller('ToolbarCtrl', function ($scope, $log, $mdSidenav) {
@@ -2646,6 +2658,8 @@ angular.module('PlayLikeTal.Directives')
             // Set initial width for mobile devices, etc.
             var windowWidth = $(window).width(),
                 width = windowWidth < 400 ? windowWidth*0.8 : 400;
+
+            width = Math.floor(width);
 
             // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
             var div = elem.find('#board-container');
