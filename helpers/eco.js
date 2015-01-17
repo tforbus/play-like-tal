@@ -35,7 +35,7 @@ function doScrape(error, response, html) {
 
         lookupJson[code] = {};
         lookupJson[code].name = name;
-        lookupJson[code].moves = moves;
+        lookupJson[code].moves = moves.split(/\n/)[1];
     });
 
     makeOutput(lookupJson);

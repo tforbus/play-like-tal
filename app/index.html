@@ -5,14 +5,18 @@
         <meta name='viewport' content='initial-scale=1, maximum-scale=1'/>
         <link rel='stylesheet' type='text/css' href='./build/lib.css'/>
         <link rel='stylesheet' type='text/css' href='./css/RobotoDraft.css'/>
+        <!-- TODO: move into a site style file -->
         <style>
             .mobile-highlight-square {
                 box-shadow: inset 0 0 3px 3px yellow;
             }
+
+            .selected-game-list-item {
+                background-color: #e7e7e7 !important;
+            }
         </style>
     </head>
     <body ng-app='PlayLikeTal' md-theme='blue-grey' layout='row'>
-
         <md-sidenav
             layout='column'
             class='md-sidenav-left md-whiteframe-z2'
@@ -20,95 +24,56 @@
             md-is-locked-open='$media("gt-sm")'>
 
             <md-toolbar>
-                <h1 class='md-toolbar-tools'>Play Like Tal</h1>
+                <div class='md-toolbar-tools' layout='row' ng-controller='GameDatabaseToolbarCtrl'>
+                    <h1>Play Like Tal</h1>
+                    <md-button  aria-label='Toggle Filters' ng-click='showFilters($event)'>
+                        <i class='fa fa-filter'></i>
+                    </md-button>
+                </div>
             </md-toolbar>
 
             <md-content flex stle='overflow: auto;'>
-                <md-list>
-                    <md-item>game</md-item>
+                <md-list ng-controller='GameDatabaseCtrl'>
+                    <md-item
+                        ng-repeat='game in games track by $index'
+                        ng-click='loadGame(game.id)'
+                        ng-class='{"selected-game-list-item": isSelectedGame(game.id)}'
+                        style='cursor: pointer;'>
+                        <md-item-content>
+                            <div class='md-tile-content'>
+                                <div layout='column'>
+                                    <h3>
+                                        <span ng-if='isTalWhite(game)'>vs</span>
+                                        <strong>{{getOpponent(game)}}</strong>
+                                        <span ng-if='!isTalWhite(game)'>vs</span>
+                                    </h3>
+                                    <p>{{game.year}} // {{formatEvent(game.event)}}</br>A00 Uncommon opening</p>
+                                </div>
+                            </div>
+                        </md-item-content>
+                        <md-divider ng-if='!$last'></md-divider>
+                    </md-item>
                 </md-list>
             </md-content>
-
         </md-sidenav>
 
         <div layout='column' role='main' layout-fill>
             <md-toolbar>
-                <div class='md-toolbar-tools'>
-                    <md-button md-no-ink hide-gt-sm aria-label='Toggle Menu'>
+                <div class='md-toolbar-tools' ng-controller='ToolbarCtrl'>
+                    <md-button
+                        ng-click='openMenu()'
+                        md-no-ink
+                        hide-gt-sm
+                        aria-label='Toggle Menu'>
                         <i class='fa fa-bars'></i>
                     </md-button>
                 </div>
             </md-toolbar>
 
             <div layout='column' role='chess-board' flex class='fill-height'>
-                <chessboard board-id='board'></chessboard>
+                <md-content ng-view class='md-padding'></md-content>
             </div>
         </div>
-
-    <!--
-        <section layout='row' flex style='height:100%;'>
-            <md-sidenav
-                class='md-sidenav-left md-whiteframe-z2'
-                md-component-id='left'
-                md-is-locked-open='true'>
-
-                <md-toolbar>
-                    <h2 class='md-toolbar-tools'>
-                        <span>
-                            Tal Plays
-                        </span>
-                    </h2>
-                </md-toolbar>
-
-                <md-content ng-controller='GameDatabaseCtrl'>
-
-                    <md-content>
-                        <md-radio-group ng-model='colorFilter.value'>
-                            <md-radio-button value='white'>White</md-radio-button>
-                            <md-radio-button value='black'>Black</md-radio-button>
-                            <md-radio-button value='either'>Either</md-radio-button>
-                        </md-radio-group>
-                    </md-content>
-
-                    <md-toolbar>
-                        <h2 class='md-toolbar-tools'>
-                            <span>Games Database</span>
-                        </h2>
-                    </md-toolbar>
-                    <md-content>
-                        <md-subheader class='md-primary'>
-                            <div layout='row'>
-                                <div flex='20'>Year</div>
-                                <div flex='40'>White</div>
-                                <div flex='40'>Black</div>
-                            </div>
-                        </md-subheader>
-                        <md-list>
-                            <md-item ng-repeat='game in games'>
-                                <md-item-content>
-                                    <div class='md-tile-content' layout='row'>
-                                        <div flex='20'>{{game.year}}</div>
-                                        <div flex='40'>{{game.white | nameSplit}}</div>
-                                        <div flex='40'>{{game.black | nameSplit}}</div>
-                                    </div>
-                                </md-item-content>
-                                <md-divider ng-if='!$last'></md-divider>
-                            </md-item>
-                        </md-list>
-                    </md-content>
-                </md-content>
-
-            </md-sidenav>
-
-            <md-content flex class='md-padding'>
-                <div layout='column' layout-fill layout-align='center center'>
-                    <chessboard
-                        board-id='board'
-                    ></chessboard>
-                </div>
-            </md-content>
-        </section>
-        -->
 
         <script src='./build/lib.js'></script>
         <script src='./build/app.js'></script>
