@@ -1,5 +1,6 @@
-angular.module('PlayLikeTal.Controllers', []);
 angular.module('PlayLikeTal.Constants', []);
+angular.module('PlayLikeTal.Filters', []);
+angular.module('PlayLikeTal.Controllers', []);
 angular.module('PlayLikeTal.Directives', []);
 angular.module('PlayLikeTal.Services', []);
 angular.module('templates', []);
@@ -10,14 +11,15 @@ angular
     'ngMaterial',
     'templates',
     'PlayLikeTal.Constants',
+    'PlayLikeTal.Filters',
     'PlayLikeTal.Controllers',
     'PlayLikeTal.Directives',
-    'PlayLikeTal.Services',
+    'PlayLikeTal.Services'
 ])
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'templates/introduction.html'
+        templateUrl: 'templates/introduction.html',
     })
     .when('/game/:id', {
         templateUrl: 'templates/game.html',
@@ -2042,7 +2044,9 @@ angular.module('PlayLikeTal.Constants')
 });
 
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE) {
+.controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
+
+    $scope.limit = 20;
 
     /**
      * Determine if Tal is white.
@@ -2061,17 +2065,12 @@ angular.module('PlayLikeTal.Controllers')
         return game.white;
     };
 
+    /**
+     * Track the currently selected game to indicate it in the list.
+     */
     $scope.isSelectedGame = function isSelectedGame(gameId) {
         return parseInt(gameId, 10) === parseInt($routeParams.game, 10);
     };
-
-    $scope.formatEvent = function formatEvent(chessEvent) {
-        if (!chessEvent || chessEvent === '?') {
-            return 'Unknown';
-        }
-        return chessEvent;
-    };
-
 
     /**
      * Switch to the currently selected game ID
@@ -2082,64 +2081,10 @@ angular.module('PlayLikeTal.Controllers')
         $location.path('/game/' + gameId);
     };
 
-    $scope.games = [
-        {
-            id: 1,
-            year: 1952,
-            white: 'Mikhail Tal',
-            black: 'Kasparov',
-            result: '1-0'
-        },
-        {
-            id: 2,
-            year: 1953,
-            white: 'Fisher',
-            black: 'Mikhail Tal',
-            result: '0-1'
-        },
-        {
-            id: 1,
-            year: 1952,
-            white: 'Mikhail Tal',
-            black: 'Gomez',
-            result: '1-0'
-        },
-        {
-            id: 2,
-            year: 1953,
-            white: 'Botvinnik',
-            black: 'Mikhail Tal',
-            result: '0-1'
-        },
-        {
-            id: 1,
-            year: 1952,
-            white: 'Mikhail Tal',
-            black: 'Hecht',
-            result: '1-0'
-        },
-        {
-            id: 2,
-            year: 1953,
-            white: 'Larsen',
-            black: 'Mikhail Tal',
-            result: '0-1'
-        },
-        {
-            id: 1,
-            year: 1952,
-            white: 'Mikhail Tal',
-            black: 'Miller',
-            result: '1-0'
-        },
-        {
-            id: 2,
-            year: 1953,
-            white: 'Karpov',
-            black: 'Mikhail Tal',
-            result: '0-1'
-        }
-    ];
+    gameListService.getGameList().then(function (games) {
+        $scope.games = games;
+    });
+
 });
 
 angular.module('PlayLikeTal.Controllers')
@@ -2182,6 +2127,49 @@ angular.module('PlayLikeTal.Controllers')
 
 });
 
+angular.module('PlayLikeTal.Filters')
+
+/**
+ * Translate an ECO code into an ECO name.
+ * 'B37' -> Sicilian, Accelerated Fianchetto
+ */
+.filter('eco', function (ECO) {
+    return function (code) {
+        if (!code) {
+            return '';
+        }
+        
+        var upper = code.toUpperCase(),
+            ecoInfo = ECO[upper];
+
+        if (ecoInfo) {
+            return ecoInfo.name;
+        }
+
+        return '';
+    };
+});
+
+angular.module('PlayLikeTal.Filters')
+
+/**
+ * Translate an ECO code into an ECO name.
+ * 'B37' -> Sicilian, Accelerated Fianchetto
+ */
+.filter('event', function () {
+    return function (eventName) {
+        if (!eventName || !angular.isString(eventName)) {
+            return '';
+        }
+
+        if (eventName === '?') {
+            return 'Unknown Event';
+        }
+
+        return eventName;
+    };
+});
+
 /**
  * Wrapper for chessboardjs
  */
@@ -2196,6 +2184,34 @@ angular.module('PlayLikeTal.Services')
 angular.module('PlayLikeTal.Services')
 .factory('ChessLogic', function ($window) {
     return $window.Chess;
+});
+
+angular.module('PlayLikeTal.Services')
+.service('gameListService', function ($http, $log, $q) {
+
+    this.games = [];
+
+    /**
+     * Return a promise containing the games.
+     */
+    this.getGameList = function getGameList() {
+        // Once the games list has been set, don't keep doing HTTP calls.
+        if (this.games.length) {
+            return $q.when(this.games);
+        }
+
+        // ???
+        return $http.get('./build/meta.js').then(function success(response) {
+            angular.forEach(response.data, function (game) {
+                this.games.push(game);
+            }.bind(this));
+            return this.games;
+        }.bind(this), function error(response) {
+            $log.error(response);
+        });
+
+    };
+
 });
 
 angular.module('PlayLikeTal.Services')
@@ -2315,7 +2331,6 @@ angular.module('PlayLikeTal.Directives')
             boardId: '@'
         },
         controller: function ($scope) {
-            $scope.chessboard = null;
             $scope.logic = null;
             $scope.playerColor = null;
 
@@ -2325,6 +2340,8 @@ angular.module('PlayLikeTal.Directives')
                 source: '',
                 target: ''
             };
+
+            $scope.previousComputerMove = null;
 
             // Track if a hint is being shown. If a hint is shown, the mouseover
             // behavior is different. Don't highlight other legal moves on mouseover if
@@ -2429,14 +2446,16 @@ angular.module('PlayLikeTal.Directives')
             /**
              * Highlight the square the user has tapped.
              */
-            $scope.highlightSquare = function highlightSquare(square) {
+            $scope.highlightSquare = function highlightSquare(square, cssClass) {
                 var selector = ['#', $scope.boardId, ' .square-', square].join('');
-                $(selector).addClass('mobile-highlight-square');
+                cssClass = cssClass || 'mobile-highlight-square';
+                $(selector).addClass(cssClass);
             };
 
-            $scope.unhighlightSquare = function unhighlightSquare(square) {
+            $scope.unhighlightSquare = function unhighlightSquare(square, cssClass) {
                 var selector = ['#', $scope.boardId, ' .square-', square].join('');
-                $(selector).removeClass('mobile-highlight-square');
+                cssClass = cssClass || 'mobile-highlight-square';
+                $(selector).removeClass(cssClass);
             };
 
             /**
@@ -2451,14 +2470,27 @@ angular.module('PlayLikeTal.Directives')
              * Execute the next move.
              */
             $scope.doNextMove = function doNextMove() {
-                var move = gameTrackerService.getNextMove(),
-                    computerMovesNext = !gameTrackerService.isPlayerMove();
+                if ($scope.previousComputerMove) {
+                    $scope.unhighlightSquare($scope.previousComputerMove.to, 'computer-highlight-square');
+                    $scope.unhighlightSquare($scope.previousComputerMove.from, 'computer-highlight-square');
+                }
 
-                $scope.logic.move(move);
+                var move = gameTrackerService.getNextMove(),
+                    computerMovesNext = !gameTrackerService.isPlayerMove(),
+                    executedMove;
+
+                executedMove = $scope.logic.move(move);
                 $scope.updatePosition();
 
                 if (computerMovesNext) {
                     $timeout($scope.doNextMove, 500);
+                }
+
+                // Computer just moved, so indicate the to/from squares the computer moved.
+                else {
+                    $scope.highlightSquare(executedMove.to, 'computer-highlight-square');
+                    $scope.highlightSquare(executedMove.from, 'computer-highlight-square');
+                    $scope.previousComputerMove = executedMove;
                 }
 
                 // If the user did a hint and then showed the move,
@@ -2646,6 +2678,7 @@ angular.module('PlayLikeTal.Directives')
                     onMouseoutSquare: onMouseoutSquare,
                     onTapSquare: onTapSquare
                 });
+
                 $scope.logic = new ChessLogic();
 
                 // Computer will make first move.
@@ -2661,11 +2694,14 @@ angular.module('PlayLikeTal.Directives')
 
             width = Math.floor(width);
 
-            // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
-            var div = elem.find('#board-container');
-            div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');
-            scope.initGame();
-            window.showHint = scope.showHint;
+            // There was an issue where the board was not loading again on a route change.
+            // I think this was because I'm doing things in a nasty way.
+            // Wrapping this bit in a timeout seems to solve the problem.
+            $timeout(function () {
+                var div = elem.find('#board-container');
+                div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');
+                scope.initGame();
+            });
         },
         template: $templateCache.get('directives/chessboard/chessboard.html')
     };

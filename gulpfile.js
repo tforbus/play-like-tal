@@ -71,11 +71,15 @@ gulp.task('clean', function (cb) {
 gulp.task('scripts', function () {
     // Gulp kept appending to app-build.js instead of creating new.
     // What am I missing? I didn't have this problem before.
-    return gulp
+    gulp
         .src(paths.app)
         .pipe(concat('app.js'))
         //.pipe(ngmin())
         //.pipe(uglify({mangle: false}))
+        .pipe(gulp.dest('./app/build/'));
+
+    gulp
+        .src('./database/meta.js')
         .pipe(gulp.dest('./app/build/'));
 });
 

@@ -7,7 +7,6 @@ angular.module('PlayLikeTal.Directives')
             boardId: '@'
         },
         controller: function ($scope) {
-            $scope.chessboard = null;
             $scope.logic = null;
             $scope.playerColor = null;
 
@@ -17,6 +16,8 @@ angular.module('PlayLikeTal.Directives')
                 source: '',
                 target: ''
             };
+
+            $scope.previousComputerMove = null;
 
             // Track if a hint is being shown. If a hint is shown, the mouseover
             // behavior is different. Don't highlight other legal moves on mouseover if
@@ -121,14 +122,16 @@ angular.module('PlayLikeTal.Directives')
             /**
              * Highlight the square the user has tapped.
              */
-            $scope.highlightSquare = function highlightSquare(square) {
+            $scope.highlightSquare = function highlightSquare(square, cssClass) {
                 var selector = ['#', $scope.boardId, ' .square-', square].join('');
-                $(selector).addClass('mobile-highlight-square');
+                cssClass = cssClass || 'mobile-highlight-square';
+                $(selector).addClass(cssClass);
             };
 
-            $scope.unhighlightSquare = function unhighlightSquare(square) {
+            $scope.unhighlightSquare = function unhighlightSquare(square, cssClass) {
                 var selector = ['#', $scope.boardId, ' .square-', square].join('');
-                $(selector).removeClass('mobile-highlight-square');
+                cssClass = cssClass || 'mobile-highlight-square';
+                $(selector).removeClass(cssClass);
             };
 
             /**
@@ -143,14 +146,27 @@ angular.module('PlayLikeTal.Directives')
              * Execute the next move.
              */
             $scope.doNextMove = function doNextMove() {
-                var move = gameTrackerService.getNextMove(),
-                    computerMovesNext = !gameTrackerService.isPlayerMove();
+                if ($scope.previousComputerMove) {
+                    $scope.unhighlightSquare($scope.previousComputerMove.to, 'computer-highlight-square');
+                    $scope.unhighlightSquare($scope.previousComputerMove.from, 'computer-highlight-square');
+                }
 
-                $scope.logic.move(move);
+                var move = gameTrackerService.getNextMove(),
+                    computerMovesNext = !gameTrackerService.isPlayerMove(),
+                    executedMove;
+
+                executedMove = $scope.logic.move(move);
                 $scope.updatePosition();
 
                 if (computerMovesNext) {
                     $timeout($scope.doNextMove, 500);
+                }
+
+                // Computer just moved, so indicate the to/from squares the computer moved.
+                else {
+                    $scope.highlightSquare(executedMove.to, 'computer-highlight-square');
+                    $scope.highlightSquare(executedMove.from, 'computer-highlight-square');
+                    $scope.previousComputerMove = executedMove;
                 }
 
                 // If the user did a hint and then showed the move,
@@ -338,6 +354,7 @@ angular.module('PlayLikeTal.Directives')
                     onMouseoutSquare: onMouseoutSquare,
                     onTapSquare: onTapSquare
                 });
+
                 $scope.logic = new ChessLogic();
 
                 // Computer will make first move.
@@ -353,11 +370,14 @@ angular.module('PlayLikeTal.Directives')
 
             width = Math.floor(width);
 
-            // TODO: find a nicer way to do this. Ideally I wouldn't be setting HTML here.
-            var div = elem.find('#board-container');
-            div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');
-            scope.initGame();
-            window.showHint = scope.showHint;
+            // There was an issue where the board was not loading again on a route change.
+            // I think this was because I'm doing things in a nasty way.
+            // Wrapping this bit in a timeout seems to solve the problem.
+            $timeout(function () {
+                var div = elem.find('#board-container');
+                div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');
+                scope.initGame();
+            });
         },
         template: $templateCache.get('directives/chessboard/chessboard.html')
     };

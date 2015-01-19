@@ -1,5 +1,6 @@
-angular.module('PlayLikeTal.Controllers', []);
 angular.module('PlayLikeTal.Constants', []);
+angular.module('PlayLikeTal.Filters', []);
+angular.module('PlayLikeTal.Controllers', []);
 angular.module('PlayLikeTal.Directives', []);
 angular.module('PlayLikeTal.Services', []);
 angular.module('templates', []);
@@ -10,14 +11,15 @@ angular
     'ngMaterial',
     'templates',
     'PlayLikeTal.Constants',
+    'PlayLikeTal.Filters',
     'PlayLikeTal.Controllers',
     'PlayLikeTal.Directives',
-    'PlayLikeTal.Services',
+    'PlayLikeTal.Services'
 ])
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'templates/introduction.html'
+        templateUrl: 'templates/introduction.html',
     })
     .when('/game/:id', {
         templateUrl: 'templates/game.html',

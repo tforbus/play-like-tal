@@ -1,6 +1,14 @@
 <md-content layout-fill>
     <section layout='column' layout-align='center center'>
-        <h2>{{gameInformation.white}} vs {{gameInformation.black}}</h2>
+        <h2 style='margin:0;'>
+            {{gameInformation.white}} vs {{gameInformation.black}}
+        </h2>
+
+        <div layout='row' layout-align='center center'>
+            {{gameInformation.event | event}} {{gameInformation.date}}
+            &mdash;&nbsp;
+            <strong>{{gameInformation.eco}}</strong>&nbsp;{{gameInformation.eco | eco}}</p>
+        </div>
     </section>
 
     <section layout='column' layout-align='center center' layout-fill>
