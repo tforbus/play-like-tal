@@ -1,1 +1,1 @@
-{"event":"1956.??.??","site":"Leningrad (RUS)","date":1956,"round":"11","white":"Mikhail Tal","black":"Georgy Lisitsin","result":{"white":"1","black":"0"},"eco":"B71","moves":[["28\"]","[EventDate","\""],["??.??\"]","[Round","\"11\"]","[Result","\""]],"id":144}
+{"eventName":"USSR Championship","site":"Leningrad (RUS)","date":1956,"round":"11","white":"Mikhail Tal","black":"Georgy Lisitsin","result":{"white":"1","black":"0"},"eco":"B71","moves":[["28\"]","[EventDate","\""],["??.??\"]","[Round","\"11\"]","[Result","\""]],"id":144}

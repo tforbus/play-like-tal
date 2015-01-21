@@ -1,1 +1,1 @@
-{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"10","white":"Mikhail Tal","black":"Yuri Nikolaevich Sakharov","result":{"white":"1","black":"0"},"eco":"B97","moves":[["10\"]","[EventDate","\""],["??.??\"]","[Round","\"10\"]","[Result","\""]],"id":436}
+{"eventName":"USSR Championship 1964/65","site":"Kiev (RUS)","date":1965,"round":"10","white":"Mikhail Tal","black":"Yuri Nikolaevich Sakharov","result":{"white":"1","black":"0"},"eco":"B97","moves":[["10\"]","[EventDate","\""],["??.??\"]","[Round","\"10\"]","[Result","\""]],"id":436}

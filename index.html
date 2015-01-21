@@ -27,9 +27,9 @@
             md-component-id='left'
             md-is-locked-open='$media("gt-sm")' >
             <md-toolbar>
-                <div class='md-toolbar-tools' layout='row' ng-controller='GameDatabaseToolbarCtrl as tbCtrl'>
+                <div class='md-toolbar-tools' layout='row' ng-controller='GameDatabaseToolbarCtrl'>
                     <h1>Play Like Tal</h1>
-                    <md-button  aria-label='Toggle Filters' ng-click='tbCtrl.showFilters($event)'>
+                    <md-button  aria-label='Toggle Filters' ng-click='showFilters($event)'>
                         <i class='fa fa-filter'></i>
                     </md-button>
                 </div>
@@ -54,7 +54,8 @@
                                         <strong>{{::getOpponent(game)}}</strong>
                                         <span ng-if='!isTalWhite(game)'>vs</span>
                                     </h3>
-                                    <p>{{::game.year}} // {{::game.event | event}}</br>A00 Uncommon opening</p>
+                                    <p>{{::game.date}} {{::game.eventName}}</br>
+                                    {{::game.eco}} | {{::game.eco | eco}}</p>
                                 </div>
                             </div>
                         </md-item-content>

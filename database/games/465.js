@@ -1,1 +1,1 @@
-{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"4","white":"Alberic O'Kelly de Galway","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B64","moves":[["27\"]","[Round","\"4\"]","[Result","\""]],"id":465}
+{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"4","white":"Alberic O'Kelly de Galway","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B64","moves":[["27\"]","[Round","\"4\"]","[Result","\""]],"id":465}

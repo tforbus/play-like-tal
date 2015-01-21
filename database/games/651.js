@@ -1,1 +1,1 @@
-{"event":"1972.11.17","site":"Baku AZE","date":1972,"round":"7","white":"Lev Alburt","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A45","moves":[["26\"]","[EventDate","\""],["17\"]","[Round","\"7\"]","[Result","\""]],"id":651}
+{"eventName":"USSR Championship","site":"Baku AZE","date":1972,"round":"7","white":"Lev Alburt","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A45","moves":[["26\"]","[EventDate","\""],["17\"]","[Round","\"7\"]","[Result","\""]],"id":651}

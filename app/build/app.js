@@ -27,10 +27,10 @@ angular
         controller: 'GameViewerCtrl',
         resolve: {
             game: function (gameTrackerService, $q, $route, $routeParams) {
-                var deferred = $q.defer();
-
-                var id = $route.current.params.id,
+                var deferred = $q.defer(),
+                    id = $route.current.params.id,
                     currentGame;
+
                 gameTrackerService.loadGame(id).then(function () {
                     currentGame = gameTrackerService.getCurrentGame();
                     deferred.resolve(currentGame);
@@ -2052,6 +2052,24 @@ angular.module('PlayLikeTal.Constants')
   }
 });
 
+angular.module('PlayLikeTal.Directives')
+.directive('lazyLoad', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            $(elem).bind('scroll', function () {
+                var el = $(this),
+                    offset = 200;
+
+                // Add some offset to keep the list from getting choppy at the bottom.
+                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
+                    scope.$apply(attrs.lazyLoad);
+                }
+            });
+        }
+    };
+});
+
 angular.module('PlayLikeTal.Controllers')
 .controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
 
@@ -2169,24 +2187,6 @@ angular.module('PlayLikeTal.Controllers')
         $mdSidenav('left').toggle();
     };
 
-});
-
-angular.module('PlayLikeTal.Directives')
-.directive('lazyLoad', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-            $(elem).bind('scroll', function () {
-                var el = $(this),
-                    offset = 200;
-
-                // Add some offset to keep the list from getting choppy at the bottom.
-                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
-                    scope.$apply(attrs.lazyLoad);
-                }
-            });
-        }
-    };
 });
 
 angular.module('PlayLikeTal.Filters')

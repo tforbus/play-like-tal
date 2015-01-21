@@ -1,1 +1,1 @@
-{"event":"1976.11.27","site":"Moscow URS","date":1976,"round":"13","white":"Mikhail Tal","black":"Vitaly Tseshkovsky","result":{"white":"1","black":"0"},"eco":"A34","moves":[["27\"]","[Round","\"13\"]","[Result","\""]],"id":800}
+{"eventName":"USSR Championship","site":"Moscow URS","date":1976,"round":"13","white":"Mikhail Tal","black":"Vitaly Tseshkovsky","result":{"white":"1","black":"0"},"eco":"A34","moves":[["27\"]","[Round","\"13\"]","[Result","\""]],"id":800}

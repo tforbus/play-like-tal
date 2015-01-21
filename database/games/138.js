@@ -1,1 +1,1 @@
-{"event":"1956.??.??","site":"Leningrad (RUS)","date":1956,"round":"3","white":"Mikhail Tal","black":"Vladimir Simagin","result":{"white":"1","black":"0"},"eco":"B06","moves":[["14\"]","[EventDate","\""],["??.??\"]","[Round","\"3\"]","[Result","\""]],"id":138}
+{"eventName":"USSR Championship","site":"Leningrad (RUS)","date":1956,"round":"3","white":"Mikhail Tal","black":"Vladimir Simagin","result":{"white":"1","black":"0"},"eco":"B06","moves":[["14\"]","[EventDate","\""],["??.??\"]","[Round","\"3\"]","[Result","\""]],"id":138}

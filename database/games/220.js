@@ -1,1 +1,1 @@
-{"event":"1959.??.??","site":"Tbilisi (RUS)","date":1959,"round":"12","white":"Mikhail Tal","black":"David Bronstein","result":{"white":"1","black":"0"},"eco":"C96","moves":[["28\"]","[EventDate","\""],["??.??\"]","[Round","\"12\"]","[Result","\""]],"id":220}
+{"eventName":"USSR Championship","site":"Tbilisi (RUS)","date":1959,"round":"12","white":"Mikhail Tal","black":"David Bronstein","result":{"white":"1","black":"0"},"eco":"C96","moves":[["28\"]","[EventDate","\""],["??.??\"]","[Round","\"12\"]","[Result","\""]],"id":220}

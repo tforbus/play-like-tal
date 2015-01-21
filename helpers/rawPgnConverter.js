@@ -5,7 +5,7 @@ module.exports = {
     // Regular expressions
     re: {
         newLine:        /[\n|\r|\r\n]{1,}/gm,
-        event:          /\[event/i,
+        eventName:      /\[event(?!\s*date)/i,
         site:           /\[site/i,
         date:           /\[date/i,
         round:          /\[round/i,
@@ -105,8 +105,8 @@ module.exports = {
         allLines.forEach(function (line) {
             var quoted = this.getTextBetweenDoubleQuotes(line);
 
-            if (this.re.event.test(line)) {
-                pgnObject.event = quoted;
+            if (this.re.eventName.test(line)) {
+                pgnObject.eventName = quoted;
             }
 
             else if (this.re.site.test(line)) {

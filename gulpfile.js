@@ -31,7 +31,7 @@ gulp.task('games-database', function () {
             pgns = [];
 
         // convert raw pgn files into a pgn json object
-        rawPgns.forEach(function (pgn, index) {
+        rawPgns.forEach(function (pgn) {
             pgns.push(pgnConverter.constructPgnObject(pgn));
         });
 
@@ -90,7 +90,7 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('./app/build/'));
 
     gulp
-        .src('./database/meta.js')
+        .src(['./database/meta.js'])
         .pipe(gulp.dest('./app/build/'));
 });
 

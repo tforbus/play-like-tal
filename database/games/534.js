@@ -1,1 +1,1 @@
-{"event":"?","site":"03","date":1968,"round":"3","white":"Mikhail Tal","black":"Kick Langeweg","result":{"white":"1","black":"0"},"eco":"C82","moves":[["12\"]","[EventDate","\"?\"]","[Round","\"3\"]","[Result","\""]],"id":534}
+{"eventName":"Wijk aan Zee","site":"03","date":1968,"round":"3","white":"Mikhail Tal","black":"Kick Langeweg","result":{"white":"1","black":"0"},"eco":"C82","moves":[["12\"]","[EventDate","\"?\"]","[Round","\"3\"]","[Result","\""]],"id":534}

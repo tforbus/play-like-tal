@@ -1,1 +1,1 @@
-{"event":"?","site":"14","date":1970,"round":"14","white":"Nikola Spiridonov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E94","moves":[["03\"]","[EventDate","\"?\"]","[Round","\"14\"]","[Result","\""]],"id":560}
+{"eventName":"Tbilisi","site":"14","date":1970,"round":"14","white":"Nikola Spiridonov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E94","moves":[["03\"]","[EventDate","\"?\"]","[Round","\"14\"]","[Result","\""]],"id":560}

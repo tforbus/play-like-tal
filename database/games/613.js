@@ -1,1 +1,1 @@
-{"event":"1971.09.15","site":"Leningrad URS","date":1971,"round":"5","white":"Yuri V Nikolaevsky","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A10","moves":[["20\"]","[EventDate","\""],["15\"]","[Round","\"5\"]","[Result","\""]],"id":613}
+{"eventName":"USSR Championship","site":"Leningrad URS","date":1971,"round":"5","white":"Yuri V Nikolaevsky","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A10","moves":[["20\"]","[EventDate","\""],["15\"]","[Round","\"5\"]","[Result","\""]],"id":613}

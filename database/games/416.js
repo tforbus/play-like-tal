@@ -1,1 +1,1 @@
-{"event":"1963.12.30","site":"Hastings ENG","date":1964,"round":"4","white":"Mikhail Tal","black":"Bjorn Brinck-Claussen","result":{"white":"1","black":"0"},"eco":"C76","moves":[["02\"]","[EventDate","\""],["30\"]","[Round","\"4\"]","[Result","\""]],"id":416}
+{"eventName":"Hastings 1963/64","site":"Hastings ENG","date":1964,"round":"4","white":"Mikhail Tal","black":"Bjorn Brinck-Claussen","result":{"white":"1","black":"0"},"eco":"C76","moves":[["02\"]","[EventDate","\""],["30\"]","[Round","\"4\"]","[Result","\""]],"id":416}

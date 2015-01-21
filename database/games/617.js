@@ -1,1 +1,1 @@
-{"event":"1971.11.24","site":"Moscow URS","date":1971,"round":"17","white":"Mikhail Tal","black":"Bruno Parma","result":{"white":"1","black":"0"},"eco":"B50","moves":[["18\"]","[EventDate","\""],["24\"]","[Round","\"17\"]","[Result","\""]],"id":617}
+{"eventName":"Moscow","site":"Moscow URS","date":1971,"round":"17","white":"Mikhail Tal","black":"Bruno Parma","result":{"white":"1","black":"0"},"eco":"B50","moves":[["18\"]","[EventDate","\""],["24\"]","[Round","\"17\"]","[Result","\""]],"id":617}

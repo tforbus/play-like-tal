@@ -120,7 +120,7 @@ module.exports = {
         info.white = pgn.white;
         info.result = pgn.result.white + '-' + pgn.result.black;
         info.eco = pgn.eco;
-        info.event = pgn.event;
+        info.eventName = pgn.eventName;
         info.round = pgn.round;
         info.date = pgn.date;
 

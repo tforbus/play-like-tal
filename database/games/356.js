@@ -1,1 +1,1 @@
-{"event":"1963.10.29","site":"Moscow RUS","date":1963,"round":"12","white":"Mikhail Tal","black":"Nikola Padevsky","result":{"white":"1","black":"0"},"eco":"C16","moves":[["13\"]","[EventDate","\""],["29\"]","[Round","\"12\"]","[Result","\""]],"id":356}
+{"eventName":"Moscow","site":"Moscow RUS","date":1963,"round":"12","white":"Mikhail Tal","black":"Nikola Padevsky","result":{"white":"1","black":"0"},"eco":"C16","moves":[["13\"]","[EventDate","\""],["29\"]","[Round","\"12\"]","[Result","\""]],"id":356}

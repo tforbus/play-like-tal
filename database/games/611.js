@@ -1,1 +1,1 @@
-{"event":"?","site":"3","date":1971,"round":"3","white":"Mikhail Tal","black":"Heikki Westerinen","result":{"white":"1","black":"0"},"eco":"E61","moves":[["23\"]","[EventDate","\"?\"]","[Round","\"3\"]","[Result","\""]],"id":611}
+{"eventName":"Tallinn","site":"3","date":1971,"round":"3","white":"Mikhail Tal","black":"Heikki Westerinen","result":{"white":"1","black":"0"},"eco":"E61","moves":[["23\"]","[EventDate","\"?\"]","[Round","\"3\"]","[Result","\""]],"id":611}

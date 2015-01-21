@@ -1,1 +1,1 @@
-{"event":"?","site":"04","date":1966,"round":"4","white":"Mikhail Tal","black":"Bjorn Brinck-Claussen","result":{"white":"1","black":"0"},"eco":"D32","moves":[["07\"]","[EventDate","\"?\"]","[Round","\"4\"]","[Result","\""]],"id":487}
+{"eventName":"Havana","site":"04","date":1966,"round":"4","white":"Mikhail Tal","black":"Bjorn Brinck-Claussen","result":{"white":"1","black":"0"},"eco":"D32","moves":[["07\"]","[EventDate","\"?\"]","[Round","\"4\"]","[Result","\""]],"id":487}

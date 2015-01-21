@@ -1,5 +1,5 @@
 function Pgn() {
-    this.event = null;
+    this.eventName = null;
     this.site = null;
     this.date = null;
     this.round = null;

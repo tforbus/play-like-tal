@@ -1,1 +1,1 @@
-{"event":"1956.??.??","site":"Leningrad (RUS)","date":1956,"round":"2","white":"Abram Khasin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B88","moves":[["12\"]","[EventDate","\""],["??.??\"]","[Round","\"2\"]","[Result","\""]],"id":134}
+{"eventName":"USSR Championship","site":"Leningrad (RUS)","date":1956,"round":"2","white":"Abram Khasin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B88","moves":[["12\"]","[EventDate","\""],["??.??\"]","[Round","\"2\"]","[Result","\""]],"id":134}

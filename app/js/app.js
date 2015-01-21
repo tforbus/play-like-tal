@@ -27,10 +27,10 @@ angular
         controller: 'GameViewerCtrl',
         resolve: {
             game: function (gameTrackerService, $q, $route, $routeParams) {
-                var deferred = $q.defer();
-
-                var id = $route.current.params.id,
+                var deferred = $q.defer(),
+                    id = $route.current.params.id,
                     currentGame;
+
                 gameTrackerService.loadGame(id).then(function () {
                     currentGame = gameTrackerService.getCurrentGame();
                     deferred.resolve(currentGame);

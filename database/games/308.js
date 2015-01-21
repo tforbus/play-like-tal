@@ -1,1 +1,1 @@
-{"event":"?","site":"Ch World , Moscow (Russia) (17)","date":1961,"round":"17","white":"Mikhail Botvinnik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E80","moves":[["28\"]","[EventDate","\"?\"]","[Round","\"17\"]","[Result","\""]],"id":308}
+{"eventName":"match","site":"Ch World , Moscow (Russia) (17)","date":1961,"round":"17","white":"Mikhail Botvinnik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E80","moves":[["28\"]","[EventDate","\"?\"]","[Round","\"17\"]","[Result","\""]],"id":308}

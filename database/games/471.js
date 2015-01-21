@@ -1,1 +1,1 @@
-{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"1","white":"Mikhail Tal","black":"Robert Wade","result":{"white":"1","black":"0"},"eco":"B77","moves":[["27\"]","[EventDate","\""],["27\"]","[Round","\"1\"]","[Result","\""]],"id":471}
+{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"1","white":"Mikhail Tal","black":"Robert Wade","result":{"white":"1","black":"0"},"eco":"B77","moves":[["27\"]","[EventDate","\""],["27\"]","[Round","\"1\"]","[Result","\""]],"id":471}

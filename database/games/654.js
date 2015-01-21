@@ -1,1 +1,1 @@
-{"event":"1972.11.17","site":"Baku AZE","date":1972,"round":"13","white":"Yuri Balashov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E08","moves":[["17\"]","[Round","\"13\"]","[Result","\""]],"id":654}
+{"eventName":"USSR Championship","site":"Baku AZE","date":1972,"round":"13","white":"Yuri Balashov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E08","moves":[["17\"]","[Round","\"13\"]","[Result","\""]],"id":654}
