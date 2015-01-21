@@ -2,6 +2,34 @@ angular.module('PlayLikeTal.Controllers')
 .controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
 
     $scope.limit = 20;
+    $scope.gamesToShow = [];
+
+    $scope.slice = {
+        start: 0,
+        end: $scope.limit
+    };
+
+    $scope.loadMore = function loadMore() {
+        if (!$scope.gamesToShow.length) {
+            return;
+        }
+
+        $scope.slice.start += $scope.limit;
+        $scope.slice.end += $scope.limit;
+
+        if ($scope.slice.start > $scope.games.length) {
+            return false;
+        }
+
+        if ($scope.slice.end > $scope.games.length) {
+            $scope.slice.end = $scope.games.length;
+        }
+
+        var slice = $scope.games.slice($scope.slice.start, $scope.slice.end);
+        angular.forEach(slice, function (game) {
+            $scope.gamesToShow.push(game);
+        });
+    };
 
     /**
      * Determine if Tal is white.
@@ -38,6 +66,7 @@ angular.module('PlayLikeTal.Controllers')
 
     gameListService.getGameList().then(function (games) {
         $scope.games = games;
+        $scope.gamesToShow = $scope.games.slice(0, 20);
     });
 
 });

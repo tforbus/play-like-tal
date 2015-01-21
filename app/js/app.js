@@ -7,6 +7,7 @@ angular.module('templates', []);
 
 angular
 .module('PlayLikeTal', [
+    'infinite-scroll',
     'ngRoute',
     'ngMaterial',
     'templates',
@@ -26,8 +27,7 @@ angular
         resolve: {
             game: function (gameTrackerService, $routeParams, $route) {
                 var id = $route.current.params.id;
-                //gameTrackerService.loadGame(id);
-                return 1;
+                gameTrackerService.loadGame(id);
             }
         }
     });

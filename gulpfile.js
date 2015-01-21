@@ -121,6 +121,9 @@ gulp.task('templates', function () {
         .pipe(gulp.dest('./app/build/'));
 });
 
+gulp.task('build', ['clean', 'lib', 'scripts', 'templates'], function () {
+});
+
 gulp.task('watch', function () {
     gulp.watch([paths.templates, paths.app], [
         'clean',

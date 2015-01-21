@@ -13,7 +13,7 @@ angular.module('PlayLikeTal.Services')
         }
 
         // ???
-        return $http.get('./build/meta.js').then(function success(response) {
+        return $http.get('./app/build/meta.js').then(function success(response) {
             angular.forEach(response.data, function (game) {
                 this.games.push(game);
             }.bind(this));
