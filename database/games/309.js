@@ -1,1 +1,1 @@
-{"event":"?","site":"Ch World , Moscow (Russia) (17)","date":1961,"round":"17","white":"Mikhail Botvinnik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E80","moves":[["28\"]","[EventDate","\"?\"]","[Round","\"17\"]","[Result","\""]]}
+{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"16","white":"Milan Germek","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A61","moves":[["28\"]","[EventDate","\""],["03\"]","[Round","\"16\"]","[Result","\""]],"id":309}

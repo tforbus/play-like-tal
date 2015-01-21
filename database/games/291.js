@@ -1,1 +1,1 @@
-{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"19","white":"Mikhail Tal","black":"Miguel Najdorf","result":{"white":"1","black":"0"},"eco":"B92","moves":[["03\"]","[EventDate","\""],["03\"]","[Round","\"19\"]","[Result","\""]]}
+{"event":"1960.??.??","site":"Baku (RUS)","date":1961,"round":"20","white":"Mikhail Tal","black":"Boris T Vladimirov","result":{"white":"1","black":"0"},"eco":"D01","moves":[["16\"]","[EventDate","\""],["??.??\"]","[Round","\"20\"]","[Result","\""]],"id":291}

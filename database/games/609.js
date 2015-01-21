@@ -1,1 +1,1 @@
-{"event":"1971.11.24","site":"Moscow URS","date":1971,"round":"4","white":"Mikhail Tal","black":"Robert Eugene Byrne","result":{"white":"1","black":"0"},"eco":"B30","moves":[["28\"]","[EventDate","\""],["24\"]","[Round","\"4\"]","[Result","\""]]}
+{"event":"1971.11.24","site":"Moscow URS","date":1971,"round":"4","white":"Mikhail Tal","black":"Robert Eugene Byrne","result":{"white":"1","black":"0"},"eco":"B30","moves":[["28\"]","[EventDate","\""],["24\"]","[Round","\"4\"]","[Result","\""]],"id":609}

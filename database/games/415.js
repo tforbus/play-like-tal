@@ -1,1 +1,1 @@
-{"event":"?","site":"Birmingham","date":1964,"round":"?","white":"Mikhail Tal","black":"Brian Dudley","result":{"white":"1","black":"0"},"eco":"C89","moves":[["11\"]","[EventDate","\"?\"]","[Round","\"?\"]","[Result","\""]]}
+{"event":"?","site":"10","date":1964,"round":"10","white":"Freysteinn Thorbergsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E77","moves":[["26\"]","[EventDate","\"?\"]","[Round","\"10\"]","[Result","\""]],"id":415}

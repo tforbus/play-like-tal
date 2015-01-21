@@ -30,8 +30,19 @@ gulp.task('games-database', function () {
         var writePath = path.normalize(path.join(__dirname, 'database', 'games'));
             pgns = [];
 
-        rawPgns.forEach(function (pgn) {
+        // convert raw pgn files into a pgn json object
+        rawPgns.forEach(function (pgn, index) {
             pgns.push(pgnConverter.constructPgnObject(pgn));
+        });
+
+        // sort chronologically
+        pgns.sort(function (a, b) {
+            return a.date - b.date;
+        });
+
+        // assign ids after sorting
+        pgns.forEach(function (pgn, index) {
+            pgn.id = index + 1;
         });
 
         return pgnWriter.saveWinningGames(writePath, pgns);

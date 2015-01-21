@@ -1,1 +1,1 @@
-{"event":"1963.10.29","site":"Moscow RUS","date":1963,"round":"8","white":"Mikhail Tal","black":"Eleazar Jimenez Zerquera","result":{"white":"1","black":"0"},"eco":"C79","moves":[["08\"]","[EventDate","\""],["29\"]","[Round","\"8\"]","[Result","\""]]}
+{"event":"1963.10.29","site":"Moscow RUS","date":1963,"round":"4","white":"Mikhail Tal","black":"Vladimir Simagin","result":{"white":"1","black":"0"},"eco":"B15","moves":[["02\"]","[EventDate","\""],["29\"]","[Round","\"4\"]","[Result","\""]],"id":361}

@@ -1,1 +1,1 @@
-{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"15","white":"Mikhail Tal","black":"Arthur Bisguier","result":{"white":"1","black":"0"},"eco":"B10","moves":[["25\"]","[EventDate","\""],["03\"]","[Round","\"15\"]","[Result","\""]]}
+{"event":"1960.??.??","site":"Baku (RUS)","date":1961,"round":"3","white":"Vladislav Shiyanovsky","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B94","moves":[["19\"]","[EventDate","\""],["??.??\"]","[Round","\"3\"]","[Result","\""]],"id":301}

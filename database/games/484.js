@@ -1,1 +1,1 @@
-{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"6","white":"Mikhail Tal","black":"Augusto Menvielle Laccourreye","result":{"white":"1","black":"0"},"eco":"C41","moves":[["27\"]","[Round","\"6\"]","[Result","\""]]}
+{"event":"?","site":"07","date":1966,"round":"7","white":"Mikhail Tal","black":"Augusto Menvielle Laccourreye","result":{"white":"1","black":"0"},"eco":"A30","moves":[["03\"]","[EventDate","\"?\"]","[Round","\"7\"]","[Result","\""]],"id":484}

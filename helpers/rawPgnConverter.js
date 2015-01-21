@@ -94,9 +94,10 @@ module.exports = {
     /**
      * Constructs a PGN object from a raw PGN text string.
      * @param {string} rawPgn - a raw pgn
+     * @param {number} id - optional, id of the game
      * @return {object}
      */
-    constructPgnObject: function constructPgnObject(rawPgn) {
+    constructPgnObject: function constructPgnObject(rawPgn, id) {
         var pgnObject = new Pgn(),
             allLines = this.splitRawPgnIntoLines(rawPgn),
             turns = this.getMoves(rawPgn);
@@ -147,21 +148,12 @@ module.exports = {
             // 'd4 Nf6' -> ['d4', 'Nf6']
             eachMove = turn.split(/\s/);
             pgnObject.moves.push(eachMove);
-            /*
-            var movesThisTurn = { white: null, black: null },
-                eachMove;
-
-            if (!turn.length) {
-                return;
-            }
-
-            eachMove = turn.split(/\s/);
-            movesThisTurn.white = eachMove[0];
-            movesThisTurn.black = eachMove[1];
-
-            pgnObject.moves.push(movesThisTurn);
-            */
         });
+
+        // Assign ID for easy lookup
+        if(!isNaN(parseFloat(id))) {
+            pgnObject.id = id;
+        }
 
         return pgnObject;
     }

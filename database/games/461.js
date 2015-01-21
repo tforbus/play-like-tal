@@ -1,1 +1,1 @@
-{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"3","white":"Mikhail Tal","black":"Heinz Lehmann","result":{"white":"1","black":"0"},"eco":"E67","moves":[["29\"]","[EventDate","\""],["27\"]","[Round","\"3\"]","[Result","\""]]}
+{"event":"?","site":"Habana (Cuba)","date":1966,"round":"12","white":"Mikhail Tal","black":"Julio Bolbochan","result":{"white":"1","black":"0"},"eco":"B89","moves":[["17\"]","[EventDate","\"?\"]","[Round","\"12\"]","[Result","\""]],"id":461}

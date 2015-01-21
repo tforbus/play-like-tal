@@ -1,1 +1,1 @@
-{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"6","white":"Mario Bertok","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A79","moves":[["10\"]","[EventDate","\""],["03\"]","[Round","\"6\"]","[Result","\""]]}
+{"event":"1960.??.??","site":"Baku (RUS)","date":1961,"round":"21","white":"Leonid Alexandrovich Shamkovich","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A04","moves":[["19\"]","[EventDate","\""],["??.??\"]","[Round","\"21\"]","[Result","\""]],"id":322}

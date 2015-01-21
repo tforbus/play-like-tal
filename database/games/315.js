@@ -1,1 +1,1 @@
-{"event":"1960.??.??","site":"Baku (RUS)","date":1961,"round":"8","white":"Mikhail Tal","black":"Vladimir Savon","result":{"white":"1","black":"0"},"eco":"E98","moves":[["27\"]","[EventDate","\""],["??.??\"]","[Round","\"8\"]","[Result","\""]]}
+{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"17","white":"Mikhail Tal","black":"Ludek Pachman","result":{"white":"1","black":"0"},"eco":"B12","moves":[["29\"]","[EventDate","\""],["03\"]","[Round","\"17\"]","[Result","\""]],"id":315}

@@ -1,1 +1,1 @@
-{"event":"?","site":"4","date":1964,"round":"4","white":"Mikhail Tal","black":"Svetozar Gligoric","result":{"white":"1","black":"0"},"eco":"C97","moves":[["18\"]","[EventDate","\"?\"]","[Round","\"4\"]","[Result","\""]]}
+{"event":"?","site":"Birmingham","date":1964,"round":"?","white":"Mikhail Tal","black":"Brian Dudley","result":{"white":"1","black":"0"},"eco":"C89","moves":[["11\"]","[EventDate","\"?\"]","[Round","\"?\"]","[Result","\""]],"id":413}

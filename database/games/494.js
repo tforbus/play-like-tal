@@ -1,1 +1,1 @@
-{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"2","white":"Karl Robatsch","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B47","moves":[["28\"]","[EventDate","\""],["27\"]","[Round","\"2\"]","[Result","\""]]}
+{"event":"?","site":"07","date":1966,"round":"7","white":"Mikhail Tal","black":"Ingi Randver Johannsson","result":{"white":"1","black":"0"},"eco":"D46","moves":[["11\"]","[EventDate","\"?\"]","[Round","\"7\"]","[Result","\""]],"id":494}

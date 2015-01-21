@@ -20,14 +20,23 @@ angular
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'templates/introduction.html',
+        templateUrl: 'templates/introduction.html'
     })
     .when('/game/:id', {
         templateUrl: 'templates/game.html',
+        controller: 'GameViewerCtrl',
         resolve: {
-            game: function (gameTrackerService, $routeParams, $route) {
-                var id = $route.current.params.id;
-                gameTrackerService.loadGame(id);
+            game: function (gameTrackerService, $q, $route, $routeParams) {
+                var deferred = $q.defer();
+
+                var id = $route.current.params.id,
+                    currentGame;
+                gameTrackerService.loadGame(id).then(function () {
+                    currentGame = gameTrackerService.getCurrentGame();
+                    deferred.resolve(currentGame);
+                });
+
+                return deferred.promise;
             }
         }
     });

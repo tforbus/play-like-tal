@@ -48,11 +48,17 @@ module.exports = {
      */
     saveWinningGames: function saveWinningGames(dir, pgns) {
         var filepath,
-            filename;
+            filename,
+            id;
 
         return pgns.reduce(function (promise, current, index) {
             return promise.then(function () {
-                filename = this._createGameFileName(index + 1);
+                if (current.id) {
+                    id = current.id;
+                } else {
+                    id = index + 1;
+                }
+                filename = this._createGameFileName(id);
                 filepath = path.normalize(path.join(dir, filename));
                 return this._savePgnObject(filepath, current);
             }.bind(this));

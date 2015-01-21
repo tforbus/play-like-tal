@@ -1,1 +1,1 @@
-{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"7","white":"Alexey Suetin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"C96","moves":[["05\"]","[EventDate","\""],["??.??\"]","[Round","\"7\"]","[Result","\""]]}
+{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"16","white":"Mikhail Tal","black":"Viacheslav Osnos","result":{"white":"1","black":"0"},"eco":"C43","moves":[["20\"]","[EventDate","\""],["??.??\"]","[Round","\"16\"]","[Result","\""]],"id":444}

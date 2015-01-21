@@ -1,1 +1,1 @@
-{"event":"?","site":"10","date":1964,"round":"10","white":"Freysteinn Thorbergsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E77","moves":[["26\"]","[EventDate","\"?\"]","[Round","\"10\"]","[Result","\""]]}
+{"event":"?","site":"9","date":1964,"round":"9","white":"Mikhail Tal","black":"Arinbjorn Gudmundsson","result":{"white":"1","black":"0"},"eco":"C99","moves":[["24\"]","[EventDate","\"?\"]","[Round","\"9\"]","[Result","\""]],"id":417}

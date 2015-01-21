@@ -50,6 +50,15 @@ module.exports = {
                 deferred.reject(new Error(err));
             } else {
                 games = files.filter(this._isGameFile);
+
+                // sort games in ascending order to be safe.
+                games.sort(function (a, b) {
+                    var numA = parseInt(a.split('.')[0], 10),
+                        numB = parseInt(b.split('.')[0], 10);
+
+                    return numA - numB;
+                });
+
                 deferred.resolve(games);
             }
         }.bind(this));
@@ -102,11 +111,11 @@ module.exports = {
      * @param {number} gameId - the id of the game
      * @return {object}
      */
-    _constructListItemFromPgn: function _constructListItemFromPgn(pgn, gameId) {
+    _constructListItemFromPgn: function _constructListItemFromPgn(pgn) {
         pgn = JSON.parse(pgn);
         var info = {};
 
-        info.id = gameId;
+        info.id = pgn.id;
         info.black = pgn.black;
         info.white = pgn.white;
         info.result = pgn.result.white + '-' + pgn.result.black;
@@ -126,8 +135,7 @@ module.exports = {
     _constructGameList: function _constructGameList(games) {
         var items = [];
         games.forEach(function (game, index) {
-            var id = index + 1,
-                info = this._constructListItemFromPgn(game, id);
+            var info = this._constructListItemFromPgn(game);
             items.push(info);
         }.bind(this));
 

@@ -1,1 +1,1 @@
-{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"16","white":"Milan Germek","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A61","moves":[["28\"]","[EventDate","\""],["03\"]","[Round","\"16\"]","[Result","\""]]}
+{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"1","white":"Borislav Ivkov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E92","moves":[["03\"]","[EventDate","\""],["03\"]","[Round","\"1\"]","[Result","\""]],"id":310}

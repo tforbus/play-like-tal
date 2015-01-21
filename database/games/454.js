@@ -1,1 +1,1 @@
-{"event":"1965.11.01","site":"Tbilisi GEO","date":1965,"round":"2","white":"Boris Spassky","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B43","moves":[["03\"]","[EventDate","\""],["01\"]","[Round","\"2\"]","[Result","\""]]}
+{"event":"1964.??.??","site":"Kiev (RUS)","date":1965,"round":"6","white":"Mikhail Tal","black":"Nikolai V Krogius","result":{"white":"1","black":"0"},"eco":"C95","moves":[["03\"]","[EventDate","\""],["??.??\"]","[Round","\"6\"]","[Result","\""]],"id":454}

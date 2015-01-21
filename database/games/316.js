@@ -1,1 +1,1 @@
-{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"17","white":"Mikhail Tal","black":"Ludek Pachman","result":{"white":"1","black":"0"},"eco":"B12","moves":[["29\"]","[EventDate","\""],["03\"]","[Round","\"17\"]","[Result","\""]]}
+{"event":"1961.09.03","site":"Bled YUG","date":1961,"round":"8","white":"Mijo Udovcic","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A32","moves":[["14\"]","[EventDate","\""],["03\"]","[Round","\"8\"]","[Result","\""]],"id":316}

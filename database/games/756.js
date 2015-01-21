@@ -1,1 +1,1 @@
-{"event":"?","site":"Knotty Ash, Liverpool","date":1974,"round":"?","white":"Mikhail Tal","black":"P N Pierce","result":{"white":"1","black":"0"},"eco":"C95","moves":[["18\"]","[EventDate","\"?\"]","[Round","\"?\"]","[Result","\""]]}
+{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":"7","white":"Mikhail Tal","black":"Boris Gulko","result":{"white":"1","black":"0"},"eco":"A25","moves":[["30\"]","[Round","\"7\"]","[Result","\""]],"id":756}

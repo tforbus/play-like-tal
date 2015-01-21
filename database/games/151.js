@@ -1,1 +1,1 @@
-{"event":"1957.??.??","site":"Moscow (RUS)","date":1957,"round":"4","white":"Anatolij Bannik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E63","moves":[["25\"]","[EventDate","\""],["??.??\"]","[Round","\"4\"]","[Result","\""]]}
+{"event":"1957.??.??","site":"Moscow (RUS)","date":1957,"round":"3","white":"Mikhail Tal","black":"David Bronstein","result":{"white":"1","black":"0"},"eco":"D15","moves":[["23\"]","[EventDate","\""],["??.??\"]","[Round","\"3\"]","[Result","\""]],"id":151}

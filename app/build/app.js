@@ -20,14 +20,23 @@ angular
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'templates/introduction.html',
+        templateUrl: 'templates/introduction.html'
     })
     .when('/game/:id', {
         templateUrl: 'templates/game.html',
+        controller: 'GameViewerCtrl',
         resolve: {
-            game: function (gameTrackerService, $routeParams, $route) {
-                var id = $route.current.params.id;
-                gameTrackerService.loadGame(id);
+            game: function (gameTrackerService, $q, $route, $routeParams) {
+                var deferred = $q.defer();
+
+                var id = $route.current.params.id,
+                    currentGame;
+                gameTrackerService.loadGame(id).then(function () {
+                    currentGame = gameTrackerService.getCurrentGame();
+                    deferred.resolve(currentGame);
+                });
+
+                return deferred.promise;
             }
         }
     });
@@ -2043,24 +2052,6 @@ angular.module('PlayLikeTal.Constants')
   }
 });
 
-angular.module('PlayLikeTal.Directives')
-.directive('lazyLoad', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-            $(elem).bind('scroll', function () {
-                var el = $(this),
-                    offset = 200;
-
-                // Add some offset to keep the list from getting choppy at the bottom.
-                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
-                    scope.$apply(attrs.lazyLoad);
-                }
-            });
-        }
-    };
-});
-
 angular.module('PlayLikeTal.Controllers')
 .controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
 
@@ -2164,6 +2155,12 @@ angular.module('PlayLikeTal.Controllers')
     });
 });
 
+angular.module('PlayLikeTal.Controllers')
+.controller('GameViewerCtrl', function ($scope, game) {
+    
+    // game is injected from the resolve.
+    $scope.game = game;
+});
 
 angular.module('PlayLikeTal.Controllers')
 .controller('ToolbarCtrl', function ($scope, $log, $mdSidenav) {
@@ -2172,6 +2169,67 @@ angular.module('PlayLikeTal.Controllers')
         $mdSidenav('left').toggle();
     };
 
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('lazyLoad', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            $(elem).bind('scroll', function () {
+                var el = $(this),
+                    offset = 200;
+
+                // Add some offset to keep the list from getting choppy at the bottom.
+                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
+                    scope.$apply(attrs.lazyLoad);
+                }
+            });
+        }
+    };
+});
+
+angular.module('PlayLikeTal.Filters')
+
+/**
+ * Translate an ECO code into an ECO name.
+ * 'B37' -> Sicilian, Accelerated Fianchetto
+ */
+.filter('eco', function (ECO) {
+    return function (code) {
+        if (!code) {
+            return '';
+        }
+        
+        var upper = code.toUpperCase(),
+            ecoInfo = ECO[upper];
+
+        if (ecoInfo) {
+            return ecoInfo.name;
+        }
+
+        return '';
+    };
+});
+
+angular.module('PlayLikeTal.Filters')
+
+/**
+ * Translate an ECO code into an ECO name.
+ * 'B37' -> Sicilian, Accelerated Fianchetto
+ */
+.filter('event', function () {
+    return function (eventName) {
+        if (!eventName || !angular.isString(eventName)) {
+            return '';
+        }
+
+        if (eventName === '?') {
+            return 'Unknown Event';
+        }
+
+        return eventName;
+    };
 });
 
 /**
@@ -2228,11 +2286,12 @@ angular.module('PlayLikeTal.Services')
 .service('gameTrackerService', function ($http, PLAY_LIKE) {
 
     // Save the current game.
-    var currentGame ={"event":"?","site":"Riga","date":1949,"round":"?","white":"Mikhail Tal","black":"Leonov","result":{"white":"1","black":"0"},"eco":"B13","moves":[["e4","c6"],["d4","d5"],["exd5","cxd5"],["Bd3","Nf6"],["h3","h6"],["Bf4","e6"],["Nf3","Bd6"],["Bxd6","Qxd6"],["c3","Nc6"],["O-O","O-O"],["Qe2","Re8"],["Ne5","Qc7"],["f4","Nxe5"],["fxe5","Nh7"],["Qh5","Re7"],["Na3","a6"],["Nc2","Qd7"],["Ne3","Qe8"],["Rf6","Qf8"],["Rf4","Bd7"],["Ng4","Be8"],["Nf6+","Nxf6"],["exf6","Rc7"],["fxg7","Kxg7"],["Qe5+"]]};
+    //var currentGame ={"event":"?","site":"Riga","date":1949,"round":"?","white":"Mikhail Tal","black":"Leonov","result":{"white":"1","black":"0"},"eco":"B13","moves":[["e4","c6"],["d4","d5"],["exd5","cxd5"],["Bd3","Nf6"],["h3","h6"],["Bf4","e6"],["Nf3","Bd6"],["Bxd6","Qxd6"],["c3","Nc6"],["O-O","O-O"],["Qe2","Re8"],["Ne5","Qc7"],["f4","Nxe5"],["fxe5","Nh7"],["Qh5","Re7"],["Na3","a6"],["Nc2","Qd7"],["Ne3","Qe8"],["Rf6","Qf8"],["Rf4","Bd7"],["Ng4","Be8"],["Nf6+","Nxf6"],["exf6","Rc7"],["fxg7","Kxg7"],["Qe5+"]]};
 
     var turns,
         nextTurn,
-        nextMove;
+        nextMove,
+        currentGame;
 
     /**
      * Load a game from an endpoint and set it as the current.
@@ -2243,6 +2302,7 @@ angular.module('PlayLikeTal.Services')
         return $http.get('../database/games/' + url + '.js')
         .success(function (response) {
             this.setCurrentGame(response); 
+            return currentGame;
         }.bind(this));
     };
 
@@ -2326,51 +2386,8 @@ angular.module('PlayLikeTal.Services')
         return false;
     };
 
-    this.setCurrentGame(currentGame);
+    //this.setCurrentGame(currentGame);
 
-});
-
-angular.module('PlayLikeTal.Filters')
-
-/**
- * Translate an ECO code into an ECO name.
- * 'B37' -> Sicilian, Accelerated Fianchetto
- */
-.filter('eco', function (ECO) {
-    return function (code) {
-        if (!code) {
-            return '';
-        }
-        
-        var upper = code.toUpperCase(),
-            ecoInfo = ECO[upper];
-
-        if (ecoInfo) {
-            return ecoInfo.name;
-        }
-
-        return '';
-    };
-});
-
-angular.module('PlayLikeTal.Filters')
-
-/**
- * Translate an ECO code into an ECO name.
- * 'B37' -> Sicilian, Accelerated Fianchetto
- */
-.filter('event', function () {
-    return function (eventName) {
-        if (!eventName || !angular.isString(eventName)) {
-            return '';
-        }
-
-        if (eventName === '?') {
-            return 'Unknown Event';
-        }
-
-        return eventName;
-    };
 });
 
 angular.module('PlayLikeTal.Directives')

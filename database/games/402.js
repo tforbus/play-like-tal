@@ -1,1 +1,1 @@
-{"event":"?","site":"5","date":1964,"round":"5","white":"Jon Kristinsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B43","moves":[["19\"]","[EventDate","\"?\"]","[Round","\"5\"]","[Result","\""]]}
+{"event":"?","site":"It","date":1964,"round":"11","white":"Mikhail Tal","black":"Nona Gaprindashvili","result":{"white":"1","black":"0"},"eco":"C99","moves":[["27\"]","[EventDate","\"?\"]","[Round","\"11\"]","[Result","\""]],"id":402}

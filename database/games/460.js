@@ -1,1 +1,1 @@
-{"event":"?","site":"Havana olm 2/408","date":1966,"round":"2","white":"Mikhail Tal","black":"Robert Eugene Byrne","result":{"white":"1","black":"0"},"eco":"B69","moves":[["05\"]","[EventDate","\"?\"]","[Round","\"2\"]","[Result","\""]]}
+{"event":"1966.11.27","site":"Palma ESP","date":1966,"round":"3","white":"Mikhail Tal","black":"Heinz Lehmann","result":{"white":"1","black":"0"},"eco":"E67","moves":[["29\"]","[EventDate","\""],["27\"]","[Round","\"3\"]","[Result","\""]],"id":460}

@@ -1,1 +1,1 @@
-{"event":"1974.11.30","site":"Leningrad URS","date":1974,"round":"7","white":"Mikhail Tal","black":"Boris Gulko","result":{"white":"1","black":"0"},"eco":"A25","moves":[["30\"]","[Round","\"7\"]","[Result","\""]]}
+{"event":"?","site":"Knotty Ash","date":1974,"round":"?","white":"Mikhail Tal","black":"W R Chandler","result":{"white":"1","black":"0"},"eco":"B01","moves":[["18\"]","[EventDate","\"?\"]","[Round","\"?\"]","[Result","\""]],"id":757}
