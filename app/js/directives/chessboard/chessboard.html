@@ -1,5 +1,8 @@
 <md-content layout-fill>
     <section layout='column' layout-align='center center'>
+        <span ng-if='showSpinner'>
+            <md-progress-circular md-mode='indeterminate'></md-progress-circular>
+        </span>
         <h2 style='margin:0;'>
             {{gameInformation.white}} vs {{gameInformation.black}}
         </h2>

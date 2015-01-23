@@ -1,14 +1,20 @@
 angular.module('PlayLikeTal.Controllers')
-.controller('GameFilterCtrl', function ($scope, $mdBottomSheet) {
+.controller('GameFilterCtrl', function ($scope, $mdBottomSheet, databaseFilterService) {
 
     // This will probably need to be saved in a service.
-    $scope.playerColor = { value: '' };
+    $scope.playerColor = {
+        value: databaseFilterService.databaseFilter.color
+    };
 
-    $scope.$watch('playerColor.value', function () {
-        if (!$scope.playerColor.value) {
-            return;
-        }
+    $scope.applyFilters = function applyFilters() {
+        databaseFilterService.setColor($scope.playerColor.value);
+        $mdBottomSheet.hide();
+    };
 
+    /*
+    $scope.onColorChange = function onColorChange() {
+        databaseFilterService.setColor($scope.playerColor.value);
         $mdBottomSheet.hide($scope.playerColor.value);
-    });
+    };
+    */
 });

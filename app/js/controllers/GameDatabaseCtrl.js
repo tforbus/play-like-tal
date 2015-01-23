@@ -1,5 +1,5 @@
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseCtrl', function ($scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
+.controller('GameDatabaseCtrl', function ($rootScope, $scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
 
     $scope.limit = 20;
     $scope.gamesToShow = [];
@@ -8,6 +8,10 @@ angular.module('PlayLikeTal.Controllers')
         start: 0,
         end: $scope.limit
     };
+
+    $scope.$on('filterUpdated', function (evt, filter) {
+        console.log(filter);
+    });
 
     $scope.loadMore = function loadMore() {
         if (!$scope.gamesToShow.length) {
@@ -60,8 +64,8 @@ angular.module('PlayLikeTal.Controllers')
      * @param {number} gameId
      */
     $scope.loadGame = function loadGame(gameId) {
-        $mdSidenav('left').toggle();
         $location.path('/game/' + gameId);
+        $mdSidenav('left').close();
     };
 
     gameListService.getGameList().then(function (games) {

@@ -7,6 +7,7 @@ angular.module('PlayLikeTal.Directives')
             boardId: '@'
         },
         controller: function ($scope) {
+
             $scope.logic = null;
             $scope.playerColor = null;
 

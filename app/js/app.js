@@ -26,18 +26,34 @@ angular
         templateUrl: 'templates/game.html',
         controller: 'GameViewerCtrl',
         resolve: {
-            game: function (gameTrackerService, $q, $route, $routeParams) {
+            game: function (gameTrackerService, $q, $rootScope, $route, $routeParams, $timeout) {
                 var deferred = $q.defer(),
                     id = $route.current.params.id,
                     currentGame;
 
-                gameTrackerService.loadGame(id).then(function () {
-                    currentGame = gameTrackerService.getCurrentGame();
-                    deferred.resolve(currentGame);
-                });
+                // Small timeout to make it obvious the board is updating.
+                $timeout(function () {
+                    gameTrackerService.loadGame(id).then(function () {
+                        currentGame = gameTrackerService.getCurrentGame();
+                        deferred.resolve(currentGame);
+                    });
+                }, 300);
 
                 return deferred.promise;
             }
         }
+    });
+})
+.run(function ($rootScope) {
+    $rootScope.$on('$routeChangeStart', function () {
+        $rootScope.$broadcast('showGameSpinner');
+    });
+
+    $rootScope.$on('$routeChangeSuccess', function () {
+        $rootScope.$broadcast('hideGameSpinner');
+    });
+
+    $rootScope.$on('$routeChangeError', function () {
+        $rootScope.$broadcast('hideGameSpinner');
     });
 });

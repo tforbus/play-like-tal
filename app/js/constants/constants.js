@@ -5,6 +5,13 @@ angular.module('PlayLikeTal.Constants')
     name: 'Mikhail Tal'
 })
 
+// Colors
+.constant('COLORS', {
+    white: 'white',
+    black: 'black',
+    any: 'any'
+})
+
 .constant('ECO', {
   A00: {
     name: "Uncommon Opening",
