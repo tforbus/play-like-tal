@@ -2103,6 +2103,10 @@ angular.module('PlayLikeTal.Controllers')
     $scope.$on('filterApplied', function (evt, filteredGames) {
         $scope.games = filteredGames;
         $scope.gamesToShow = $scope.games.slice(0, 20);
+        $scope.slice = {
+            start: 0,
+            end: $scope.limit
+        };
     });
 
     $scope.loadMore = function loadMore() {
@@ -2300,10 +2304,6 @@ angular.module('PlayLikeTal.Services')
     var backup = angular.copy(this.databaseFilter);
 
     this.setColor = function setColor(color) {
-        if (color === backup.color) {
-            return;
-        }
-
         this.databaseFilter.color = color;
     };
 
@@ -2344,7 +2344,7 @@ angular.module('PlayLikeTal.Services')
         this.filteredGames = angular.copy(this.games);
 
         // Filter the appropriate color if a color is specified.
-        if (filter.color && filter.color === COLORS.white || filter.color === COLORS.black) {
+        if (filter.color && (filter.color === COLORS.white || filter.color === COLORS.black)) {
             this.filteredGames = this.filteredGames.filter(function (game) {
                 return game[filter.color] === PLAY_LIKE.name;
             });

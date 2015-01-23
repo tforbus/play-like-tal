@@ -27,7 +27,7 @@ angular.module('PlayLikeTal.Services')
         this.filteredGames = angular.copy(this.games);
 
         // Filter the appropriate color if a color is specified.
-        if (filter.color && filter.color === COLORS.white || filter.color === COLORS.black) {
+        if (filter.color && (filter.color === COLORS.white || filter.color === COLORS.black)) {
             this.filteredGames = this.filteredGames.filter(function (game) {
                 return game[filter.color] === PLAY_LIKE.name;
             });

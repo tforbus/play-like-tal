@@ -9,10 +9,6 @@ angular.module('PlayLikeTal.Services')
     var backup = angular.copy(this.databaseFilter);
 
     this.setColor = function setColor(color) {
-        if (color === backup.color) {
-            return;
-        }
-
         this.databaseFilter.color = color;
     };
 

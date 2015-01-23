@@ -20,6 +20,10 @@ angular.module('PlayLikeTal.Controllers')
     $scope.$on('filterApplied', function (evt, filteredGames) {
         $scope.games = filteredGames;
         $scope.gamesToShow = $scope.games.slice(0, 20);
+        $scope.slice = {
+            start: 0,
+            end: $scope.limit
+        };
     });
 
     $scope.loadMore = function loadMore() {
