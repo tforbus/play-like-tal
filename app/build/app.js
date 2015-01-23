@@ -2175,14 +2175,24 @@ angular.module('PlayLikeTal.Controllers')
 angular.module('PlayLikeTal.Controllers')
 .controller('GameFilterCtrl', function ($scope, $mdBottomSheet, databaseFilterService, gameListService) {
 
+    $scope.possibleEcos = [];
+
     $scope.playerColor = {
         value: databaseFilterService.databaseFilter.color
     };
 
+    $scope.$watch('playerColor.value', function (value) {
+        if (!value) {
+            return;
+        }
+        // Build a list of possible ECO codes that can be seen.
+    });
+
     $scope.applyFilters = function applyFilters() {
         databaseFilterService.setColor($scope.playerColor.value);
-        $mdBottomSheet.hide(databaseFilterService.databaseFilter);
         gameListService.applyFilter(databaseFilterService.databaseFilter);
+
+        //$mdBottomSheet.hide(databaseFilterService.databaseFilter);
     };
 
 });
@@ -2301,8 +2311,6 @@ angular.module('PlayLikeTal.Services')
         eco: ''
     };
 
-    var backup = angular.copy(this.databaseFilter);
-
     this.setColor = function setColor(color) {
         this.databaseFilter.color = color;
     };
@@ -2313,12 +2321,19 @@ angular.module('PlayLikeTal.Services')
         }
         this.databaseFilter.eco = eco;
     };
+
+    this.getPossibleEcos = function getPossibleEcos() {
+    };
 });
 
 angular.module('PlayLikeTal.Services')
 .service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE) {
 
+    // Games contains the list of all games, ever.
     this.games = [];
+
+    // Filtered Games originally will contain all games from Games,
+    // but as filters are applied, drops some of them. This list the one to display.
     this.filteredGames = [];
 
     /**
@@ -2347,6 +2362,13 @@ angular.module('PlayLikeTal.Services')
         if (filter.color && (filter.color === COLORS.white || filter.color === COLORS.black)) {
             this.filteredGames = this.filteredGames.filter(function (game) {
                 return game[filter.color] === PLAY_LIKE.name;
+            });
+        }
+
+        // Filter the ECO if one is specified
+        if (filter.eco) {
+            this.filteredGames = this.filteredGames.filter(function (game) {
+                return game[eco] === filter.eco;
             });
         }
 

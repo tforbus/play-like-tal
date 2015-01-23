@@ -1,7 +1,11 @@
 angular.module('PlayLikeTal.Services')
 .service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE) {
 
+    // Games contains the list of all games, ever.
     this.games = [];
+
+    // Filtered Games originally will contain all games from Games,
+    // but as filters are applied, drops some of them. This list the one to display.
     this.filteredGames = [];
 
     /**
@@ -30,6 +34,13 @@ angular.module('PlayLikeTal.Services')
         if (filter.color && (filter.color === COLORS.white || filter.color === COLORS.black)) {
             this.filteredGames = this.filteredGames.filter(function (game) {
                 return game[filter.color] === PLAY_LIKE.name;
+            });
+        }
+
+        // Filter the ECO if one is specified
+        if (filter.eco) {
+            this.filteredGames = this.filteredGames.filter(function (game) {
+                return game[eco] === filter.eco;
             });
         }
 

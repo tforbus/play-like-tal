@@ -6,8 +6,6 @@ angular.module('PlayLikeTal.Services')
         eco: ''
     };
 
-    var backup = angular.copy(this.databaseFilter);
-
     this.setColor = function setColor(color) {
         this.databaseFilter.color = color;
     };
@@ -17,5 +15,8 @@ angular.module('PlayLikeTal.Services')
             return;
         }
         this.databaseFilter.eco = eco;
+    };
+
+    this.getPossibleEcos = function getPossibleEcos() {
     };
 });
