@@ -1,5 +1,5 @@
 angular.module('PlayLikeTal.Services')
-.service('databaseFilterService', function ($rootScope, COLORS) {
+.service('databaseFilterService', function (COLORS) {
 
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
@@ -14,7 +14,6 @@ angular.module('PlayLikeTal.Services')
         }
 
         this.databaseFilter.color = color;
-        $rootScope.$broadcast('filterUpdated', this.databaseFilter);
     };
 
     this.setEco = function setEco(eco) {
@@ -22,6 +21,5 @@ angular.module('PlayLikeTal.Services')
             return;
         }
         this.databaseFilter.eco = eco;
-        $rootScope.$broadcast('filterUpdated', this.databaseFilter);
     };
 });

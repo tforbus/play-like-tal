@@ -7,8 +7,6 @@ angular.module('PlayLikeTal.Controllers')
             controller: 'GameFilterCtrl',
             targetEvent: $event
         }).then(function (submitted) {
-            console.log('done');
-            console.log(submitted);
         });
     };
 });

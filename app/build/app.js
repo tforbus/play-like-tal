@@ -20,7 +20,13 @@ angular
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'templates/introduction.html'
+        templateUrl: 'templates/introduction.html',
+        resolve: {
+            allGames: function (gameListService) {
+                // Load all the games before rendering.
+                return gameListService.getGameList();
+            }
+        }
     })
     .when('/game/:id', {
         templateUrl: 'templates/game.html',
@@ -2076,18 +2082,27 @@ angular.module('PlayLikeTal.Constants')
 });
 
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseCtrl', function ($rootScope, $scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
+.controller('GameDatabaseCtrl', function (
+            $rootScope,
+            $scope,
+            $location,
+            $mdBottomSheet,
+            $mdSidenav,
+            $routeParams,
+            PLAY_LIKE,
+            gameListService) {
 
     $scope.limit = 20;
     $scope.gamesToShow = [];
-
+    $scope.games = [];
     $scope.slice = {
         start: 0,
         end: $scope.limit
     };
 
-    $scope.$on('filterUpdated', function (evt, filter) {
-        console.log(filter);
+    $scope.$on('filterApplied', function (evt, filteredGames) {
+        $scope.games = filteredGames;
+        $scope.gamesToShow = $scope.games.slice(0, 20);
     });
 
     $scope.loadMore = function loadMore() {
@@ -2112,12 +2127,6 @@ angular.module('PlayLikeTal.Controllers')
         });
     };
 
-    /**
-     * Determine if Tal is white.
-     * If he is, the game name format will be vs Opponent instead of Opponent vs
-     * @param {object} game
-     * @return {boolean}
-     */
     $scope.isTalWhite = function isTalWhite(game) {
         return game.white === PLAY_LIKE.name;
     };
@@ -2129,22 +2138,16 @@ angular.module('PlayLikeTal.Controllers')
         return game.white;
     };
 
-    /**
-     * Track the currently selected game to indicate it in the list.
-     */
     $scope.isSelectedGame = function isSelectedGame(gameId) {
         return parseInt(gameId, 10) === parseInt($routeParams.game, 10);
     };
 
-    /**
-     * Switch to the currently selected game ID
-     * @param {number} gameId
-     */
     $scope.loadGame = function loadGame(gameId) {
         $location.path('/game/' + gameId);
         $mdSidenav('left').close();
     };
 
+    // Initially no filters are applied so just grab the whole list of games.
     gameListService.getGameList().then(function (games) {
         $scope.games = games;
         $scope.gamesToShow = $scope.games.slice(0, 20);
@@ -2161,31 +2164,23 @@ angular.module('PlayLikeTal.Controllers')
             controller: 'GameFilterCtrl',
             targetEvent: $event
         }).then(function (submitted) {
-            console.log('done');
-            console.log(submitted);
         });
     };
 });
 
 angular.module('PlayLikeTal.Controllers')
-.controller('GameFilterCtrl', function ($scope, $mdBottomSheet, databaseFilterService) {
+.controller('GameFilterCtrl', function ($scope, $mdBottomSheet, databaseFilterService, gameListService) {
 
-    // This will probably need to be saved in a service.
     $scope.playerColor = {
         value: databaseFilterService.databaseFilter.color
     };
 
     $scope.applyFilters = function applyFilters() {
         databaseFilterService.setColor($scope.playerColor.value);
-        $mdBottomSheet.hide();
+        $mdBottomSheet.hide(databaseFilterService.databaseFilter);
+        gameListService.applyFilter(databaseFilterService.databaseFilter);
     };
 
-    /*
-    $scope.onColorChange = function onColorChange() {
-        databaseFilterService.setColor($scope.playerColor.value);
-        $mdBottomSheet.hide($scope.playerColor.value);
-    };
-    */
 });
 
 angular.module('PlayLikeTal.Controllers')
@@ -2295,7 +2290,7 @@ angular.module('PlayLikeTal.Services')
 });
 
 angular.module('PlayLikeTal.Services')
-.service('databaseFilterService', function ($rootScope, COLORS) {
+.service('databaseFilterService', function (COLORS) {
 
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
@@ -2310,7 +2305,6 @@ angular.module('PlayLikeTal.Services')
         }
 
         this.databaseFilter.color = color;
-        $rootScope.$broadcast('filterUpdated', this.databaseFilter);
     };
 
     this.setEco = function setEco(eco) {
@@ -2318,14 +2312,14 @@ angular.module('PlayLikeTal.Services')
             return;
         }
         this.databaseFilter.eco = eco;
-        $rootScope.$broadcast('filterUpdated', this.databaseFilter);
     };
 });
 
 angular.module('PlayLikeTal.Services')
-.service('gameListService', function ($http, $log, $q) {
+.service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE) {
 
     this.games = [];
+    this.filteredGames = [];
 
     /**
      * Return a promise containing the games.
@@ -2336,7 +2330,6 @@ angular.module('PlayLikeTal.Services')
             return $q.when(this.games);
         }
 
-        // ???
         return $http.get('./app/build/meta.js').then(function success(response) {
             angular.forEach(response.data, function (game) {
                 this.games.push(game);
@@ -2345,7 +2338,20 @@ angular.module('PlayLikeTal.Services')
         }.bind(this), function error(response) {
             $log.error(response);
         });
+    };
 
+    this.applyFilter = function applyFilter(filter) {
+        this.filteredGames = angular.copy(this.games);
+
+        // Filter the appropriate color if a color is specified.
+        if (filter.color && filter.color === COLORS.white || filter.color === COLORS.black) {
+            this.filteredGames = this.filteredGames.filter(function (game) {
+                return game[filter.color] === PLAY_LIKE.name;
+            });
+        }
+
+        $rootScope.$broadcast('filterApplied', this.filteredGames);
+        return this.filteredGames;
     };
 
 });

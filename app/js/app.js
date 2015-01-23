@@ -20,7 +20,13 @@ angular
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'templates/introduction.html'
+        templateUrl: 'templates/introduction.html',
+        resolve: {
+            allGames: function (gameListService) {
+                // Load all the games before rendering.
+                return gameListService.getGameList();
+            }
+        }
     })
     .when('/game/:id', {
         templateUrl: 'templates/game.html',

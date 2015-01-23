@@ -1,16 +1,25 @@
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseCtrl', function ($rootScope, $scope, $location, $mdBottomSheet, $mdSidenav, $routeParams, PLAY_LIKE, gameListService) {
+.controller('GameDatabaseCtrl', function (
+            $rootScope,
+            $scope,
+            $location,
+            $mdBottomSheet,
+            $mdSidenav,
+            $routeParams,
+            PLAY_LIKE,
+            gameListService) {
 
     $scope.limit = 20;
     $scope.gamesToShow = [];
-
+    $scope.games = [];
     $scope.slice = {
         start: 0,
         end: $scope.limit
     };
 
-    $scope.$on('filterUpdated', function (evt, filter) {
-        console.log(filter);
+    $scope.$on('filterApplied', function (evt, filteredGames) {
+        $scope.games = filteredGames;
+        $scope.gamesToShow = $scope.games.slice(0, 20);
     });
 
     $scope.loadMore = function loadMore() {
@@ -35,12 +44,6 @@ angular.module('PlayLikeTal.Controllers')
         });
     };
 
-    /**
-     * Determine if Tal is white.
-     * If he is, the game name format will be vs Opponent instead of Opponent vs
-     * @param {object} game
-     * @return {boolean}
-     */
     $scope.isTalWhite = function isTalWhite(game) {
         return game.white === PLAY_LIKE.name;
     };
@@ -52,22 +55,16 @@ angular.module('PlayLikeTal.Controllers')
         return game.white;
     };
 
-    /**
-     * Track the currently selected game to indicate it in the list.
-     */
     $scope.isSelectedGame = function isSelectedGame(gameId) {
         return parseInt(gameId, 10) === parseInt($routeParams.game, 10);
     };
 
-    /**
-     * Switch to the currently selected game ID
-     * @param {number} gameId
-     */
     $scope.loadGame = function loadGame(gameId) {
         $location.path('/game/' + gameId);
         $mdSidenav('left').close();
     };
 
+    // Initially no filters are applied so just grab the whole list of games.
     gameListService.getGameList().then(function (games) {
         $scope.games = games;
         $scope.gamesToShow = $scope.games.slice(0, 20);
