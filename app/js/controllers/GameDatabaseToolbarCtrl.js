@@ -1,12 +1,11 @@
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseToolbarCtrl', function ($scope, $mdBottomSheet, $templateCache) {
+.controller('GameDatabaseToolbarCtrl', function ($scope, $mdDialog, $templateCache, databaseFilterService) {
 
-    $scope.showFilters = function showFilters($event) {
-        $mdBottomSheet.show({
+    $scope.showFilters = function showFilters(evt) {
+        //databaseFilterService.showFilters = true;
+        $mdDialog.show({
             template: $templateCache.get('templates/filter.html'),
-            controller: 'GameFilterCtrl',
-            targetEvent: $event
-        }).then(function (submitted) {
+            targetEvent: evt
         });
     };
 });

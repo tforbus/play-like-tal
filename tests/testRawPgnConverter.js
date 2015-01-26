@@ -25,7 +25,7 @@
             });
 
             describe('event', function () {
-                var re = regExps.event;
+                var re = regExps.eventName;
                 it('should match a well formed event line', function () {
                     var string = '[Event "Championship"]';
                     re.test(string).should.equal(true);
@@ -191,11 +191,11 @@
             it('should construct a proper pgn object', function (done) {
                 fs.readFile(MOCK_PGN_PATH, 'utf-8', function (err, data) {
                     if (err) {
-                        err.should.not.equal(null);
+                        should(err).not.equal(null);
                         done();
                     } else {
                         var pgn = pgnConverter.constructPgnObject(data);
-                        pgn.event.should.equal('LAT-ch');
+                        pgn.eventName.should.equal('LAT-ch');
                         pgn.site.should.equal('LAT');
                         pgn.date.should.equal(1952);
                         pgn.round.should.equal('?');

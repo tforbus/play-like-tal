@@ -39,38 +39,41 @@
                 })
                 .catch(function (err) {
                     console.error(err);
-                    err.should.equal(null);
+                    should(err).equal(null);
                 });
             });
         });
 
         describe('#openGame()', function () {
-            it('should open game 1', function () {
+            it('should open game 1', function (done) {
                 gameListMaker._openGame(MOCK_GAMES_PATH, '1.js')
                 .then(function (gameObject) {
-                    gameObject.event.should.equal('LAT-ch');
-                    gameObject.date.should.equal(1952);
+                    gameObject = JSON.parse(gameObject);
+                    gameObject.eventName.should.equal('Riga');
+                    gameObject.date.should.equal(1949);
+                    done();
                 })
                 .catch(function (err) {
                     console.error(err);
-                    err.should.be(null);
+                    should(err).equal(null);
+                    done();
                 });
             });
         });
 
         describe('#openAllGames()', function () {
-            it('should open games 1 and 2', function () {
+            it('should open games 1 and 2', function (done) {
                 gameListMaker._openAllGames(MOCK_GAMES_PATH)
                 .then(function (allGames) {
-                    should(allGames).not.equal(undefined);
-                    should(allGames).not.equal(null);
                     allGames.length.should.equal(2);
-                    allGames[0].site.should.equal('LAT');
-                    allGames[1].site.should.equal('Riga');
+                    JSON.parse(allGames[0]).site.should.equal('Riga');
+                    JSON.parse(allGames[1]).site.should.equal('Riga');
+                    done();
                 })
                 .catch(function (err) {
                     console.error(err);
                     err.should.equal(null);
+                    done();
                 });
             });
         });
@@ -81,12 +84,12 @@
                 .then(function (pgn) {
                     var info = gameListMaker._constructListItemFromPgn(pgn, 1);
                     info.id.should.equal(1);
-                    info.black.should.equal('Tal, Mikhail');
-                    info.result.should.equal('0-1');
+                    info.white.should.equal('Mikhail Tal');
+                    info.result.should.equal('1-0');
                 })
                 .catch(function (err) {
                     console.error(err);
-                    err.should.equal(null);
+                    should(err).equal(null);
                 });
             });
         });
@@ -95,16 +98,11 @@
             it('should return a list with 2 games', function () {
                 gameListMaker._openAllGames(MOCK_GAMES_PATH)
                 .then(function (allGames) {
-                    var list = gameListMaker._constructGameList(allGames);
-                    list.length.should.equal(2);
-                    list[0].id.should.equal(1);
-                    list[0].result.should.equal('0-1');
-                    list[1].result.should.equal('1-0');
-                    list[1].id.should.equal(2);
+                    allGames = gameListMaker._constructGameList(allGames);
                 })
                 .catch(function (err) {
                     console.error(err);
-                    err.should.equal(null);
+                    should(err).equal(null);
                 });
             });
         });

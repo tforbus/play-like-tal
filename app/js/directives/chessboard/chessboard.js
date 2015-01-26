@@ -374,6 +374,7 @@ angular.module('PlayLikeTal.Directives')
             // There was an issue where the board was not loading again on a route change.
             // I think this was because I'm doing things in a nasty way.
             // Wrapping this bit in a timeout seems to solve the problem.
+            // TODO: do this more angular-y
             $timeout(function () {
                 var div = elem.find('#board-container');
                 div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');

@@ -18,9 +18,14 @@
             .computer-highlight-square {
                 box-shadow: inset 0 0 1px 2px blue;
             }
+
+
         </style>
     </head>
     <body ng-app='PlayLikeTal' md-theme='blue-grey' layout='row'>
+        <bottom-menu></bottom-menu>
+
+        <!-- games database and filter toolbar -->
         <md-sidenav
             layout='column'
             class='md-sidenav-left md-whiteframe-z2'
@@ -64,6 +69,7 @@
             </md-content>
         </md-sidenav>
 
+        <!-- main area -->
         <div layout='column' role='main' layout-fill>
             <md-toolbar>
                 <div class='md-toolbar-tools' ng-controller='ToolbarCtrl'>
@@ -81,6 +87,7 @@
                 <md-content ng-view class='md-padding'></md-content>
             </div>
         </div>
+
 
         <script src='./build/lib.js'></script>
         <script src='./build/app.js'></script>

@@ -103,7 +103,8 @@ gulp.task('lib', function () {
         './bower_components/angular-aria/angular-aria.min.js',
         './bower_components/angular-animate/angular-animate.min.js',
         './bower_components/hammerjs/hammer.min.js',
-        './bower_components/angular-material/angular-material.min.js'
+        './bower_components/angular-material/angular-material.js'
+        //'./app/lib/js/angular-material-modified.js'
     ];
 
     var libs = bowerLibs.concat(paths.lib);

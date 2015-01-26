@@ -1,29 +1,33 @@
-<md-bottom-sheet class='md-grid' style='padding-bottom:200px;'>
-    <md-list>
-        <md-item>
-            <p>Tal plays</p>
+<md-dialog aria-label='Filters Dialog' ng-controller='GameFilterCtrl'>
+    <md-content class='md-padding' layout='row' layout-align='center center'>
+        <div layout='column' layout-align='center start'>
+            Tal as:
             <md-radio-group ng-model='playerColor.value'>
                 <md-radio-button
                     value='white'
+                    hijacker
                     aria-label='White'>
                     White
                 </md-radio-button>
 
                 <md-radio-button
                     value='black'
+                    hijacker
                     aria-label='Black'>
                     Black
                 </md-radio-button>
 
                 <md-radio-button
                     value='any'
+                    hijacker
                     aria-label='Either'>
                     Either
                 </md-radio-button>
             </md-radio-group>
-        </md-item>
-        <md-item>
-            <md-button class='md-primary' ng-click='applyFilters()'>Apply</md-button>
-        </md-item>
-    </md-list>
-</md-bottom-sheet>
+        </div>
+    </md-content>
+    <div class='md-actions' layout='row'>
+        <md-button md-no-ink class='md-primary' ng-click='applyFilters()'>Apply</md-button>
+        <md-button ng-click='cancel()'>Cancel</md-button>
+    </div>
+</md-dialog>

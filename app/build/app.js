@@ -2082,6 +2082,15 @@ angular.module('PlayLikeTal.Constants')
 });
 
 angular.module('PlayLikeTal.Controllers')
+.controller('BottomSheetCtrl', function ($scope) {
+    $scope.show = false;
+
+    $scope.toggleSheet = function toggleSheet() {
+        $scope.show = !$scope.show;
+    };
+});
+
+angular.module('PlayLikeTal.Controllers')
 .controller('GameDatabaseCtrl', function (
             $rootScope,
             $scope,
@@ -2160,21 +2169,19 @@ angular.module('PlayLikeTal.Controllers')
 });
 
 angular.module('PlayLikeTal.Controllers')
-.controller('GameDatabaseToolbarCtrl', function ($scope, $mdBottomSheet, $templateCache) {
+.controller('GameDatabaseToolbarCtrl', function ($scope, $mdDialog, $templateCache, databaseFilterService) {
 
-    $scope.showFilters = function showFilters($event) {
-        $mdBottomSheet.show({
+    $scope.showFilters = function showFilters(evt) {
+        //databaseFilterService.showFilters = true;
+        $mdDialog.show({
             template: $templateCache.get('templates/filter.html'),
-            controller: 'GameFilterCtrl',
-            targetEvent: $event
-        }).then(function (submitted) {
+            targetEvent: evt
         });
     };
 });
 
 angular.module('PlayLikeTal.Controllers')
-.controller('GameFilterCtrl', function ($scope, $mdBottomSheet, databaseFilterService, gameListService) {
-
+.controller('GameFilterCtrl', function ($scope, $mdDialog, databaseFilterService, gameListService) {
     $scope.possibleEcos = [];
 
     $scope.playerColor = {
@@ -2189,10 +2196,14 @@ angular.module('PlayLikeTal.Controllers')
     });
 
     $scope.applyFilters = function applyFilters() {
+        debugger;
         databaseFilterService.setColor($scope.playerColor.value);
         gameListService.applyFilter(databaseFilterService.databaseFilter);
+        $mdDialog.hide();
+    };
 
-        //$mdBottomSheet.hide(databaseFilterService.databaseFilter);
+    $scope.cancel = function cancel() {
+        $mdDialog.hide();
     };
 
 });
@@ -2224,6 +2235,26 @@ angular.module('PlayLikeTal.Controllers')
         $mdSidenav('left').toggle();
     };
 
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('bottomMenu', function ($templateCache) {
+    return {
+        restrict: 'E',
+        template: $templateCache.get('templates/filter.html')
+    };
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('hijacker', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            elem.bind(attrs.hijacker, function (e) {
+                return e.stopPropagation();
+            });
+        }
+    };
 });
 
 angular.module('PlayLikeTal.Directives')
@@ -2305,6 +2336,8 @@ angular.module('PlayLikeTal.Services')
 
 angular.module('PlayLikeTal.Services')
 .service('databaseFilterService', function (COLORS) {
+
+    this.showFilters = false;
 
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
@@ -2868,6 +2901,7 @@ angular.module('PlayLikeTal.Directives')
             // There was an issue where the board was not loading again on a route change.
             // I think this was because I'm doing things in a nasty way.
             // Wrapping this bit in a timeout seems to solve the problem.
+            // TODO: do this more angular-y
             $timeout(function () {
                 var div = elem.find('#board-container');
                 div.html('<div id="' + scope.boardId + '" style="width:' + width + 'px;"></div>');
@@ -2878,11 +2912,3 @@ angular.module('PlayLikeTal.Directives')
     };
 });
 
-
-angular.module('PlayLikeTal.Directives')
-.directive('sidebar', function ($templateCache) {
-    return {
-        restrict: 'E',
-        template: $templateCache.get('directives/sidebar/sidebar.html')
-    };
-});

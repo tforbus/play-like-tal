@@ -1,6 +1,5 @@
 angular.module('PlayLikeTal.Controllers')
-.controller('GameFilterCtrl', function ($scope, $mdBottomSheet, databaseFilterService, gameListService) {
-
+.controller('GameFilterCtrl', function ($scope, $mdDialog, databaseFilterService, gameListService) {
     $scope.possibleEcos = [];
 
     $scope.playerColor = {
@@ -15,10 +14,14 @@ angular.module('PlayLikeTal.Controllers')
     });
 
     $scope.applyFilters = function applyFilters() {
+        debugger;
         databaseFilterService.setColor($scope.playerColor.value);
         gameListService.applyFilter(databaseFilterService.databaseFilter);
+        $mdDialog.hide();
+    };
 
-        //$mdBottomSheet.hide(databaseFilterService.databaseFilter);
+    $scope.cancel = function cancel() {
+        $mdDialog.hide();
     };
 
 });
