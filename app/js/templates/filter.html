@@ -1,29 +1,35 @@
 <md-dialog aria-label='Filters Dialog' ng-controller='GameFilterCtrl'>
-    <md-content class='md-padding' layout='row' layout-align='center center'>
+    <md-content class='md-padding' layout='column' layout-align='center center'>
         <div layout='column' layout-align='center start'>
             Tal as:
-            <md-radio-group ng-model='playerColor.value'>
+            <md-radio-group ng-model='playerColor.value' layout='row' layout-align='center center'>
                 <md-radio-button
+                    style='margin-top:15px;'
                     value='white'
-                    hijacker
                     aria-label='White'>
                     White
                 </md-radio-button>
 
                 <md-radio-button
                     value='black'
-                    hijacker
                     aria-label='Black'>
                     Black
                 </md-radio-button>
 
                 <md-radio-button
                     value='any'
-                    hijacker
                     aria-label='Either'>
                     Either
                 </md-radio-button>
             </md-radio-group>
+        </div>
+
+        <div layout='column' layout-align='center start'>
+            <select
+                ng-model='opening.ecos'
+                ng-options='v as k for (k, v) in ecos'>
+                <option value='' selected='selected'>Any opening</option>
+            </select>
         </div>
     </md-content>
     <div class='md-actions' layout='row'>

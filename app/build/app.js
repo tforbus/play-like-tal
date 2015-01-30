@@ -2081,6 +2081,44 @@ angular.module('PlayLikeTal.Constants')
   }
 });
 
+angular.module('PlayLikeTal.Directives')
+.directive('bottomMenu', function ($templateCache) {
+    return {
+        restrict: 'E',
+        template: $templateCache.get('templates/filter.html')
+    };
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('hijacker', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            elem.bind(attrs.hijacker, function (e) {
+                return e.stopPropagation();
+            });
+        }
+    };
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('lazyLoad', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            $(elem).bind('scroll', function () {
+                var el = $(this),
+                    offset = 200;
+
+                // Add some offset to keep the list from getting choppy at the bottom.
+                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
+                    scope.$apply(attrs.lazyLoad);
+                }
+            });
+        }
+    };
+});
+
 angular.module('PlayLikeTal.Controllers')
 .controller('BottomSheetCtrl', function ($scope) {
     $scope.show = false;
@@ -2181,23 +2219,31 @@ angular.module('PlayLikeTal.Controllers')
 });
 
 angular.module('PlayLikeTal.Controllers')
-.controller('GameFilterCtrl', function ($scope, $mdDialog, databaseFilterService, gameListService) {
-    $scope.possibleEcos = [];
+.controller('GameFilterCtrl', function ($scope,
+            $mdDialog,
+            databaseFilterService,
+            ecoListService,
+            gameListService) {
 
     $scope.playerColor = {
         value: databaseFilterService.databaseFilter.color
     };
 
+    $scope.opening = {
+        ecos: databaseFilterService.databaseFilter.ecos || ''
+    };
+
+    $scope.ecos = ecoListService.getNameToCodesMap();
+
     $scope.$watch('playerColor.value', function (value) {
         if (!value) {
             return;
         }
-        // Build a list of possible ECO codes that can be seen.
     });
 
     $scope.applyFilters = function applyFilters() {
-        debugger;
         databaseFilterService.setColor($scope.playerColor.value);
+        databaseFilterService.setEcos($scope.opening.ecos);
         gameListService.applyFilter(databaseFilterService.databaseFilter);
         $mdDialog.hide();
     };
@@ -2235,44 +2281,6 @@ angular.module('PlayLikeTal.Controllers')
         $mdSidenav('left').toggle();
     };
 
-});
-
-angular.module('PlayLikeTal.Directives')
-.directive('bottomMenu', function ($templateCache) {
-    return {
-        restrict: 'E',
-        template: $templateCache.get('templates/filter.html')
-    };
-});
-
-angular.module('PlayLikeTal.Directives')
-.directive('hijacker', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-            elem.bind(attrs.hijacker, function (e) {
-                return e.stopPropagation();
-            });
-        }
-    };
-});
-
-angular.module('PlayLikeTal.Directives')
-.directive('lazyLoad', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-            $(elem).bind('scroll', function () {
-                var el = $(this),
-                    offset = 200;
-
-                // Add some offset to keep the list from getting choppy at the bottom.
-                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
-                    scope.$apply(attrs.lazyLoad);
-                }
-            });
-        }
-    };
 });
 
 angular.module('PlayLikeTal.Filters')
@@ -2341,21 +2349,49 @@ angular.module('PlayLikeTal.Services')
 
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
-        eco: ''
+        ecos: null
     };
 
     this.setColor = function setColor(color) {
         this.databaseFilter.color = color;
     };
 
-    this.setEco = function setEco(eco) {
-        if (eco === backup.eco) {
-            return;
+    this.setEcos = function setEco(ecos) {
+        if (!ecos || !ecos.length) {
+            this.databaseFilter.ecos = null;
+        } else {
+            this.databaseFilter.ecos = ecos;
         }
-        this.databaseFilter.eco = eco;
     };
+});
 
-    this.getPossibleEcos = function getPossibleEcos() {
+angular.module('PlayLikeTal.Services')
+.service('ecoListService', function (ECO) {
+    var ecoCodes = Object.keys(ECO),
+        nameMap = {};
+
+    this.getNameToCodesMap = function getNameToCodesMap() {
+        if (Object.keys(nameMap).length) {
+            return nameMap;
+        }
+
+        angular.forEach(ecoCodes, function (ecoCode) {
+            var code = ecoCode,
+                name = ECO[code].name.split(',')[0],
+                codesForName;
+
+            // this is not quite right, but is okay for now.
+            if (!nameMap[name]) {
+                nameMap[name] = [];
+            }
+
+            codesForName = nameMap[name];
+            if (codesForName.indexOf(code) < 0) {
+                codesForName.push(code);
+            }
+        });
+
+        return nameMap;
     };
 });
 
@@ -2399,9 +2435,9 @@ angular.module('PlayLikeTal.Services')
         }
 
         // Filter the ECO if one is specified
-        if (filter.eco) {
+        if (filter.ecos) {
             this.filteredGames = this.filteredGames.filter(function (game) {
-                return game[eco] === filter.eco;
+                return filter.ecos.indexOf(game.eco) > 0;
             });
         }
 

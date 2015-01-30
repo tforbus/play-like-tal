@@ -22,36 +22,9 @@
             #filterIndicator.md-subheader:not(.md-sticky-no-efect)[sticky-state=active] {
                 margin-top: 64px !important;
             }
-
-            /* $mdBottomSheet sucks */
-            #bottom-menu {
-                background: #fff;
-                position: fixed;
-                width: 100%;
-                height: 250px;
-                left: 0;
-                z-index: 6969;
-                overflow: hidden;
-                bottom: -250px;
-                transition: all 0.3s ease;
-                border: 0;
-            }
-
-            #bottom-menu.open {
-                bottom: 0;
-                outline: 9999px solid rgba(0, 0, 0, 0.2);
-            }
-
         </style>
     </head>
     <body ng-app='PlayLikeTal' md-theme='blue-grey' layout='row'>
-
-        <!-- filters -->
-        <!--
-        <div id='bottom-menu' ng-controller='GameFilterCtrl' ng-class='{"open": show}'>
-            <bottom-menu></bottom-menu>
-        </div>
-        -->
 
         <md-sidenav
             layout='column'
@@ -73,10 +46,11 @@
                 lazy-load='loadMore()'
                 style='overflow: auto; height:100%;'>
                 <section>
-                <md-subheader class='md-primary' id='filterIndicator' ng-show='games.length < 1189 && games.length'>
+                <md-subheader class='md-primary' id='filterIndicator'
+                    ng-show='games.length < 1189 && games.length'>
                     {{games.length}} of 1189 games shown
                 </md-subheader>
-                <md-list>
+                <md-list ng-show='games.length'>
                     <md-item
                         ng-repeat='game in gamesToShow'
                         ng-click='loadGame(game.id)'
@@ -96,6 +70,15 @@
                             </div>
                         </md-item-content>
                         <md-divider ng-if='!$last'></md-divider>
+                    </md-item>
+                </md-list>
+                <md-list ng-show='!games.length'>
+                    <md-item>
+                        <md-item-content>
+                            <div class='md-tile-content'>
+                                <h3>No games found</h3>
+                            </div>
+                        </md-item-content>
                     </md-item>
                 </md-list>
             </section>
@@ -122,7 +105,7 @@
                     <md-progress-circular md-mode='indeterminate'></md-progress-circular>
                 </div>
 
-                <span ng-if='!showSpinner'>
+                <span ng-if='!showSpinner' layout-align='start'>
                     <md-content ng-view class='md-padding'></md-content>
                 </span>
             </div>

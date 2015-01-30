@@ -5,20 +5,18 @@ angular.module('PlayLikeTal.Services')
 
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
-        eco: ''
+        ecos: null
     };
 
     this.setColor = function setColor(color) {
         this.databaseFilter.color = color;
     };
 
-    this.setEco = function setEco(eco) {
-        if (eco === backup.eco) {
-            return;
+    this.setEcos = function setEco(ecos) {
+        if (!ecos || !ecos.length) {
+            this.databaseFilter.ecos = null;
+        } else {
+            this.databaseFilter.ecos = ecos;
         }
-        this.databaseFilter.eco = eco;
-    };
-
-    this.getPossibleEcos = function getPossibleEcos() {
     };
 });

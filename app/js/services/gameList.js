@@ -38,9 +38,9 @@ angular.module('PlayLikeTal.Services')
         }
 
         // Filter the ECO if one is specified
-        if (filter.eco) {
+        if (filter.ecos) {
             this.filteredGames = this.filteredGames.filter(function (game) {
-                return game[eco] === filter.eco;
+                return filter.ecos.indexOf(game.eco) > 0;
             });
         }
 
