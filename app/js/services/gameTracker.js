@@ -21,7 +21,7 @@ angular.module('PlayLikeTal.Services')
      * @return {promise}
      */
     this.loadGame = function loadGame(url) {
-        return $http.get('../database/games/' + url + '.js')
+        return $http.get('./database/games/' + url + '.js')
         .success(function (response) {
             this.setCurrentGame(response); 
             return currentGame;
