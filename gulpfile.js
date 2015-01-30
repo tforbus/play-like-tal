@@ -85,8 +85,8 @@ gulp.task('scripts', function () {
     gulp
         .src(paths.app)
         .pipe(concat('app.js'))
-        //.pipe(ngmin())
-        //.pipe(uglify({mangle: false}))
+        .pipe(ngmin())
+        .pipe(uglify({mangle: false}))
         .pipe(gulp.dest('./app/build/'));
 
     gulp
@@ -103,7 +103,7 @@ gulp.task('lib', function () {
         './bower_components/angular-aria/angular-aria.min.js',
         './bower_components/angular-animate/angular-animate.min.js',
         './bower_components/hammerjs/hammer.min.js',
-        './bower_components/angular-material/angular-material.js'
+        './bower_components/angular-material/angular-material.min.js'
         //'./app/lib/js/angular-material-modified.js'
     ];
 
