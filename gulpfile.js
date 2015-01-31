@@ -85,8 +85,8 @@ gulp.task('scripts', function () {
     gulp
         .src(paths.app)
         .pipe(concat('app.js'))
-        .pipe(ngmin())
-        .pipe(uglify({mangle: false}))
+        //.pipe(ngmin())
+        //.pipe(uglify({mangle: false}))
         .pipe(gulp.dest('./app/build/'));
 
     gulp

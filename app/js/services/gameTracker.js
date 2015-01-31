@@ -56,6 +56,11 @@ angular.module('PlayLikeTal.Services')
             nextTurn = this.getNextTurn();
         }
 
+        // Game is over.
+        if (!nextTurn && !turns.length) {
+            return null;
+        }
+
         san = nextTurn[0];
         nextTurn.shift();
 

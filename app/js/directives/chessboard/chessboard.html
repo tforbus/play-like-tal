@@ -21,15 +21,22 @@
 
     <section layout='row' layout-align='center center'>
         <md-button
+            ng-disabled='checkmate || resigns'
             class='md-raised md-primary'
             style='margin: 10px 5px 0 0;'
             ng-click='doNextMove()'
         >Show Move</md-button>
 
         <md-button
+            ng-disabled='checkmate || resigns'
             class='md-raised md-primary'
             style='margin: 10px 0 0 5px'
             ng-click='showHint()'
         >Show Hint</md-button>
+    </section>
+
+    <section layout='row' layout-align='center center'>
+        <div ng-if='checkmate'>Win by checkmate</div>
+        <div ng-if='resigns'>Win by resignation</div>
     </section>
 </md-content>

@@ -11,6 +11,10 @@ angular.module('PlayLikeTal.Directives')
             $scope.logic = null;
             $scope.playerColor = null;
 
+            // when do we quit?
+            $scope.checkmate = false;
+            $scope.resigns = false;
+
             // Tapping moves (mobile) is a little different.
             $scope.tappedMove = {
                 legalMoves: [],
@@ -46,6 +50,10 @@ angular.module('PlayLikeTal.Directives')
                 });
 
                 return squares;
+            };
+
+            $scope.isMoveCheckmate = function isMoveCheckmate(algebraicNotation) {
+                return algebraicNotation.indexOf('#') > -1;
             };
 
             /**
@@ -156,10 +164,18 @@ angular.module('PlayLikeTal.Directives')
                     computerMovesNext = !gameTrackerService.isPlayerMove(),
                     executedMove;
 
+                if (!move) {
+                    $scope.resigns = true;
+                    return;
+                }
                 executedMove = $scope.logic.move(move);
                 $scope.updatePosition();
 
-                if (computerMovesNext) {
+                if ($scope.isMoveCheckmate(move)) {
+                    $scope.checkmate = true;
+                }
+
+                else if (computerMovesNext) {
                     $timeout($scope.doNextMove, 500);
                 }
 
