@@ -2195,7 +2195,13 @@ angular.module('PlayLikeTal.Controllers')
         ecos: databaseFilterService.databaseFilter.ecos || ''
     };
 
+    $scope.year = {
+        value: ''
+    };
+
+    // Names of all openings.
     $scope.ecos = ecoListService.getNameToCodesMap();
+    $scope.years = databaseFilterService.allYears;
 
     $scope.$watch('playerColor.value', function (value) {
         if (!value) {
@@ -2206,6 +2212,7 @@ angular.module('PlayLikeTal.Controllers')
     $scope.applyFilters = function applyFilters() {
         databaseFilterService.setColor($scope.playerColor.value);
         databaseFilterService.setEcos($scope.opening.ecos);
+        databaseFilterService.setYear($scope.year.value);
         gameListService.applyFilter(databaseFilterService.databaseFilter);
         $mdDialog.hide();
     };
@@ -2243,6 +2250,44 @@ angular.module('PlayLikeTal.Controllers')
         $mdSidenav('left').toggle();
     };
 
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('bottomMenu', function ($templateCache) {
+    return {
+        restrict: 'E',
+        template: $templateCache.get('templates/filter.html')
+    };
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('hijacker', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            elem.bind(attrs.hijacker, function (e) {
+                return e.stopPropagation();
+            });
+        }
+    };
+});
+
+angular.module('PlayLikeTal.Directives')
+.directive('lazyLoad', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            $(elem).bind('scroll', function () {
+                var el = $(this),
+                    offset = 200;
+
+                // Add some offset to keep the list from getting choppy at the bottom.
+                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
+                    scope.$apply(attrs.lazyLoad);
+                }
+            });
+        }
+    };
 });
 
 angular.module('PlayLikeTal.Filters')
@@ -2288,44 +2333,6 @@ angular.module('PlayLikeTal.Filters')
     };
 });
 
-angular.module('PlayLikeTal.Directives')
-.directive('bottomMenu', function ($templateCache) {
-    return {
-        restrict: 'E',
-        template: $templateCache.get('templates/filter.html')
-    };
-});
-
-angular.module('PlayLikeTal.Directives')
-.directive('hijacker', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-            elem.bind(attrs.hijacker, function (e) {
-                return e.stopPropagation();
-            });
-        }
-    };
-});
-
-angular.module('PlayLikeTal.Directives')
-.directive('lazyLoad', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-            $(elem).bind('scroll', function () {
-                var el = $(this),
-                    offset = 200;
-
-                // Add some offset to keep the list from getting choppy at the bottom.
-                if (el.scrollTop() + el.innerHeight() + offset >= el[0].scrollHeight) {
-                    scope.$apply(attrs.lazyLoad);
-                }
-            });
-        }
-    };
-});
-
 /**
  * Wrapper for chessboardjs
  */
@@ -2347,9 +2354,15 @@ angular.module('PlayLikeTal.Services')
 
     this.showFilters = false;
 
+    // Only want to have valid information in the dropdowns.
+    // These values are set once all the games are retrieved in the gameListService.
+    this.allYears = [];
+    this.allEcos = [];
+
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
-        ecos: null
+        ecos: null,
+        year: null
     };
 
     this.setColor = function setColor(color) {
@@ -2363,6 +2376,11 @@ angular.module('PlayLikeTal.Services')
             this.databaseFilter.ecos = ecos;
         }
     };
+
+    this.setYear = function setYears(year) {
+        this.databaseFilter.year = year;
+    };
+
 });
 
 angular.module('PlayLikeTal.Services')
@@ -2393,10 +2411,14 @@ angular.module('PlayLikeTal.Services')
 
         return nameMap;
     };
+
+    this.setEcos = function setEcos(arrayOfCodes) {
+        this.ecos = arrayOfCodes;
+    };
 });
 
 angular.module('PlayLikeTal.Services')
-.service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE) {
+.service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE, databaseFilterService) {
 
     // Games contains the list of all games, ever.
     this.games = [];
@@ -2415,9 +2437,24 @@ angular.module('PlayLikeTal.Services')
         }
 
         return $http.get('./app/build/meta.js').then(function success(response) {
+            var allEcos = [];
+            var allYears = [];
+
             angular.forEach(response.data, function (game) {
                 this.games.push(game);
+
+                if (allEcos.indexOf(game.eco) < 0) {
+                    allEcos.push(game.eco);
+                }
+
+                if (allYears.indexOf(game.date) < 0) {
+                    allYears.push(game.date);
+                }
             }.bind(this));
+
+            databaseFilterService.allEcos = allEcos;
+            databaseFilterService.allYears = allYears;
+
             return this.games;
         }.bind(this), function error(response) {
             $log.error(response);
@@ -2438,6 +2475,12 @@ angular.module('PlayLikeTal.Services')
         if (filter.ecos) {
             this.filteredGames = this.filteredGames.filter(function (game) {
                 return filter.ecos.indexOf(game.eco) > 0;
+            });
+        }
+
+        if (filter.year) {
+            this.filteredGames = this.filteredGames.filter(function (game) {
+                return filter.year === game.date;
             });
         }
 

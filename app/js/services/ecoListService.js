@@ -26,4 +26,8 @@ angular.module('PlayLikeTal.Services')
 
         return nameMap;
     };
+
+    this.setEcos = function setEcos(arrayOfCodes) {
+        this.ecos = arrayOfCodes;
+    };
 });

@@ -30,6 +30,12 @@
                 ng-options='v as k for (k, v) in ecos'>
                 <option value='' selected='selected'>Any opening</option>
             </select>
+
+            <select
+                ng-model='year.value'
+                ng-options='year for year in years'>
+                <option value='' selected='selected'>Any year</option>
+            </select>
         </div>
     </md-content>
     <div class='md-actions' layout='row'>

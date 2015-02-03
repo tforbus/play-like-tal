@@ -3,9 +3,15 @@ angular.module('PlayLikeTal.Services')
 
     this.showFilters = false;
 
+    // Only want to have valid information in the dropdowns.
+    // These values are set once all the games are retrieved in the gameListService.
+    this.allYears = [];
+    this.allEcos = [];
+
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
-        ecos: null
+        ecos: null,
+        year: null
     };
 
     this.setColor = function setColor(color) {
@@ -19,4 +25,9 @@ angular.module('PlayLikeTal.Services')
             this.databaseFilter.ecos = ecos;
         }
     };
+
+    this.setYear = function setYears(year) {
+        this.databaseFilter.year = year;
+    };
+
 });

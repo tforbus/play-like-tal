@@ -1,5 +1,5 @@
 angular.module('PlayLikeTal.Services')
-.service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE) {
+.service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE, databaseFilterService) {
 
     // Games contains the list of all games, ever.
     this.games = [];
@@ -18,9 +18,24 @@ angular.module('PlayLikeTal.Services')
         }
 
         return $http.get('./app/build/meta.js').then(function success(response) {
+            var allEcos = [];
+            var allYears = [];
+
             angular.forEach(response.data, function (game) {
                 this.games.push(game);
+
+                if (allEcos.indexOf(game.eco) < 0) {
+                    allEcos.push(game.eco);
+                }
+
+                if (allYears.indexOf(game.date) < 0) {
+                    allYears.push(game.date);
+                }
             }.bind(this));
+
+            databaseFilterService.allEcos = allEcos;
+            databaseFilterService.allYears = allYears;
+
             return this.games;
         }.bind(this), function error(response) {
             $log.error(response);
@@ -41,6 +56,12 @@ angular.module('PlayLikeTal.Services')
         if (filter.ecos) {
             this.filteredGames = this.filteredGames.filter(function (game) {
                 return filter.ecos.indexOf(game.eco) > 0;
+            });
+        }
+
+        if (filter.year) {
+            this.filteredGames = this.filteredGames.filter(function (game) {
+                return filter.year === game.date;
             });
         }
 
