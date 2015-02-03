@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship 1964/65","site":"Kiev (RUS)","date":1965,"round":"12","white":"Mikhail Tal","black":"Vladimir Liavdansky","result":{"white":"1","black":"0"},"eco":"B83","moves":[["13\"]","[EventDate","\""],["??.??\"]","[Round","\"12\"]","[Result","\""]],"id":450}
+{"eventName":"USSR Championship 1964/65","site":"Kiev (RUS)","date":1965,"round":"12","white":"Mikhail Tal","black":"Vladimir Liavdansky","result":{"white":"1","black":"0"},"eco":"B83","moves":["13\"]","[EventDate","\"","??.??\"]","[Round","\"12\"]","[Result","\""],"id":450}

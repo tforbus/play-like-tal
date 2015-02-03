@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship 1964/65","site":"Kiev (RUS)","date":1965,"round":"18","white":"Mikhail Tal","black":"Yuri Averbakh","result":{"white":"1","black":"0"},"eco":"C92","moves":[["24\"]","[EventDate","\""],["??.??\"]","[Round","\"18\"]","[Result","\""]],"id":438}
+{"eventName":"USSR Championship 1964/65","site":"Kiev (RUS)","date":1965,"round":"18","white":"Mikhail Tal","black":"Yuri Averbakh","result":{"white":"1","black":"0"},"eco":"C92","moves":["24\"]","[EventDate","\"","??.??\"]","[Round","\"18\"]","[Result","\""],"id":438}

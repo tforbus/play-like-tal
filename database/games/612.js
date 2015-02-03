@@ -1,1 +1,1 @@
-{"eventName":"Tallinn it","site":"EST","date":1971,"round":"5","white":"Mikhail Tal","black":"Lhamsuren Myagmarsuren","result":{"white":"1","black":"0"},"eco":"D26","moves":[["26\"]","[EventDate","\"?\"]","[Round","\"5\"]","[Result","\""]],"id":612}
+{"eventName":"Tallinn it","site":"EST","date":1971,"round":"5","white":"Mikhail Tal","black":"Lhamsuren Myagmarsuren","result":{"white":"1","black":"0"},"eco":"D26","moves":["26\"]","[EventDate","\"?\"]","[Round","\"5\"]","[Result","\""],"id":612}

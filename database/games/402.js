@@ -1,1 +1,1 @@
-{"eventName":"Reykjavik (Iceland)","site":"It","date":1964,"round":"11","white":"Mikhail Tal","black":"Nona Gaprindashvili","result":{"white":"1","black":"0"},"eco":"C99","moves":[["27\"]","[EventDate","\"?\"]","[Round","\"11\"]","[Result","\""]],"id":402}
+{"eventName":"Reykjavik (Iceland)","site":"It","date":1964,"round":"11","white":"Mikhail Tal","black":"Nona Gaprindashvili","result":{"white":"1","black":"0"},"eco":"C99","moves":["27\"]","[EventDate","\"?\"]","[Round","\"11\"]","[Result","\""],"id":402}

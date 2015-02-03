@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Baku AZE","date":1972,"round":"14","white":"Mikhail Tal","black":"Semyon Abramovich Furman","result":{"white":"1","black":"0"},"eco":"C94","moves":[["17\"]","[Round","\"14\"]","[Result","\""]],"id":663}
+{"eventName":"USSR Championship","site":"Baku AZE","date":1972,"round":"14","white":"Mikhail Tal","black":"Semyon Abramovich Furman","result":{"white":"1","black":"0"},"eco":"C94","moves":["17\"]","[Round","\"14\"]","[Result","\""],"id":663}

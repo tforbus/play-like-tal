@@ -1,1 +1,1 @@
-{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"13","white":"Mikhail Tal","black":"Bruno Parma","result":{"white":"1","black":"0"},"eco":"B36","moves":[["23\"]","[EventDate","\""],["03\"]","[Round","\"13\"]","[Result","\""]],"id":292}
+{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"13","white":"Mikhail Tal","black":"Bruno Parma","result":{"white":"1","black":"0"},"eco":"B36","moves":["23\"]","[EventDate","\"","03\"]","[Round","\"13\"]","[Result","\""],"id":292}

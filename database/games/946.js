@@ -1,1 +1,1 @@
-{"eventName":"Lucerne olm","site":"13","date":1982,"round":"13","white":"Lars Aake Schneider","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B93","moves":[["13\"]","[EventDate","\"?\"]","[Round","\"13\"]","[Result","\""]],"id":946}
+{"eventName":"Lucerne olm","site":"13","date":1982,"round":"13","white":"Lars Aake Schneider","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B93","moves":["13\"]","[EventDate","\"?\"]","[Round","\"13\"]","[Result","\""],"id":946}

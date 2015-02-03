@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Leningrad URS","date":1974,"round":"13","white":"Viktor Kupreichik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B46","moves":[["30\"]","[Round","\"13\"]","[Result","\""]],"id":746}
+{"eventName":"USSR Championship","site":"Leningrad URS","date":1974,"round":"13","white":"Viktor Kupreichik","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B46","moves":["30\"]","[Round","\"13\"]","[Result","\""],"id":746}

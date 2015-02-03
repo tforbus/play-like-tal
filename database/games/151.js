@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Moscow (RUS)","date":1957,"round":"3","white":"Mikhail Tal","black":"David Bronstein","result":{"white":"1","black":"0"},"eco":"D15","moves":[["23\"]","[EventDate","\""],["??.??\"]","[Round","\"3\"]","[Result","\""]],"id":151}
+{"eventName":"USSR Championship","site":"Moscow (RUS)","date":1957,"round":"3","white":"Mikhail Tal","black":"David Bronstein","result":{"white":"1","black":"0"},"eco":"D15","moves":["23\"]","[EventDate","\"","??.??\"]","[Round","\"3\"]","[Result","\""],"id":151}

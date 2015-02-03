@@ -1,1 +1,1 @@
-{"eventName":"Havana","site":"07","date":1966,"round":"7","white":"Mikhail Tal","black":"Ingi Randver Johannsson","result":{"white":"1","black":"0"},"eco":"D46","moves":[["11\"]","[EventDate","\"?\"]","[Round","\"7\"]","[Result","\""]],"id":494}
+{"eventName":"Havana","site":"07","date":1966,"round":"7","white":"Mikhail Tal","black":"Ingi Randver Johannsson","result":{"white":"1","black":"0"},"eco":"D46","moves":["11\"]","[EventDate","\"?\"]","[Round","\"7\"]","[Result","\""],"id":494}

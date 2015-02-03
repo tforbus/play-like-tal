@@ -1,1 +1,1 @@
-{"eventName":"Reykjavik","site":"2","date":1964,"round":"2","white":"Mikhail Tal","black":"Ingi Randver Johannsson","result":{"white":"1","black":"0"},"eco":"C96","moves":[["15\"]","[EventDate","\"?\"]","[Round","\"2\"]","[Result","\""]],"id":389}
+{"eventName":"Reykjavik","site":"2","date":1964,"round":"2","white":"Mikhail Tal","black":"Ingi Randver Johannsson","result":{"white":"1","black":"0"},"eco":"C96","moves":["15\"]","[EventDate","\"?\"]","[Round","\"2\"]","[Result","\""],"id":389}

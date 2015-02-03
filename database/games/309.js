@@ -1,1 +1,1 @@
-{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"16","white":"Milan Germek","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A61","moves":[["28\"]","[EventDate","\""],["03\"]","[Round","\"16\"]","[Result","\""]],"id":309}
+{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"16","white":"Milan Germek","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A61","moves":["28\"]","[EventDate","\"","03\"]","[Round","\"16\"]","[Result","\""],"id":309}

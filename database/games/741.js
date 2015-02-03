@@ -1,1 +1,1 @@
-{"eventName":"Hastings 1973/74","site":"Hastings ENG","date":1974,"round":"8","white":"Mikhail Tal","black":"Ludwig Rellstab","result":{"white":"1","black":"0"},"eco":"C75","moves":[["04\"]","[EventDate","\""],["27\"]","[Round","\"8\"]","[Result","\""]],"id":741}
+{"eventName":"Hastings 1973/74","site":"Hastings ENG","date":1974,"round":"8","white":"Mikhail Tal","black":"Ludwig Rellstab","result":{"white":"1","black":"0"},"eco":"C75","moves":["04\"]","[EventDate","\"","27\"]","[Round","\"8\"]","[Result","\""],"id":741}

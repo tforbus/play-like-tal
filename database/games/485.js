@@ -1,1 +1,1 @@
-{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"11","white":"Antonio Angel Medina Garcia","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B43","moves":[["27\"]","[Round","\"11\"]","[Result","\""]],"id":485}
+{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"11","white":"Antonio Angel Medina Garcia","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B43","moves":["27\"]","[Round","\"11\"]","[Result","\""],"id":485}

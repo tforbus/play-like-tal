@@ -1,1 +1,1 @@
-{"eventName":"Moscow","site":"Moscow RUS","date":1963,"round":"14","white":"Mikhail Tal","black":"Aleksandar Matanovic","result":{"white":"1","black":"0"},"eco":"C97","moves":[["17\"]","[EventDate","\""],["29\"]","[Round","\"14\"]","[Result","\""]],"id":382}
+{"eventName":"Moscow","site":"Moscow RUS","date":1963,"round":"14","white":"Mikhail Tal","black":"Aleksandar Matanovic","result":{"white":"1","black":"0"},"eco":"C97","moves":["17\"]","[EventDate","\"","29\"]","[Round","\"14\"]","[Result","\""],"id":382}

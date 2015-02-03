@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Moscow (RUS)","date":1957,"round":"2","white":"Mark Taimanov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E56","moves":[["22\"]","[EventDate","\""],["??.??\"]","[Round","\"2\"]","[Result","\""]],"id":162}
+{"eventName":"USSR Championship","site":"Moscow (RUS)","date":1957,"round":"2","white":"Mark Taimanov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E56","moves":["22\"]","[EventDate","\"","??.??\"]","[Round","\"2\"]","[Result","\""],"id":162}

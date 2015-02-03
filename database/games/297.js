@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship 1961 b","site":"Baku (RUS)","date":1961,"round":"18","white":"Mikhail Tal","black":"Abram Khasin","result":{"white":"1","black":"0"},"eco":"B32","moves":[["13\"]","[EventDate","\""],["??.??\"]","[Round","\"18\"]","[Result","\""]],"id":297}
+{"eventName":"USSR Championship 1961 b","site":"Baku (RUS)","date":1961,"round":"18","white":"Mikhail Tal","black":"Abram Khasin","result":{"white":"1","black":"0"},"eco":"B32","moves":["13\"]","[EventDate","\"","??.??\"]","[Round","\"18\"]","[Result","\""],"id":297}

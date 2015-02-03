@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship 1961 b","site":"Baku (RUS)","date":1961,"round":"19","white":"Mark Taimanov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A32","moves":[["15\"]","[EventDate","\""],["??.??\"]","[Round","\"19\"]","[Result","\""]],"id":299}
+{"eventName":"USSR Championship 1961 b","site":"Baku (RUS)","date":1961,"round":"19","white":"Mark Taimanov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A32","moves":["15\"]","[EventDate","\"","??.??\"]","[Round","\"19\"]","[Result","\""],"id":299}

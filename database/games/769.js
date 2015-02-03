@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Leningrad URS","date":1974,"round":"8","white":"Mikhail Tal","black":"Yuri Balashov","result":{"white":"1","black":"0"},"eco":"B52","moves":[["30\"]","[Round","\"8\"]","[Result","\""]],"id":769}
+{"eventName":"USSR Championship","site":"Leningrad URS","date":1974,"round":"8","white":"Mikhail Tal","black":"Yuri Balashov","result":{"white":"1","black":"0"},"eco":"B52","moves":["30\"]","[Round","\"8\"]","[Result","\""],"id":769}

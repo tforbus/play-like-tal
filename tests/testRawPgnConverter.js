@@ -204,9 +204,7 @@
                         pgn.result.white.should.equal('0');
                         pgn.result.black.should.equal('1');
                         pgn.eco.should.equal('D46');
-                        pgn.moves.length.should.equal(30);
-                        pgn.moves[4][0].should.equal('e3');
-                        pgn.moves[4][1].should.equal('Nbd7');
+                        pgn.moves.length.should.equal(60);
                         done();
                     }
                 });

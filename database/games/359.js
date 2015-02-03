@@ -1,1 +1,1 @@
-{"eventName":"Moscow","site":"Moscow RUS","date":1963,"round":"8","white":"Mikhail Tal","black":"Eleazar Jimenez Zerquera","result":{"white":"1","black":"0"},"eco":"C79","moves":[["08\"]","[EventDate","\""],["29\"]","[Round","\"8\"]","[Result","\""]],"id":359}
+{"eventName":"Moscow","site":"Moscow RUS","date":1963,"round":"8","white":"Mikhail Tal","black":"Eleazar Jimenez Zerquera","result":{"white":"1","black":"0"},"eco":"C79","moves":["08\"]","[EventDate","\"","29\"]","[Round","\"8\"]","[Result","\""],"id":359}

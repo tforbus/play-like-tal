@@ -1,1 +1,1 @@
-{"eventName":"Havana olm 2/408","site":"Havana olm 2/408","date":1966,"round":"2","white":"Mikhail Tal","black":"Robert Eugene Byrne","result":{"white":"1","black":"0"},"eco":"B69","moves":[["05\"]","[EventDate","\"?\"]","[Round","\"2\"]","[Result","\""]],"id":496}
+{"eventName":"Havana olm 2/408","site":"Havana olm 2/408","date":1966,"round":"2","white":"Mikhail Tal","black":"Robert Eugene Byrne","result":{"white":"1","black":"0"},"eco":"B69","moves":["05\"]","[EventDate","\"?\"]","[Round","\"2\"]","[Result","\""],"id":496}

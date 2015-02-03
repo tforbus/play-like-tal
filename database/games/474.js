@@ -1,1 +1,1 @@
-{"eventName":"Havana","site":"06","date":1966,"round":"6","white":"Mikhail Tal","black":"Ricardo Calvo","result":{"white":"1","black":"0"},"eco":"B64","moves":[["10\"]","[EventDate","\"?\"]","[Round","\"6\"]","[Result","\""]],"id":474}
+{"eventName":"Havana","site":"06","date":1966,"round":"6","white":"Mikhail Tal","black":"Ricardo Calvo","result":{"white":"1","black":"0"},"eco":"B64","moves":["10\"]","[EventDate","\"?\"]","[Round","\"6\"]","[Result","\""],"id":474}

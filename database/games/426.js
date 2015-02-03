@@ -1,1 +1,1 @@
-{"eventName":"Reykjavik","site":"8","date":1964,"round":"8","white":"Trausti Bjornsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E82","moves":[["23\"]","[EventDate","\"?\"]","[Round","\"8\"]","[Result","\""]],"id":426}
+{"eventName":"Reykjavik","site":"8","date":1964,"round":"8","white":"Trausti Bjornsson","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E82","moves":["23\"]","[EventDate","\"?\"]","[Round","\"8\"]","[Result","\""],"id":426}

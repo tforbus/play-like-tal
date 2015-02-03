@@ -160,8 +160,8 @@ angular.module('PlayLikeTal.Directives')
                     $scope.unhighlightSquare($scope.previousComputerMove.from, 'computer-highlight-square');
                 }
 
-                var move = gameTrackerService.getNextMove(),
-                    computerMovesNext = !gameTrackerService.isPlayerMove(),
+                var move = gameTrackerService.peekNextMove(),
+                    computerMovesNext = gameTrackerService.isPlayerMove(),
                     executedMove;
 
                 if (!move) {
@@ -190,6 +190,9 @@ angular.module('PlayLikeTal.Directives')
                 // must clear the legal moves highlights.
                 $scope.showingHint = false;
                 $scope.hideLegalMoves();
+
+                // Increment current move.
+                gameTrackerService.incrementMove();
 
                 if ($scope.tappedMove.source) {
                     $scope.unhighlightSquare($scope.tappedMove.source);
@@ -279,7 +282,8 @@ angular.module('PlayLikeTal.Directives')
                     });
 
                     // Increment the next move.
-                    gameTrackerService.getNextMove();
+                    gameTrackerService.incrementMove();
+                    console.log('dropped and incremented move');
                     $timeout($scope.doNextMove, 500);
                 }
 

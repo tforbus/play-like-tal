@@ -1,1 +1,1 @@
-{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"6","white":"Mario Bertok","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A79","moves":[["10\"]","[EventDate","\""],["03\"]","[Round","\"6\"]","[Result","\""]],"id":321}
+{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"6","white":"Mario Bertok","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A79","moves":["10\"]","[EventDate","\"","03\"]","[Round","\"6\"]","[Result","\""],"id":321}

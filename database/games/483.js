@@ -1,1 +1,1 @@
-{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"6","white":"Mikhail Tal","black":"Augusto Menvielle Laccourreye","result":{"white":"1","black":"0"},"eco":"C41","moves":[["27\"]","[Round","\"6\"]","[Result","\""]],"id":483}
+{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"6","white":"Mikhail Tal","black":"Augusto Menvielle Laccourreye","result":{"white":"1","black":"0"},"eco":"C41","moves":["27\"]","[Round","\"6\"]","[Result","\""],"id":483}

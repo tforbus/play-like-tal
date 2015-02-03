@@ -142,12 +142,9 @@ module.exports = {
 
         pgnObject.moves = [];
         turns.forEach(function (turn) {
-            var movesThisTurn = [],
-                eachMove;
-
             // 'd4 Nf6' -> ['d4', 'Nf6']
-            eachMove = turn.split(/\s/);
-            pgnObject.moves.push(eachMove);
+            var eachMove = turn.split(/\s/);
+            pgnObject.moves = pgnObject.moves.concat(eachMove);
         });
 
         // Assign ID for easy lookup

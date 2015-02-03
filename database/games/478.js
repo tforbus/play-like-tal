@@ -1,1 +1,1 @@
-{"eventName":"Havana","site":"10","date":1966,"round":"10","white":"Erling Kristiansen","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B42","moves":[["15\"]","[EventDate","\"?\"]","[Round","\"10\"]","[Result","\""]],"id":478}
+{"eventName":"Havana","site":"10","date":1966,"round":"10","white":"Erling Kristiansen","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B42","moves":["15\"]","[EventDate","\"?\"]","[Round","\"10\"]","[Result","\""],"id":478}

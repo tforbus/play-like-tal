@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Leningrad URS","date":1971,"round":"14","white":"Rafael Vaganian","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E10","moves":[["05\"]","[EventDate","\""],["15\"]","[Round","\"14\"]","[Result","\""]],"id":599}
+{"eventName":"USSR Championship","site":"Leningrad URS","date":1971,"round":"14","white":"Rafael Vaganian","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"E10","moves":["05\"]","[EventDate","\"","15\"]","[Round","\"14\"]","[Result","\""],"id":599}

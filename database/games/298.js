@@ -1,1 +1,1 @@
-{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"19","white":"Mikhail Tal","black":"Miguel Najdorf","result":{"white":"1","black":"0"},"eco":"B92","moves":[["03\"]","[EventDate","\""],["03\"]","[Round","\"19\"]","[Result","\""]],"id":298}
+{"eventName":"Bled","site":"Bled YUG","date":1961,"round":"19","white":"Mikhail Tal","black":"Miguel Najdorf","result":{"white":"1","black":"0"},"eco":"B92","moves":["03\"]","[EventDate","\"","03\"]","[Round","\"19\"]","[Result","\""],"id":298}
