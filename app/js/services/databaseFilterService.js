@@ -11,7 +11,8 @@ angular.module('PlayLikeTal.Services')
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
         ecos: null,
-        year: null
+        year: null,
+        openingName: null
     };
 
     this.setColor = function setColor(color) {
@@ -28,6 +29,10 @@ angular.module('PlayLikeTal.Services')
 
     this.setYear = function setYears(year) {
         this.databaseFilter.year = year;
+    };
+
+    this.setOpeningName = function setOpeningName(name) {
+        this.databaseFilter.openingName = name;
     };
 
 });

@@ -23,19 +23,26 @@
                 </md-radio-button>
             </md-radio-group>
         </div>
-
-        <div layout='column' layout-align='center start'>
+        <div layout='column' layout-align='center center'>
             <select
-                ng-model='opening.ecos'
-                ng-options='v as k for (k, v) in ecos'>
-                <option value='' selected='selected'>Any opening</option>
-            </select>
-
-            <select
+                style='width: 150px;'
                 ng-model='year.value'
                 ng-options='year for year in years'>
                 <option value='' selected='selected'>Any year</option>
             </select>
+
+            <label>Opening names matching:</label>
+            <input ng-model='opening.name' type='text' style='width:150px;'/>
+
+            &mdash;OR&mdash;
+
+            <select
+                style='width: 150px;'
+                ng-model='opening.ecos'
+                ng-options='eco.value as eco.label for eco in ecos'>
+                <option value='' selected='selected'>Any opening</option>
+            </select>
+
         </div>
     </md-content>
     <div class='md-actions' layout='row'>

@@ -1,5 +1,6 @@
 angular.module('PlayLikeTal.Controllers')
 .controller('GameFilterCtrl', function ($scope,
+            $filter,
             $mdDialog,
             databaseFilterService,
             ecoListService,
@@ -10,15 +11,23 @@ angular.module('PlayLikeTal.Controllers')
     };
 
     $scope.opening = {
-        ecos: databaseFilterService.databaseFilter.ecos || ''
+        ecos: databaseFilterService.databaseFilter.ecos || '',
+        name: databaseFilterService.databaseFilter.openingName || ''
     };
 
     $scope.year = {
-        value: ''
+        value: databaseFilterService.databaseFilter.year || ''
     };
 
-    // Names of all openings.
-    $scope.ecos = ecoListService.getNameToCodesMap();
+    $scope.ecos = databaseFilterService.allEcos
+    .sort()
+    .map(function (code) {
+        return {
+            value: code,
+            label: code + ': ' + $filter('eco')(code)
+        };
+    });
+
     $scope.years = databaseFilterService.allYears;
 
     $scope.$watch('playerColor.value', function (value) {
@@ -31,6 +40,7 @@ angular.module('PlayLikeTal.Controllers')
         databaseFilterService.setColor($scope.playerColor.value);
         databaseFilterService.setEcos($scope.opening.ecos);
         databaseFilterService.setYear($scope.year.value);
+        databaseFilterService.setOpeningName($scope.opening.name);
         gameListService.applyFilter(databaseFilterService.databaseFilter);
         $mdDialog.hide();
     };

@@ -3,6 +3,7 @@ angular.module('PlayLikeTal.Services')
     var ecoCodes = Object.keys(ECO),
         nameMap = {};
 
+
     this.getNameToCodesMap = function getNameToCodesMap() {
         if (Object.keys(nameMap).length) {
             return nameMap;

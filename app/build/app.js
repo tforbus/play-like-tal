@@ -2182,6 +2182,7 @@ angular.module('PlayLikeTal.Controllers')
 
 angular.module('PlayLikeTal.Controllers')
 .controller('GameFilterCtrl', function ($scope,
+            $filter,
             $mdDialog,
             databaseFilterService,
             ecoListService,
@@ -2192,15 +2193,23 @@ angular.module('PlayLikeTal.Controllers')
     };
 
     $scope.opening = {
-        ecos: databaseFilterService.databaseFilter.ecos || ''
+        ecos: databaseFilterService.databaseFilter.ecos || '',
+        name: databaseFilterService.databaseFilter.openingName || ''
     };
 
     $scope.year = {
-        value: ''
+        value: databaseFilterService.databaseFilter.year || ''
     };
 
-    // Names of all openings.
-    $scope.ecos = ecoListService.getNameToCodesMap();
+    $scope.ecos = databaseFilterService.allEcos
+    .sort()
+    .map(function (code) {
+        return {
+            value: code,
+            label: code + ': ' + $filter('eco')(code)
+        };
+    });
+
     $scope.years = databaseFilterService.allYears;
 
     $scope.$watch('playerColor.value', function (value) {
@@ -2213,6 +2222,7 @@ angular.module('PlayLikeTal.Controllers')
         databaseFilterService.setColor($scope.playerColor.value);
         databaseFilterService.setEcos($scope.opening.ecos);
         databaseFilterService.setYear($scope.year.value);
+        databaseFilterService.setOpeningName($scope.opening.name);
         gameListService.applyFilter(databaseFilterService.databaseFilter);
         $mdDialog.hide();
     };
@@ -2362,7 +2372,8 @@ angular.module('PlayLikeTal.Services')
     this.databaseFilter = {
         color: angular.copy(COLORS.any),
         ecos: null,
-        year: null
+        year: null,
+        openingName: null
     };
 
     this.setColor = function setColor(color) {
@@ -2381,12 +2392,17 @@ angular.module('PlayLikeTal.Services')
         this.databaseFilter.year = year;
     };
 
+    this.setOpeningName = function setOpeningName(name) {
+        this.databaseFilter.openingName = name;
+    };
+
 });
 
 angular.module('PlayLikeTal.Services')
 .service('ecoListService', function (ECO) {
     var ecoCodes = Object.keys(ECO),
         nameMap = {};
+
 
     this.getNameToCodesMap = function getNameToCodesMap() {
         if (Object.keys(nameMap).length) {
@@ -2418,7 +2434,7 @@ angular.module('PlayLikeTal.Services')
 });
 
 angular.module('PlayLikeTal.Services')
-.service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE, databaseFilterService) {
+.service('gameListService', function ($filter, $http, $log, $q, $rootScope, COLORS, PLAY_LIKE, databaseFilterService) {
 
     // Games contains the list of all games, ever.
     this.games = [];
@@ -2471,10 +2487,19 @@ angular.module('PlayLikeTal.Services')
             });
         }
 
-        // Filter the ECO if one is specified
-        if (filter.ecos) {
+        if (filter.openingName) {
+            var reg = new RegExp(filter.openingName, 'i'),
+                toName = $filter('eco');
+
             this.filteredGames = this.filteredGames.filter(function (game) {
-                return filter.ecos.indexOf(game.eco) > 0;
+                return reg.test(toName(game.eco));
+            });
+        }
+
+        // Filter the ECO if one is specified
+        else if (filter.ecos) {
+            this.filteredGames = this.filteredGames.filter(function (game) {
+                return filter.ecos === game.eco;
             });
         }
 
@@ -2498,9 +2523,6 @@ angular.module('PlayLikeTal.Services')
 // logic.moves({square: ''})
 // logic.get(square) returns piece on the square.
 .service('gameTrackerService', function ($http, PLAY_LIKE) {
-
-    // Save the current game.
-    //var currentGame ={"event":"?","site":"Riga","date":1949,"round":"?","white":"Mikhail Tal","black":"Leonov","result":{"white":"1","black":"0"},"eco":"B13","moves":[["e4","c6"],["d4","d5"],["exd5","cxd5"],["Bd3","Nf6"],["h3","h6"],["Bf4","e6"],["Nf3","Bd6"],["Bxd6","Qxd6"],["c3","Nc6"],["O-O","O-O"],["Qe2","Re8"],["Ne5","Qc7"],["f4","Nxe5"],["fxe5","Nh7"],["Qh5","Re7"],["Na3","a6"],["Nc2","Qd7"],["Ne3","Qe8"],["Rf6","Qf8"],["Rf4","Bd7"],["Ng4","Be8"],["Nf6+","Nxf6"],["exf6","Rc7"],["fxg7","Kxg7"],["Qe5+"]]};
 
     var moves,
         currentMoveIndex,
@@ -2544,10 +2566,6 @@ angular.module('PlayLikeTal.Services')
     };
 
     this.peekNextMove = function peekNextMove() {
-        if (currentMoveIndex < 0) {
-            return moves[0];
-        }
-
         if (currentMoveIndex > moves.length) {
             return null;
         }
@@ -2578,8 +2596,6 @@ angular.module('PlayLikeTal.Services')
 
         return false;
     };
-
-    //this.setCurrentGame(currentGame);
 
 });
 

@@ -1,5 +1,5 @@
 angular.module('PlayLikeTal.Services')
-.service('gameListService', function ($http, $log, $q, $rootScope, COLORS, PLAY_LIKE, databaseFilterService) {
+.service('gameListService', function ($filter, $http, $log, $q, $rootScope, COLORS, PLAY_LIKE, databaseFilterService) {
 
     // Games contains the list of all games, ever.
     this.games = [];
@@ -52,10 +52,19 @@ angular.module('PlayLikeTal.Services')
             });
         }
 
-        // Filter the ECO if one is specified
-        if (filter.ecos) {
+        if (filter.openingName) {
+            var reg = new RegExp(filter.openingName, 'i'),
+                toName = $filter('eco');
+
             this.filteredGames = this.filteredGames.filter(function (game) {
-                return filter.ecos.indexOf(game.eco) > 0;
+                return reg.test(toName(game.eco));
+            });
+        }
+
+        // Filter the ECO if one is specified
+        else if (filter.ecos) {
+            this.filteredGames = this.filteredGames.filter(function (game) {
+                return filter.ecos === game.eco;
             });
         }
 
