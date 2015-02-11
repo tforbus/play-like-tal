@@ -2300,49 +2300,6 @@ angular.module('PlayLikeTal.Directives')
     };
 });
 
-angular.module('PlayLikeTal.Filters')
-
-/**
- * Translate an ECO code into an ECO name.
- * 'B37' -> Sicilian, Accelerated Fianchetto
- */
-.filter('eco', function (ECO) {
-    return function (code) {
-        if (!code) {
-            return '';
-        }
-        
-        var upper = code.toUpperCase(),
-            ecoInfo = ECO[upper];
-
-        if (ecoInfo) {
-            return ecoInfo.name;
-        }
-
-        return '';
-    };
-});
-
-angular.module('PlayLikeTal.Filters')
-
-/**
- * Translate an ECO code into an ECO name.
- * 'B37' -> Sicilian, Accelerated Fianchetto
- */
-.filter('event', function () {
-    return function (eventName) {
-        if (!eventName || !angular.isString(eventName)) {
-            return '';
-        }
-
-        if (eventName === '?') {
-            return 'Unknown Event';
-        }
-
-        return eventName;
-    };
-});
-
 /**
  * Wrapper for chessboardjs
  */
@@ -2597,6 +2554,49 @@ angular.module('PlayLikeTal.Services')
         return false;
     };
 
+});
+
+angular.module('PlayLikeTal.Filters')
+
+/**
+ * Translate an ECO code into an ECO name.
+ * 'B37' -> Sicilian, Accelerated Fianchetto
+ */
+.filter('eco', function (ECO) {
+    return function (code) {
+        if (!code) {
+            return '';
+        }
+        
+        var upper = code.toUpperCase(),
+            ecoInfo = ECO[upper];
+
+        if (ecoInfo) {
+            return ecoInfo.name;
+        }
+
+        return '';
+    };
+});
+
+angular.module('PlayLikeTal.Filters')
+
+/**
+ * Translate an ECO code into an ECO name.
+ * 'B37' -> Sicilian, Accelerated Fianchetto
+ */
+.filter('event', function () {
+    return function (eventName) {
+        if (!eventName || !angular.isString(eventName)) {
+            return '';
+        }
+
+        if (eventName === '?') {
+            return 'Unknown Event';
+        }
+
+        return eventName;
+    };
 });
 
 angular.module('PlayLikeTal.Directives')
