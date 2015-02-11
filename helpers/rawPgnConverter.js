@@ -15,7 +15,7 @@ module.exports = {
         whiteElo:       /\[whiteelo/i,
         blackElo:       /\[blackelo/i,
         eco:            /\[eco/i,
-        moves:          /1\.\s?N?\w{1}\d{1}(?:(?![0|1](?:[-/])).)*/gmi
+        moves:          /1\.\s?N?\w{1}\d{1}\s?(?:(?![0|1](?:[-/])).)*/gmi
     },
 
     /**
@@ -77,8 +77,8 @@ module.exports = {
             turns;
 
         // some pgns are not correct.
-        gamePlay = gamePlay[0].replace(/(\d+\.)\s/g, '$1'); 
-        turns = gamePlay.trim().split(/\d+\./g);
+        gamePlay = gamePlay[0].replace(/(\d{1,2}\.)\s+/g, '$1'); 
+        turns = gamePlay.trim().split(/\d{1,2}\.\s*/g);
 
         // Filter out the empty turn that gets created on split,
         // and trim the turns to prevent any space issues.
@@ -89,6 +89,7 @@ module.exports = {
         .map(function (turn) {
             return turn.trim();
         });
+
     },
 
     /**

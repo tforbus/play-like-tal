@@ -1,1 +1,1 @@
-{"eventName":"Moscow","site":"Moscow RUS","date":1963,"round":"10","white":"Mikhail Tal","black":"Boris T Vladimirov","result":{"white":"1","black":"0"},"eco":"B28","moves":["11\"]","[EventDate","\"","29\"]","[Round","\"10\"]","[Result","\""],"id":366}
+{"eventName":"Moscow","site":"Moscow RUS","date":1963,"round":"10","white":"Mikhail Tal","black":"Boris T Vladimirov","result":{"white":"1","black":"0"},"eco":"B28","moves":["11\"]","[EventDate","\"19","29\"]","[Round","\"10\"]","[Result","\""],"id":366}

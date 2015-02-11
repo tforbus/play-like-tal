@@ -1,1 +1,1 @@
-{"eventName":"Moscow","site":"Moscow URS","date":1971,"round":"2","white":"Mikhail Tal","black":"Levente Lengyel","result":{"white":"1","black":"0"},"eco":"A17","moves":["25\"]","[EventDate","\"","24\"]","[Round","\"2\"]","[Result","\""],"id":616}
+{"eventName":"Moscow","site":"Moscow URS","date":1971,"round":"2","white":"Mikhail Tal","black":"Levente Lengyel","result":{"white":"1","black":"0"},"eco":"A17","moves":["25\"]","[EventDate","\"19","24\"]","[Round","\"2\"]","[Result","\""],"id":616}

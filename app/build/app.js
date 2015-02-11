@@ -2851,6 +2851,17 @@ angular.module('PlayLikeTal.Directives')
             // TODO: check promotion/underpromotion and en passant
             function onDrop(source, target) {
 
+                // Unfortunately, the chess logic doesn't always recognize that the SAN
+                // might contain extra information, such as which piece moved.
+                // e.g., Nge2 won't be a SAN listed, so construct one that will match.
+                function addFileToSan(move) {
+                    var startFile = move.from.charAt(0);
+                    var originalSan = move.san.split('');
+
+                    originalSan.splice(1, 0, startFile);
+                    return originalSan.join('');
+                }
+
                 // Don't want to do the move on the actual board, 
                 // so copy the logic of the board and try the move out first.
                 var move = new ChessLogic($scope.logic.fen()).move({
@@ -2864,17 +2875,18 @@ angular.module('PlayLikeTal.Directives')
                     return 'snapback';
                 }
 
-                var isMyMove = gameTrackerService.isPlayerMove(),
-                    nextMove = gameTrackerService.peekNextMove();
+                var isMyMove = gameTrackerService.isPlayerMove();
+                var nextMove = gameTrackerService.peekNextMove();
+                var isRightMove = move.san === nextMove || addFileToSan(move) === nextMove;
 
                 // If the wrong move was selected, return the piece.
-                if (isMyMove && move.san !== nextMove) {
+                if (isMyMove && !isRightMove) {
                     move = null;
                     return 'snapback';
                 }
 
                 // If successful move, the computer does the next move.
-                if (isMyMove && move.san === nextMove) {
+                if (isMyMove && isRightMove) {
                     $scope.showingHint = false;
                     $scope.logic.move({
                         from: source,
@@ -2884,7 +2896,6 @@ angular.module('PlayLikeTal.Directives')
 
                     // Increment the next move.
                     gameTrackerService.incrementMove();
-                    console.log('dropped and incremented move');
                     $timeout($scope.doNextMove, 500);
                 }
 

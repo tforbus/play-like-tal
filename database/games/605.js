@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Leningrad URS","date":1971,"round":"6","white":"Mikhail Tal","black":"Nikolai V Krogius","result":{"white":"1","black":"0"},"eco":"C89","moves":["23\"]","[EventDate","\"","15\"]","[Round","\"6\"]","[Result","\""],"id":605}
+{"eventName":"USSR Championship","site":"Leningrad URS","date":1971,"round":"6","white":"Mikhail Tal","black":"Nikolai V Krogius","result":{"white":"1","black":"0"},"eco":"C89","moves":["23\"]","[EventDate","\"19","15\"]","[Round","\"6\"]","[Result","\""],"id":605}

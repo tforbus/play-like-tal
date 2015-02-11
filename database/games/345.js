@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Yerevan ARM","date":1962,"round":"1","white":"Alexander Pavlovich Korelov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B84","moves":["22\"]","[EventDate","\"","??.??\"]","[Round","\"1\"]","[Result","\""],"id":345}
+{"eventName":"USSR Championship","site":"Yerevan ARM","date":1962,"round":"1","white":"Alexander Pavlovich Korelov","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"B84","moves":["22\"]","[EventDate","\"19","??.??\"]","[Round","\"1\"]","[Result","\""],"id":345}

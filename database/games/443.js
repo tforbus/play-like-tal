@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship 1964/65","site":"Kiev (RUS)","date":1965,"round":"7","white":"Alexey Suetin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"C96","moves":["05\"]","[EventDate","\"","??.??\"]","[Round","\"7\"]","[Result","\""],"id":443}
+{"eventName":"USSR Championship 1964/65","site":"Kiev (RUS)","date":1965,"round":"7","white":"Alexey Suetin","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"C96","moves":["05\"]","[EventDate","\"19","??.??\"]","[Round","\"7\"]","[Result","\""],"id":443}

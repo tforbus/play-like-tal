@@ -1,1 +1,1 @@
-{"eventName":"Malm� Candidates Reserve Playoff","site":"Malm� SWE","date":1983,"round":"1","white":"Mikhail Tal","black":"Ulf Andersson","result":{"white":"1","black":"0"},"eco":"E39","moves":["02\"]","[EventDate","\"","02\"]","[Round","\"1\"]","[Result","\""],"id":978}
+{"eventName":"Malm� Candidates Reserve Playoff","site":"Malm� SWE","date":1983,"round":"1","white":"Mikhail Tal","black":"Ulf Andersson","result":{"white":"1","black":"0"},"eco":"E39","moves":["02\"]","[EventDate","\"19","02\"]","[Round","\"1\"]","[Result","\""],"id":978}

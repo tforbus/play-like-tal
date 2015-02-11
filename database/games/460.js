@@ -1,1 +1,1 @@
-{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"3","white":"Mikhail Tal","black":"Heinz Lehmann","result":{"white":"1","black":"0"},"eco":"E67","moves":["29\"]","[EventDate","\"","27\"]","[Round","\"3\"]","[Result","\""],"id":460}
+{"eventName":"Palma de Mallorca","site":"Palma ESP","date":1966,"round":"3","white":"Mikhail Tal","black":"Heinz Lehmann","result":{"white":"1","black":"0"},"eco":"E67","moves":["29\"]","[EventDate","\"19","27\"]","[Round","\"3\"]","[Result","\""],"id":460}

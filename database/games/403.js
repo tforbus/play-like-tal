@@ -1,1 +1,1 @@
-{"eventName":"Hastings 1963/64","site":"Hastings ENG","date":1964,"round":"8","white":"Mikhail Tal","black":"Michael J Franklin","result":{"white":"1","black":"0"},"eco":"B43","moves":["07\"]","[EventDate","\"","30\"]","[Round","\"8\"]","[Result","\""],"id":403}
+{"eventName":"Hastings 1963/64","site":"Hastings ENG","date":1964,"round":"8","white":"Mikhail Tal","black":"Michael J Franklin","result":{"white":"1","black":"0"},"eco":"B43","moves":["07\"]","[EventDate","\"19","30\"]","[Round","\"8\"]","[Result","\""],"id":403}

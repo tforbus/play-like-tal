@@ -1,1 +1,1 @@
-{"eventName":"USSR Championship","site":"Moscow URS","date":1976,"round":"1","white":"Tigran Vartanovich Petrosian","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A15","moves":["27\"]","[EventDate","\"","27\"]","[Round","\"1\"]","[Result","\""],"id":808}
+{"eventName":"USSR Championship","site":"Moscow URS","date":1976,"round":"1","white":"Tigran Vartanovich Petrosian","black":"Mikhail Tal","result":{"white":"0","black":"1"},"eco":"A15","moves":["27\"]","[EventDate","\"19","27\"]","[Round","\"1\"]","[Result","\""],"id":808}
